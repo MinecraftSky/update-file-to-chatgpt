@@ -1,0 +1,4 @@
+o1.txt filter=lfs diff=lfs merge=lfs -text
+o2.txt filter=lfs diff=lfs merge=lfs -text
+o3.txt filter=lfs diff=lfs merge=lfs -text
+o4.txt filter=lfs diff=lfs merge=lfs -text
