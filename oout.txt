@@ -1,0 +1,1636 @@
+sky@archlinux:~/qwen3-asr-test$ cd ~/qwen3-asr-test
+
+sed -i 's/^[[:space:]]*name=name,/                event_name=name,/' \
+  map_ort_to_graphnode_v9.py
+
+python -m py_compile map_ort_to_graphnode_v9.py
+
+nl -ba map_ort_to_graphnode_v9.py | sed -n '440,458p'
+
+uv run python map_ort_to_graphnode_v9.py
+   440	        except Exception:
+   441	            node_index = -1
+   442	
+   443	        if node_index < 0:
+   444	            continue
+   445	
+   446	        op_name = str(args.get("op_name", ""))
+   447	        out.append(
+   448	            OrtEvent(
+   449	                idx=i,
+   450	                ts_us=float(e.get("ts", 0.0)),
+   451	                dur_us=float(e.get("dur", 0.0)),
+   452	                node_index=node_index,
+   453	                op_name=op_name,
+   454	                event_name=name,
+   455	            )
+   456	        )
+   457	    out.sort(key=lambda x: x.ts_us)
+   458	    return out
+==============================================================================================================
+EXACT ORT → CUDA GRAPH MAPPING V9
+==============================================================================================================
+ORT CUDA events       : 13374
+CUDA graph kernels    : 758712
+REGION 00: kernels=  1878 duration=   18.932 ms
+REGION 01: kernels=377478 duration= 3813.359 ms
+REGION 02: kernels=  1878 duration=   17.256 ms
+REGION 03: kernels=377478 duration= 4036.073 ms
+
+Large region: 377478 kernels → 201 replay(s)
+Detected ORT replays: 6
+V8 hard anchors: 16
+CUDA replay  75: kernels=1878 duration=  18.232 ms
+CUDA replay  76: kernels=1878 duration=  18.215 ms
+CUDA replay  77: kernels=1878 duration=  18.223 ms
+CUDA replay  78: kernels=1878 duration=  18.182 ms
+CUDA replay  79: kernels=1878 duration=  18.223 ms
+CUDA replay  80: kernels=1878 duration=  18.101 ms
+
+Replay 0: ORT=2229 CUDA=1878 CUDA replay=75
+  matched=2144 high-confidence=1757
+    rel=   0 node= 122 MatMul           semantic=MatMul         K=2 conf=0.90
+    rel=   2 node= 126 Gather           semantic=Gather         K=3 conf=1.00
+    rel=   3 node= 131 Slice            semantic=Slice          K=4 conf=0.90
+    rel=   5 node= 127 Gather           semantic=Gather         K=3 conf=0.90
+    rel=   7 node= 137 ScatterND        semantic=ScatterND      K=6 conf=0.90
+    rel=  10 node= 149 ScatterElements  semantic=ScatterElements K=7 conf=1.00
+    rel=  11 node= 162 Gather           semantic=Gather         K=3 conf=1.00
+    rel=  12 node= 166 Slice            semantic=Slice          K=4 conf=0.90
+    rel=  14 node= 163 Gather           semantic=Gather         K=3 conf=1.00
+    rel=  16 node= 171 ScatterND        semantic=ScatterND      K=6 conf=0.90
+    rel=  19 node= 182 ScatterElements  semantic=ScatterElements K=12 conf=1.00
+    rel=  20 node= 183 Gather           semantic=Gather         K=13 conf=1.00
+    rel=  21 node= 184 Concat           semantic=Concat         K=14 conf=1.00
+    rel=  22 node= 186 Sin              semantic=Sin            K=15 conf=0.90
+    rel=  25 node=   0 Pow              semantic=Pow            K=16 conf=1.00
+    rel=  26 node=  59 ReduceMean       semantic=ReduceMean     K=17 conf=0.90
+
+Replay 1: ORT=2229 CUDA=1878 CUDA replay=76
+  matched=2144 high-confidence=1757
+    rel=   0 node= 122 MatMul           semantic=MatMul         K=2 conf=0.90
+    rel=   2 node= 126 Gather           semantic=Gather         K=3 conf=1.00
+    rel=   3 node= 131 Slice            semantic=Slice          K=4 conf=0.90
+    rel=   5 node= 127 Gather           semantic=Gather         K=3 conf=0.90
+    rel=   7 node= 137 ScatterND        semantic=ScatterND      K=6 conf=0.90
+    rel=  10 node= 149 ScatterElements  semantic=ScatterElements K=7 conf=1.00
+    rel=  11 node= 162 Gather           semantic=Gather         K=3 conf=1.00
+    rel=  12 node= 166 Slice            semantic=Slice          K=4 conf=0.90
+    rel=  14 node= 163 Gather           semantic=Gather         K=3 conf=1.00
+    rel=  16 node= 171 ScatterND        semantic=ScatterND      K=6 conf=1.00
+    rel=  19 node= 182 ScatterElements  semantic=ScatterElements K=12 conf=1.00
+    rel=  20 node= 183 Gather           semantic=Gather         K=13 conf=1.00
+    rel=  21 node= 184 Concat           semantic=Concat         K=14 conf=1.00
+    rel=  22 node= 186 Sin              semantic=Sin            K=15 conf=0.90
+    rel=  25 node=   0 Pow              semantic=Pow            K=16 conf=1.00
+    rel=  26 node=  59 ReduceMean       semantic=ReduceMean     K=17 conf=0.90
+
+Replay 2: ORT=2229 CUDA=1878 CUDA replay=77
+  matched=2144 high-confidence=1757
+    rel=   0 node= 122 MatMul           semantic=MatMul         K=2 conf=0.90
+    rel=   2 node= 126 Gather           semantic=Gather         K=3 conf=1.00
+    rel=   3 node= 131 Slice            semantic=Slice          K=4 conf=0.90
+    rel=   5 node= 127 Gather           semantic=Gather         K=3 conf=1.00
+    rel=   7 node= 137 ScatterND        semantic=ScatterND      K=6 conf=0.90
+    rel=  10 node= 149 ScatterElements  semantic=ScatterElements K=7 conf=1.00
+    rel=  11 node= 162 Gather           semantic=Gather         K=3 conf=1.00
+    rel=  12 node= 166 Slice            semantic=Slice          K=4 conf=0.90
+    rel=  14 node= 163 Gather           semantic=Gather         K=3 conf=1.00
+    rel=  16 node= 171 ScatterND        semantic=ScatterND      K=6 conf=1.00
+    rel=  19 node= 182 ScatterElements  semantic=ScatterElements K=12 conf=1.00
+    rel=  20 node= 183 Gather           semantic=Gather         K=13 conf=1.00
+    rel=  21 node= 184 Concat           semantic=Concat         K=14 conf=1.00
+    rel=  22 node= 186 Sin              semantic=Sin            K=15 conf=0.90
+    rel=  25 node=   0 Pow              semantic=Pow            K=16 conf=1.00
+    rel=  26 node=  59 ReduceMean       semantic=ReduceMean     K=17 conf=0.90
+
+Replay 3: ORT=2229 CUDA=1878 CUDA replay=78
+  matched=2144 high-confidence=1757
+    rel=   0 node= 122 MatMul           semantic=MatMul         K=2 conf=0.90
+    rel=   2 node= 126 Gather           semantic=Gather         K=3 conf=1.00
+    rel=   3 node= 131 Slice            semantic=Slice          K=4 conf=0.90
+    rel=   5 node= 127 Gather           semantic=Gather         K=3 conf=0.90
+    rel=   7 node= 137 ScatterND        semantic=ScatterND      K=6 conf=0.90
+    rel=  10 node= 149 ScatterElements  semantic=ScatterElements K=7 conf=1.00
+    rel=  11 node= 162 Gather           semantic=Gather         K=3 conf=1.00
+    rel=  12 node= 166 Slice            semantic=Slice          K=4 conf=0.90
+    rel=  14 node= 163 Gather           semantic=Gather         K=3 conf=0.90
+    rel=  16 node= 171 ScatterND        semantic=ScatterND      K=6 conf=0.90
+    rel=  19 node= 182 ScatterElements  semantic=ScatterElements K=12 conf=1.00
+    rel=  20 node= 183 Gather           semantic=Gather         K=13 conf=1.00
+    rel=  21 node= 184 Concat           semantic=Concat         K=14 conf=1.00
+    rel=  22 node= 186 Sin              semantic=Sin            K=15 conf=0.90
+    rel=  25 node=   0 Pow              semantic=Pow            K=16 conf=1.00
+    rel=  26 node=  59 ReduceMean       semantic=ReduceMean     K=17 conf=0.90
+
+Replay 4: ORT=2229 CUDA=1878 CUDA replay=79
+  matched=2144 high-confidence=1757
+    rel=   0 node= 122 MatMul           semantic=MatMul         K=2 conf=0.90
+    rel=   2 node= 126 Gather           semantic=Gather         K=3 conf=1.00
+    rel=   3 node= 131 Slice            semantic=Slice          K=4 conf=0.90
+    rel=   5 node= 127 Gather           semantic=Gather         K=3 conf=0.90
+    rel=   7 node= 137 ScatterND        semantic=ScatterND      K=6 conf=0.90
+    rel=  10 node= 149 ScatterElements  semantic=ScatterElements K=7 conf=1.00
+    rel=  11 node= 162 Gather           semantic=Gather         K=3 conf=1.00
+    rel=  12 node= 166 Slice            semantic=Slice          K=4 conf=0.90
+    rel=  14 node= 163 Gather           semantic=Gather         K=3 conf=1.00
+    rel=  16 node= 171 ScatterND        semantic=ScatterND      K=6 conf=1.00
+    rel=  19 node= 182 ScatterElements  semantic=ScatterElements K=12 conf=1.00
+    rel=  20 node= 183 Gather           semantic=Gather         K=13 conf=1.00
+    rel=  21 node= 184 Concat           semantic=Concat         K=14 conf=1.00
+    rel=  22 node= 186 Sin              semantic=Sin            K=15 conf=0.90
+    rel=  25 node=   0 Pow              semantic=Pow            K=16 conf=1.00
+    rel=  26 node=  59 ReduceMean       semantic=ReduceMean     K=17 conf=0.90
+
+Replay 5: ORT=2225 CUDA=1878 CUDA replay=80
+  matched=2140 high-confidence=1757
+    rel=   0 node= 122 MatMul           semantic=MatMul         K=2 conf=0.90
+    rel=   2 node= 126 Gather           semantic=Gather         K=3 conf=1.00
+    rel=   3 node= 131 Slice            semantic=Slice          K=4 conf=0.90
+    rel=   5 node= 127 Gather           semantic=Gather         K=3 conf=1.00
+    rel=   7 node= 137 ScatterND        semantic=ScatterND      K=6 conf=0.90
+    rel=  10 node= 149 ScatterElements  semantic=ScatterElements K=7 conf=1.00
+    rel=  11 node= 162 Gather           semantic=Gather         K=3 conf=1.00
+    rel=  12 node= 166 Slice            semantic=Slice          K=4 conf=0.90
+    rel=  14 node= 163 Gather           semantic=Gather         K=3 conf=0.90
+    rel=  16 node= 171 ScatterND        semantic=ScatterND      K=6 conf=1.00
+    rel=  19 node= 182 ScatterElements  semantic=ScatterElements K=12 conf=1.00
+    rel=  20 node= 183 Gather           semantic=Gather         K=13 conf=1.00
+    rel=  21 node= 184 Concat           semantic=Concat         K=14 conf=1.00
+    rel=  22 node= 186 Sin              semantic=Sin            K=15 conf=0.90
+    rel=  25 node=   0 Pow              semantic=Pow            K=16 conf=1.00
+    rel=  26 node=  59 ReduceMean       semantic=ReduceMean     K=17 conf=0.90
+
+==============================================================================================================
+HIGH-CONFIDENCE V9 CONSENSUS
+==============================================================================================================
+rel=   0 node= 122 MatMul             semantic=MatMul         K=2..2 votes=6/6 confidence=1.00
+rel=   2 node= 126 Gather             semantic=Gather         K=3..3 votes=6/6 confidence=1.00
+rel=   3 node= 131 Slice              semantic=Slice          K=4..4 votes=6/6 confidence=1.00
+rel=   5 node= 127 Gather             semantic=Gather         K=3..3 votes=6/6 confidence=1.00
+rel=   7 node= 137 ScatterND          semantic=ScatterND      K=6..6 votes=6/6 confidence=1.00
+rel=  10 node= 149 ScatterElements    semantic=ScatterElements K=7..7 votes=6/6 confidence=1.00
+rel=  11 node= 162 Gather             semantic=Gather         K=3..3 votes=6/6 confidence=1.00
+rel=  12 node= 166 Slice              semantic=Slice          K=4..4 votes=6/6 confidence=1.00
+rel=  14 node= 163 Gather             semantic=Gather         K=3..3 votes=6/6 confidence=1.00
+rel=  16 node= 171 ScatterND          semantic=ScatterND      K=6..6 votes=6/6 confidence=1.00
+rel=  19 node= 182 ScatterElements    semantic=ScatterElements K=12..12 votes=6/6 confidence=1.00
+rel=  20 node= 183 Gather             semantic=Gather         K=13..13 votes=6/6 confidence=1.00
+rel=  21 node= 184 Concat             semantic=Concat         K=14..14 votes=6/6 confidence=1.00
+rel=  22 node= 186 Sin                semantic=Sin            K=15..15 votes=6/6 confidence=1.00
+rel=  25 node=   0 Pow                semantic=Pow            K=16..16 votes=6/6 confidence=1.00
+rel=  26 node=  59 ReduceMean         semantic=ReduceMean     K=17..17 votes=6/6 confidence=1.00
+rel=  27 node= 117 Add                semantic=Add            K=19..19 votes=6/6 confidence=1.00
+rel=  28 node= 119 Sqrt               semantic=Sqrt           K=20..20 votes=6/6 confidence=1.00
+rel=  29 node= 121 Reciprocal         semantic=Reciprocal     K=21..21 votes=6/6 confidence=1.00
+rel=  30 node= 123 Mul                semantic=Mul            K=22..22 votes=6/6 confidence=1.00
+rel=  31 node= 125 Mul                semantic=Mul            K=23..23 votes=6/6 confidence=1.00
+rel=  32 node= 129 MatMulNBits        semantic=MatMulNBits    K=24..24 votes=6/6 confidence=1.00
+rel=  34 node= 139 Pow                semantic=Pow            K=16..16 votes=6/6 confidence=1.00
+rel=  35 node= 143 ReduceMean         semantic=ReduceMean     K=17..17 votes=6/6 confidence=1.00
+rel=  36 node= 147 Add                semantic=Add            K=19..19 votes=6/6 confidence=1.00
+rel=  37 node= 151 Sqrt               semantic=Sqrt           K=20..20 votes=6/6 confidence=1.00
+rel=  39 node= 160 Mul                semantic=Mul            K=31..31 votes=6/6 confidence=1.00
+rel=  40 node= 165 Mul                semantic=Mul            K=32..32 votes=6/6 confidence=1.00
+rel=  41 node=2679 Split              semantic=Split          K=33..33 votes=6/6 confidence=1.00
+rel=  42 node= 178 Neg                semantic=Neg            K=34..34 votes=6/6 confidence=1.00
+rel=  43 node= 181 Concat             semantic=Concat         K=35..35 votes=6/6 confidence=1.00
+rel=  44 node= 192 Mul                semantic=Mul            K=36..36 votes=6/6 confidence=1.00
+rel=  45 node= 185 Cos                semantic=Cos            K=37..37 votes=6/6 confidence=1.00
+rel=  48 node= 190 Mul                semantic=Mul            K=38..38 votes=6/6 confidence=1.00
+rel=  49 node= 194 Add                semantic=Add            K=19..19 votes=6/6 confidence=1.00
+rel=  51 node=2649 Split              semantic=Split          K=40..40 votes=6/6 confidence=1.00
+rel=  53 node=  61 Transpose          semantic=Transpose      K=43..43 votes=5/6 confidence=0.83
+rel=  55 node= 196 ScatterND          semantic=ScatterND      K=42..42 votes=6/6 confidence=1.00
+rel=  56 node= 197 Transpose          semantic=Transpose      K=43..43 votes=5/6 confidence=0.83
+rel=  58 node= 200 Expand             semantic=Expand         K=44..44 votes=6/6 confidence=1.00
+rel=  60 node= 128 MatMulNBits        semantic=MatMulNBits    K=45..45 votes=6/6 confidence=1.00
+rel=  62 node= 138 Pow                semantic=Pow            K=46..46 votes=6/6 confidence=1.00
+rel=  63 node= 142 ReduceMean         semantic=ReduceMean     K=47..47 votes=6/6 confidence=1.00
+rel=  64 node= 146 Add                semantic=Add            K=49..49 votes=6/6 confidence=1.00
+rel=  65 node= 150 Sqrt               semantic=Sqrt           K=50..50 votes=6/6 confidence=1.00
+rel=  66 node= 155 Reciprocal         semantic=Reciprocal     K=51..51 votes=6/6 confidence=1.00
+rel=  68 node= 164 Mul                semantic=Mul            K=52..52 votes=6/6 confidence=1.00
+rel=  69 node= 168 Transpose          semantic=Transpose      K=43..43 votes=5/6 confidence=0.83
+rel=  70 node=2680 Split              semantic=Split          K=54..54 votes=6/6 confidence=1.00
+rel=  71 node= 177 Neg                semantic=Neg            K=55..55 votes=6/6 confidence=1.00
+rel=  72 node= 180 Concat             semantic=Concat         K=56..56 votes=6/6 confidence=1.00
+rel=  73 node= 191 Mul                semantic=Mul            K=57..57 votes=6/6 confidence=1.00
+rel=  74 node= 189 Mul                semantic=Mul            K=58..58 votes=6/6 confidence=1.00
+rel=  75 node= 193 Add                semantic=Add            K=59..59 votes=6/6 confidence=1.00
+rel=  77 node=2791 BiasSoftmax        semantic=BiasSoftmax    K=61..61 votes=6/6 confidence=1.00
+rel=  78 node= 130 MatMulNBits        semantic=MatMulNBits    K=45..45 votes=6/6 confidence=1.00
+rel=  80 node= 140 Transpose          semantic=Transpose      K=43..43 votes=6/6 confidence=1.00
+rel=  81 node=2678 Split              semantic=Split          K=54..54 votes=6/6 confidence=1.00
+rel=  83 node=  89 Transpose          semantic=Transpose      K=41..41 votes=6/6 confidence=1.00
+rel=  84 node= 144 ScatterND          semantic=ScatterND      K=42..42 votes=6/6 confidence=1.00
+rel=  85 node= 148 Transpose          semantic=Transpose      K=43..43 votes=6/6 confidence=1.00
+rel=  87 node= 157 Expand             semantic=Expand         K=44..44 votes=6/6 confidence=1.00
+rel=  89 node= 207 MatMul             semantic=MatMul         K=60..60 votes=6/6 confidence=1.00
+rel=  90 node= 208 Transpose          semantic=Transpose      K=43..43 votes=6/6 confidence=1.00
+rel=  92 node= 210 MatMulNBits        semantic=MatMulNBits    K=62..62 votes=5/6 confidence=0.83
+rel=  93 node= 211 Add                semantic=Add            K=49..49 votes=6/6 confidence=1.00
+rel=  94 node= 212 Pow                semantic=Pow            K=46..46 votes=6/6 confidence=1.00
+rel=  95 node= 213 ReduceMean         semantic=ReduceMean     K=47..47 votes=6/6 confidence=1.00
+rel=  96 node= 214 Add                semantic=Add            K=49..49 votes=6/6 confidence=1.00
+rel=  97 node= 215 Sqrt               semantic=Sqrt           K=50..50 votes=6/6 confidence=1.00
+rel=  98 node= 216 Reciprocal         semantic=Reciprocal     K=51..51 votes=6/6 confidence=1.00
+rel=  99 node= 217 Mul                semantic=Mul            K=52..52 votes=5/6 confidence=0.83
+rel= 100 node= 218 Mul                semantic=Mul            K=53..53 votes=5/6 confidence=0.83
+rel= 101 node= 219 MatMulNBits        semantic=MatMulNBits    K=62..62 votes=5/6 confidence=0.83
+rel= 103 node= 220 MatMulNBits        semantic=MatMulNBits    K=62..62 votes=5/6 confidence=0.83
+rel= 105 node= 224 MatMulNBits        semantic=MatMulNBits    K=62..62 votes=6/6 confidence=1.00
+rel= 106 node= 225 Add                semantic=Add            K=49..49 votes=6/6 confidence=1.00
+rel= 107 node= 226 Pow                semantic=Pow            K=46..46 votes=6/6 confidence=1.00
+rel= 108 node= 227 ReduceMean         semantic=ReduceMean     K=47..47 votes=6/6 confidence=1.00
+rel= 109 node= 228 Add                semantic=Add            K=49..49 votes=6/6 confidence=1.00
+rel= 110 node= 229 Sqrt               semantic=Sqrt           K=50..50 votes=6/6 confidence=1.00
+rel= 111 node= 230 Reciprocal         semantic=Reciprocal     K=51..51 votes=6/6 confidence=1.00
+rel= 114 node= 234 MatMulNBits        semantic=MatMulNBits    K=62..62 votes=6/6 confidence=1.00
+rel= 116 node= 240 Pow                semantic=Pow            K=46..46 votes=6/6 confidence=1.00
+rel= 117 node= 243 ReduceMean         semantic=ReduceMean     K=47..47 votes=6/6 confidence=1.00
+rel= 118 node= 246 Add                semantic=Add            K=49..49 votes=6/6 confidence=1.00
+rel= 119 node= 249 Sqrt               semantic=Sqrt           K=50..50 votes=6/6 confidence=1.00
+rel= 120 node= 253 Reciprocal         semantic=Reciprocal     K=51..51 votes=6/6 confidence=1.00
+rel= 121 node= 256 Mul                semantic=Mul            K=52..52 votes=6/6 confidence=1.00
+rel= 122 node= 259 Mul                semantic=Mul            K=53..53 votes=6/6 confidence=1.00
+rel= 123 node=2681 Split              semantic=Split          K=54..54 votes=6/6 confidence=1.00
+rel= 124 node= 269 Neg                semantic=Neg            K=55..55 votes=6/6 confidence=1.00
+rel= 125 node= 271 Concat             semantic=Concat         K=56..56 votes=6/6 confidence=1.00
+rel= 126 node= 273 Mul                semantic=Mul            K=57..57 votes=6/6 confidence=1.00
+rel= 127 node= 265 Mul                semantic=Mul            K=58..58 votes=6/6 confidence=1.00
+rel= 128 node= 275 Add                semantic=Add            K=49..49 votes=6/6 confidence=1.00
+rel= 129 node= 276 Transpose          semantic=Transpose      K=43..43 votes=6/6 confidence=1.00
+rel= 131 node=  62 Transpose          semantic=Transpose      K=41..41 votes=6/6 confidence=1.00
+rel= 132 node= 277 ScatterND          semantic=ScatterND      K=42..42 votes=6/6 confidence=1.00
+rel= 133 node= 278 Transpose          semantic=Transpose      K=43..43 votes=6/6 confidence=1.00
+rel= 135 node= 281 Expand             semantic=Expand         K=44..44 votes=6/6 confidence=1.00
+rel= 137 node= 233 MatMulNBits        semantic=MatMulNBits    K=62..62 votes=6/6 confidence=1.00
+rel= 139 node= 239 Pow                semantic=Pow            K=46..46 votes=6/6 confidence=1.00
+rel= 140 node= 242 ReduceMean         semantic=ReduceMean     K=47..47 votes=6/6 confidence=1.00
+rel= 141 node= 245 Add                semantic=Add            K=49..49 votes=6/6 confidence=1.00
+rel= 142 node= 248 Sqrt               semantic=Sqrt           K=50..50 votes=6/6 confidence=1.00
+rel= 143 node= 252 Reciprocal         semantic=Reciprocal     K=51..51 votes=6/6 confidence=1.00
+rel= 145 node= 258 Mul                semantic=Mul            K=52..52 votes=6/6 confidence=1.00
+rel= 146 node= 260 Transpose          semantic=Transpose      K=43..43 votes=6/6 confidence=1.00
+rel= 147 node=2682 Split              semantic=Split          K=54..54 votes=6/6 confidence=1.00
+rel= 148 node= 268 Neg                semantic=Neg            K=55..55 votes=6/6 confidence=1.00
+rel= 149 node= 270 Concat             semantic=Concat         K=56..56 votes=6/6 confidence=1.00
+rel= 150 node= 272 Mul                semantic=Mul            K=57..57 votes=6/6 confidence=1.00
+rel= 151 node= 262 Mul                semantic=Mul            K=58..58 votes=6/6 confidence=1.00
+rel= 152 node= 274 Add                semantic=Add            K=59..59 votes=6/6 confidence=1.00
+rel= 154 node=2792 BiasSoftmax        semantic=BiasSoftmax    K=61..61 votes=6/6 confidence=1.00
+rel= 155 node= 235 MatMulNBits        semantic=MatMulNBits    K=62..62 votes=6/6 confidence=1.00
+rel= 157 node= 241 Transpose          semantic=Transpose      K=43..43 votes=6/6 confidence=1.00
+rel= 159 node=  90 Transpose          semantic=Transpose      K=41..41 votes=6/6 confidence=1.00
+rel= 160 node= 244 ScatterND          semantic=ScatterND      K=42..42 votes=6/6 confidence=1.00
+rel= 161 node= 247 Transpose          semantic=Transpose      K=43..43 votes=6/6 confidence=1.00
+rel= 163 node= 254 Expand             semantic=Expand         K=44..44 votes=6/6 confidence=1.00
+rel= 165 node= 288 MatMul             semantic=MatMul         K=60..60 votes=6/6 confidence=1.00
+rel= 166 node= 289 Transpose          semantic=Transpose      K=43..43 votes=6/6 confidence=1.00
+rel= 168 node= 291 MatMulNBits        semantic=MatMulNBits    K=62..62 votes=6/6 confidence=1.00
+rel= 169 node= 292 Add                semantic=Add            K=49..49 votes=6/6 confidence=1.00
+rel= 170 node= 293 Pow                semantic=Pow            K=46..46 votes=6/6 confidence=1.00
+rel= 171 node= 294 ReduceMean         semantic=ReduceMean     K=47..47 votes=6/6 confidence=1.00
+rel= 172 node= 295 Add                semantic=Add            K=49..49 votes=6/6 confidence=1.00
+rel= 173 node= 296 Sqrt               semantic=Sqrt           K=50..50 votes=6/6 confidence=1.00
+rel= 174 node= 297 Reciprocal         semantic=Reciprocal     K=51..51 votes=6/6 confidence=1.00
+rel= 177 node= 300 MatMulNBits        semantic=MatMulNBits    K=62..62 votes=6/6 confidence=1.00
+rel= 179 node= 301 MatMulNBits        semantic=MatMulNBits    K=62..62 votes=6/6 confidence=1.00
+rel= 181 node= 305 MatMulNBits        semantic=MatMulNBits    K=62..62 votes=5/6 confidence=0.83
+rel= 182 node= 306 Add                semantic=Add            K=49..49 votes=6/6 confidence=1.00
+rel= 183 node= 307 Pow                semantic=Pow            K=46..46 votes=6/6 confidence=1.00
+rel= 184 node= 308 ReduceMean         semantic=ReduceMean     K=47..47 votes=6/6 confidence=1.00
+rel= 185 node= 309 Add                semantic=Add            K=49..49 votes=6/6 confidence=1.00
+rel= 186 node= 310 Sqrt               semantic=Sqrt           K=50..50 votes=6/6 confidence=1.00
+rel= 187 node= 311 Reciprocal         semantic=Reciprocal     K=51..51 votes=6/6 confidence=1.00
+rel= 188 node= 312 Mul                semantic=Mul            K=52..52 votes=5/6 confidence=0.83
+rel= 190 node= 315 MatMulNBits        semantic=MatMulNBits    K=62..62 votes=6/6 confidence=1.00
+rel= 192 node= 321 Pow                semantic=Pow            K=46..46 votes=6/6 confidence=1.00
+rel= 193 node= 324 ReduceMean         semantic=ReduceMean     K=47..47 votes=6/6 confidence=1.00
+rel= 194 node= 327 Add                semantic=Add            K=49..49 votes=6/6 confidence=1.00
+rel= 195 node= 330 Sqrt               semantic=Sqrt           K=50..50 votes=6/6 confidence=1.00
+rel= 196 node= 334 Reciprocal         semantic=Reciprocal     K=51..51 votes=6/6 confidence=1.00
+rel= 197 node= 337 Mul                semantic=Mul            K=52..52 votes=6/6 confidence=1.00
+rel= 198 node= 340 Mul                semantic=Mul            K=53..53 votes=6/6 confidence=1.00
+rel= 199 node=2683 Split              semantic=Split          K=54..54 votes=6/6 confidence=1.00
+rel= 200 node= 350 Neg                semantic=Neg            K=55..55 votes=6/6 confidence=1.00
+rel= 201 node= 352 Concat             semantic=Concat         K=56..56 votes=6/6 confidence=1.00
+rel= 202 node= 354 Mul                semantic=Mul            K=57..57 votes=6/6 confidence=1.00
+rel= 203 node= 346 Mul                semantic=Mul            K=58..58 votes=6/6 confidence=1.00
+rel= 204 node= 356 Add                semantic=Add            K=49..49 votes=6/6 confidence=1.00
+rel= 205 node= 357 Transpose          semantic=Transpose      K=43..43 votes=6/6 confidence=1.00
+rel= 207 node=  63 Transpose          semantic=Transpose      K=41..41 votes=6/6 confidence=1.00
+rel= 208 node= 358 ScatterND          semantic=ScatterND      K=42..42 votes=6/6 confidence=1.00
+rel= 209 node= 359 Transpose          semantic=Transpose      K=43..43 votes=6/6 confidence=1.00
+rel= 211 node= 362 Expand             semantic=Expand         K=44..44 votes=6/6 confidence=1.00
+rel= 213 node= 314 MatMulNBits        semantic=MatMulNBits    K=62..62 votes=6/6 confidence=1.00
+rel= 215 node= 320 Pow                semantic=Pow            K=46..46 votes=6/6 confidence=1.00
+rel= 216 node= 323 ReduceMean         semantic=ReduceMean     K=47..47 votes=6/6 confidence=1.00
+rel= 217 node= 326 Add                semantic=Add            K=49..49 votes=6/6 confidence=1.00
+rel= 218 node= 329 Sqrt               semantic=Sqrt           K=50..50 votes=6/6 confidence=1.00
+rel= 219 node= 333 Reciprocal         semantic=Reciprocal     K=51..51 votes=6/6 confidence=1.00
+rel= 221 node= 339 Mul                semantic=Mul            K=52..52 votes=6/6 confidence=1.00
+rel= 222 node= 341 Transpose          semantic=Transpose      K=43..43 votes=6/6 confidence=1.00
+rel= 223 node=2684 Split              semantic=Split          K=54..54 votes=6/6 confidence=1.00
+rel= 224 node= 349 Neg                semantic=Neg            K=55..55 votes=6/6 confidence=1.00
+rel= 225 node= 351 Concat             semantic=Concat         K=56..56 votes=6/6 confidence=1.00
+rel= 226 node= 353 Mul                semantic=Mul            K=57..57 votes=6/6 confidence=1.00
+rel= 227 node= 343 Mul                semantic=Mul            K=58..58 votes=6/6 confidence=1.00
+rel= 228 node= 355 Add                semantic=Add            K=59..59 votes=6/6 confidence=1.00
+rel= 230 node=2793 BiasSoftmax        semantic=BiasSoftmax    K=61..61 votes=6/6 confidence=1.00
+rel= 231 node= 316 MatMulNBits        semantic=MatMulNBits    K=62..62 votes=6/6 confidence=1.00
+rel= 233 node= 322 Transpose          semantic=Transpose      K=43..43 votes=6/6 confidence=1.00
+rel= 235 node=  91 Transpose          semantic=Transpose      K=43..43 votes=6/6 confidence=1.00
+rel= 236 node= 325 ScatterND          semantic=ScatterND      K=42..42 votes=6/6 confidence=1.00
+rel= 237 node= 328 Transpose          semantic=Transpose      K=43..43 votes=6/6 confidence=1.00
+rel= 239 node= 335 Expand             semantic=Expand         K=44..44 votes=6/6 confidence=1.00
+rel= 241 node= 369 MatMul             semantic=MatMul         K=60..60 votes=6/6 confidence=1.00
+rel= 242 node= 370 Transpose          semantic=Transpose      K=43..43 votes=6/6 confidence=1.00
+rel= 244 node= 372 MatMulNBits        semantic=MatMulNBits    K=62..62 votes=6/6 confidence=1.00
+rel= 245 node= 373 Add                semantic=Add            K=49..49 votes=6/6 confidence=1.00
+rel= 246 node= 374 Pow                semantic=Pow            K=46..46 votes=6/6 confidence=1.00
+rel= 247 node= 375 ReduceMean         semantic=ReduceMean     K=47..47 votes=6/6 confidence=1.00
+rel= 248 node= 376 Add                semantic=Add            K=49..49 votes=6/6 confidence=1.00
+rel= 249 node= 377 Sqrt               semantic=Sqrt           K=50..50 votes=6/6 confidence=1.00
+rel= 250 node= 378 Reciprocal         semantic=Reciprocal     K=51..51 votes=6/6 confidence=1.00
+rel= 251 node= 379 Mul                semantic=Split          K=63..63 votes=6/6 confidence=1.00
+rel= 252 node= 380 Mul                semantic=Mul            K=78..78 votes=6/6 confidence=1.00
+rel= 253 node= 381 MatMulNBits        semantic=MatMulNBits    K=79..79 votes=6/6 confidence=1.00
+rel= 254 node=2765 QuickGelu          semantic=QuickGelu      K=80..80 votes=6/6 confidence=1.00
+rel= 255 node= 382 MatMulNBits        semantic=MatMulNBits    K=81..81 votes=6/6 confidence=1.00
+rel= 256 node= 385 Mul                semantic=Mul            K=82..82 votes=6/6 confidence=1.00
+rel= 257 node= 386 MatMulNBits        semantic=MatMulNBits    K=69..69 votes=6/6 confidence=1.00
+rel= 258 node= 387 Add                semantic=Add            K=70..70 votes=6/6 confidence=1.00
+rel= 259 node= 388 Pow                semantic=Pow            K=71..71 votes=6/6 confidence=1.00
+rel= 260 node= 389 ReduceMean         semantic=ReduceMean     K=72..72 votes=6/6 confidence=1.00
+rel= 261 node= 390 Add                semantic=Add            K=74..74 votes=6/6 confidence=1.00
+rel= 262 node= 391 Sqrt               semantic=Sqrt           K=75..75 votes=6/6 confidence=1.00
+rel= 263 node= 392 Reciprocal         semantic=Reciprocal     K=76..76 votes=6/6 confidence=1.00
+rel= 264 node= 393 Mul                semantic=Mul            K=77..77 votes=6/6 confidence=1.00
+rel= 266 node= 396 MatMulNBits        semantic=MatMulNBits    K=69..69 votes=6/6 confidence=1.00
+rel= 268 node= 402 Pow                semantic=Pow            K=71..71 votes=6/6 confidence=1.00
+rel= 270 node= 408 Add                semantic=Add            K=74..74 votes=6/6 confidence=1.00
+rel= 271 node= 411 Sqrt               semantic=Sqrt           K=75..75 votes=6/6 confidence=1.00
+rel= 272 node= 415 Reciprocal         semantic=Reciprocal     K=76..76 votes=6/6 confidence=1.00
+rel= 273 node= 418 Mul                semantic=Mul            K=77..77 votes=6/6 confidence=1.00
+rel= 278 node= 435 Mul                semantic=Mul            K=77..77 votes=6/6 confidence=1.00
+rel= 279 node= 427 Mul                semantic=Mul            K=77..77 votes=5/6 confidence=0.83
+rel= 280 node= 437 Add                semantic=Add            K=70..70 votes=6/6 confidence=1.00
+rel= 281 node= 438 Transpose          semantic=Transpose      K=66..66 votes=6/6 confidence=1.00
+rel= 283 node=  64 Transpose          semantic=Transpose      K=64..64 votes=6/6 confidence=1.00
+rel= 284 node= 439 ScatterND          semantic=ScatterND      K=65..65 votes=6/6 confidence=1.00
+rel= 285 node= 440 Transpose          semantic=Transpose      K=66..66 votes=6/6 confidence=1.00
+rel= 287 node= 443 Expand             semantic=Expand         K=67..67 votes=6/6 confidence=1.00
+rel= 291 node= 401 Pow                semantic=Pow            K=71..71 votes=6/6 confidence=1.00
+rel= 293 node= 407 Add                semantic=Add            K=74..74 votes=6/6 confidence=1.00
+rel= 294 node= 410 Sqrt               semantic=Sqrt           K=75..75 votes=6/6 confidence=1.00
+rel= 295 node= 414 Reciprocal         semantic=Reciprocal     K=76..76 votes=6/6 confidence=1.00
+rel= 296 node= 417 Mul                semantic=Mul            K=77..77 votes=6/6 confidence=1.00
+rel= 298 node= 422 Transpose          semantic=Transpose      K=66..66 votes=6/6 confidence=1.00
+rel= 302 node= 434 Mul                semantic=Mul            K=77..77 votes=6/6 confidence=1.00
+rel= 304 node= 436 Add                semantic=Add            K=70..70 votes=6/6 confidence=1.00
+rel= 307 node= 397 MatMulNBits        semantic=MatMulNBits    K=93..93 votes=6/6 confidence=1.00
+rel= 320 node= 453 MatMulNBits        semantic=MatMulNBits    K=83..83 votes=6/6 confidence=1.00
+rel= 321 node= 454 Add                semantic=Add            K=84..84 votes=6/6 confidence=1.00
+rel= 322 node= 455 Pow                semantic=Pow            K=85..85 votes=6/6 confidence=1.00
+rel= 323 node= 456 ReduceMean         semantic=ReduceMean     K=86..86 votes=6/6 confidence=1.00
+rel= 324 node= 457 Add                semantic=Add            K=74..74 votes=6/6 confidence=1.00
+rel= 325 node= 458 Sqrt               semantic=Sqrt           K=75..75 votes=6/6 confidence=1.00
+rel= 326 node= 459 Reciprocal         semantic=Reciprocal     K=76..76 votes=5/6 confidence=0.83
+rel= 327 node= 460 Mul                semantic=Mul            K=77..77 votes=6/6 confidence=1.00
+rel= 328 node= 461 Mul                semantic=Mul            K=78..78 votes=6/6 confidence=1.00
+rel= 329 node= 462 MatMulNBits        semantic=MatMulNBits    K=79..79 votes=6/6 confidence=1.00
+rel= 330 node=2766 QuickGelu          semantic=QuickGelu      K=80..80 votes=6/6 confidence=1.00
+rel= 331 node= 463 MatMulNBits        semantic=MatMulNBits    K=81..81 votes=6/6 confidence=1.00
+rel= 332 node= 466 Mul                semantic=Mul            K=82..82 votes=6/6 confidence=1.00
+rel= 333 node= 467 MatMulNBits        semantic=MatMulNBits    K=83..83 votes=6/6 confidence=1.00
+rel= 334 node= 468 Add                semantic=Add            K=84..84 votes=6/6 confidence=1.00
+rel= 335 node= 469 Pow                semantic=Pow            K=85..85 votes=6/6 confidence=1.00
+rel= 336 node= 470 ReduceMean         semantic=ReduceMean     K=86..86 votes=6/6 confidence=1.00
+rel= 337 node= 471 Add                semantic=Add            K=88..88 votes=6/6 confidence=1.00
+rel= 338 node= 472 Sqrt               semantic=Sqrt           K=89..89 votes=6/6 confidence=1.00
+rel= 339 node= 473 Reciprocal         semantic=Reciprocal     K=90..90 votes=5/6 confidence=0.83
+rel= 340 node= 474 Mul                semantic=Mul            K=91..91 votes=6/6 confidence=1.00
+rel= 344 node= 483 Pow                semantic=Pow            K=85..85 votes=6/6 confidence=1.00
+rel= 345 node= 486 ReduceMean         semantic=ReduceMean     K=86..86 votes=6/6 confidence=1.00
+rel= 346 node= 489 Add                semantic=Add            K=88..88 votes=6/6 confidence=1.00
+rel= 347 node= 492 Sqrt               semantic=Sqrt           K=89..89 votes=5/6 confidence=0.83
+rel= 349 node= 499 Mul                semantic=Mul            K=100..100 votes=6/6 confidence=1.00
+rel= 350 node= 502 Mul                semantic=Mul            K=101..101 votes=6/6 confidence=1.00
+rel= 351 node=2687 Split              semantic=Split          K=102..102 votes=6/6 confidence=1.00
+rel= 352 node= 512 Neg                semantic=Neg            K=103..103 votes=6/6 confidence=1.00
+rel= 353 node= 514 Concat             semantic=Concat         K=104..104 votes=6/6 confidence=1.00
+rel= 354 node= 516 Mul                semantic=Mul            K=105..105 votes=6/6 confidence=1.00
+rel= 355 node= 508 Mul                semantic=Mul            K=106..106 votes=6/6 confidence=1.00
+rel= 356 node= 518 Add                semantic=Add            K=107..107 votes=6/6 confidence=1.00
+rel= 357 node= 519 Transpose          semantic=Transpose      K=110..110 votes=6/6 confidence=1.00
+rel= 360 node= 520 ScatterND          semantic=ScatterND      K=109..109 votes=6/6 confidence=1.00
+rel= 361 node= 521 Transpose          semantic=Transpose      K=110..110 votes=6/6 confidence=1.00
+rel= 363 node= 524 Expand             semantic=Expand         K=111..111 votes=6/6 confidence=1.00
+rel= 365 node= 476 MatMulNBits        semantic=MatMulNBits    K=93..93 votes=6/6 confidence=1.00
+rel= 367 node= 482 Pow                semantic=Pow            K=94..94 votes=6/6 confidence=1.00
+rel= 368 node= 485 ReduceMean         semantic=ReduceMean     K=95..95 votes=6/6 confidence=1.00
+rel= 369 node= 488 Add                semantic=Add            K=97..97 votes=6/6 confidence=1.00
+rel= 370 node= 491 Sqrt               semantic=Sqrt           K=98..98 votes=6/6 confidence=1.00
+rel= 371 node= 495 Reciprocal         semantic=Reciprocal     K=99..99 votes=6/6 confidence=1.00
+rel= 373 node= 501 Mul                semantic=Mul            K=100..100 votes=6/6 confidence=1.00
+rel= 374 node= 503 Transpose          semantic=Transpose      K=110..110 votes=6/6 confidence=1.00
+rel= 375 node=2688 Split              semantic=Split          K=102..102 votes=6/6 confidence=1.00
+rel= 376 node= 511 Neg                semantic=Neg            K=103..103 votes=6/6 confidence=1.00
+rel= 377 node= 513 Concat             semantic=Concat         K=104..104 votes=6/6 confidence=1.00
+rel= 378 node= 515 Mul                semantic=Mul            K=105..105 votes=6/6 confidence=1.00
+rel= 379 node= 505 Mul                semantic=Mul            K=125..125 votes=6/6 confidence=1.00
+rel= 380 node= 517 Add                semantic=Add            K=126..126 votes=6/6 confidence=1.00
+rel= 382 node=2795 BiasSoftmax        semantic=BiasSoftmax    K=128..128 votes=6/6 confidence=1.00
+rel= 383 node= 478 MatMulNBits        semantic=MatMulNBits    K=129..129 votes=5/6 confidence=0.83
+rel= 385 node= 484 Transpose          semantic=Transpose      K=110..110 votes=5/6 confidence=0.83
+rel= 388 node= 487 ScatterND          semantic=ScatterND      K=109..109 votes=6/6 confidence=1.00
+rel= 389 node= 490 Transpose          semantic=Transpose      K=110..110 votes=5/6 confidence=0.83
+rel= 391 node= 497 Expand             semantic=Expand         K=111..111 votes=6/6 confidence=1.00
+rel= 393 node= 531 MatMul             semantic=MatMul         K=134..134 votes=5/6 confidence=0.83
+rel= 394 node= 532 Transpose          semantic=Transpose      K=110..110 votes=6/6 confidence=1.00
+rel= 396 node= 534 MatMulNBits        semantic=MatMulNBits    K=135..135 votes=6/6 confidence=1.00
+rel= 397 node= 535 Add                semantic=Add            K=136..136 votes=6/6 confidence=1.00
+rel= 398 node= 536 Pow                semantic=Pow            K=113..113 votes=6/6 confidence=1.00
+rel= 400 node= 538 Add                semantic=Add            K=116..116 votes=6/6 confidence=1.00
+rel= 401 node= 539 Sqrt               semantic=Sqrt           K=117..117 votes=6/6 confidence=1.00
+rel= 402 node= 540 Reciprocal         semantic=Reciprocal     K=118..118 votes=6/6 confidence=1.00
+rel= 403 node= 541 Mul                semantic=Mul            K=105..105 votes=6/6 confidence=1.00
+rel= 405 node= 543 MatMulNBits        semantic=MatMulNBits    K=129..129 votes=6/6 confidence=1.00
+rel= 407 node= 544 MatMulNBits        semantic=MatMulNBits    K=129..129 votes=5/6 confidence=0.83
+rel= 409 node= 548 MatMulNBits        semantic=MatMulNBits    K=135..135 votes=6/6 confidence=1.00
+rel= 410 node= 549 Add                semantic=Add            K=136..136 votes=6/6 confidence=1.00
+rel= 411 node= 550 Pow                semantic=Pow            K=113..113 votes=6/6 confidence=1.00
+rel= 413 node= 552 Add                semantic=Add            K=116..116 votes=6/6 confidence=1.00
+rel= 416 node= 555 Mul                semantic=Mul            K=143..143 votes=6/6 confidence=1.00
+rel= 417 node= 556 Mul                semantic=Mul            K=144..144 votes=6/6 confidence=1.00
+rel= 420 node= 564 Pow                semantic=Pow            K=113..113 votes=6/6 confidence=1.00
+rel= 422 node= 570 Add                semantic=Add            K=116..116 votes=6/6 confidence=1.00
+rel= 423 node= 573 Sqrt               semantic=Sqrt           K=117..117 votes=5/6 confidence=0.83
+rel= 424 node= 577 Reciprocal         semantic=Reciprocal     K=118..118 votes=6/6 confidence=1.00
+rel= 425 node= 580 Mul                semantic=Mul            K=119..119 votes=6/6 confidence=1.00
+rel= 426 node= 583 Mul                semantic=Mul            K=120..120 votes=6/6 confidence=1.00
+rel= 427 node=2689 Split              semantic=Split          K=121..121 votes=6/6 confidence=1.00
+rel= 428 node= 593 Neg                semantic=Neg            K=122..122 votes=6/6 confidence=1.00
+rel= 429 node= 595 Concat             semantic=Concat         K=123..123 votes=6/6 confidence=1.00
+rel= 430 node= 597 Mul                semantic=Mul            K=124..124 votes=6/6 confidence=1.00
+rel= 431 node= 589 Mul                semantic=Mul            K=125..125 votes=6/6 confidence=1.00
+rel= 433 node= 600 Transpose          semantic=Transpose      K=132..132 votes=6/6 confidence=1.00
+rel= 436 node= 601 ScatterND          semantic=ScatterND      K=131..131 votes=6/6 confidence=1.00
+rel= 437 node= 602 Transpose          semantic=Transpose      K=132..132 votes=6/6 confidence=1.00
+rel= 439 node= 605 Expand             semantic=Expand         K=133..133 votes=6/6 confidence=1.00
+rel= 443 node= 563 Pow                semantic=Pow            K=137..137 votes=6/6 confidence=1.00
+rel= 445 node= 569 Add                semantic=Add            K=140..140 votes=6/6 confidence=1.00
+rel= 446 node= 572 Sqrt               semantic=Sqrt           K=141..141 votes=6/6 confidence=1.00
+rel= 447 node= 576 Reciprocal         semantic=Reciprocal     K=142..142 votes=6/6 confidence=1.00
+rel= 448 node= 579 Mul                semantic=Mul            K=124..124 votes=6/6 confidence=1.00
+rel= 450 node= 584 Transpose          semantic=Transpose      K=132..132 votes=6/6 confidence=1.00
+rel= 454 node= 596 Mul                semantic=Mul            K=124..124 votes=6/6 confidence=1.00
+rel= 455 node= 586 Mul                semantic=Mul            K=125..125 votes=6/6 confidence=1.00
+rel= 456 node= 598 Add                semantic=Add            K=126..126 votes=6/6 confidence=1.00
+rel= 458 node=2796 BiasSoftmax        semantic=BiasSoftmax    K=128..128 votes=6/6 confidence=1.00
+rel= 459 node= 559 MatMulNBits        semantic=MatMulNBits    K=129..129 votes=5/6 confidence=0.83
+rel= 461 node= 565 Transpose          semantic=Transpose      K=132..132 votes=6/6 confidence=1.00
+rel= 464 node= 568 ScatterND          semantic=ScatterND      K=131..131 votes=6/6 confidence=1.00
+rel= 465 node= 571 Transpose          semantic=Transpose      K=132..132 votes=6/6 confidence=1.00
+rel= 467 node= 578 Expand             semantic=Expand         K=133..133 votes=6/6 confidence=1.00
+rel= 469 node= 612 MatMul             semantic=MatMul         K=134..134 votes=6/6 confidence=1.00
+rel= 470 node= 613 Transpose          semantic=Transpose      K=132..132 votes=6/6 confidence=1.00
+rel= 472 node= 615 MatMulNBits        semantic=MatMulNBits    K=135..135 votes=6/6 confidence=1.00
+rel= 473 node= 616 Add                semantic=Add            K=136..136 votes=6/6 confidence=1.00
+rel= 474 node= 617 Pow                semantic=Pow            K=137..137 votes=6/6 confidence=1.00
+rel= 475 node= 618 ReduceMean         semantic=ReduceMean     K=138..138 votes=5/6 confidence=0.83
+rel= 476 node= 619 Add                semantic=Add            K=140..140 votes=6/6 confidence=1.00
+rel= 477 node= 620 Sqrt               semantic=Sqrt           K=141..141 votes=6/6 confidence=1.00
+rel= 478 node= 621 Reciprocal         semantic=Reciprocal     K=142..142 votes=6/6 confidence=1.00
+rel= 479 node= 622 Mul                semantic=Mul            K=143..143 votes=6/6 confidence=1.00
+rel= 480 node= 623 Mul                semantic=Mul            K=144..144 votes=6/6 confidence=1.00
+rel= 481 node= 624 MatMulNBits        semantic=MatMulNBits    K=145..145 votes=6/6 confidence=1.00
+rel= 482 node=2768 QuickGelu          semantic=QuickGelu      K=146..146 votes=6/6 confidence=1.00
+rel= 483 node= 625 MatMulNBits        semantic=MatMulNBits    K=147..147 votes=6/6 confidence=1.00
+rel= 484 node= 628 Mul                semantic=Mul            K=148..148 votes=6/6 confidence=1.00
+rel= 485 node= 629 MatMulNBits        semantic=MatMulNBits    K=149..149 votes=6/6 confidence=1.00
+rel= 486 node= 630 Add                semantic=Add            K=150..150 votes=6/6 confidence=1.00
+rel= 487 node= 631 Pow                semantic=Pow            K=137..137 votes=6/6 confidence=1.00
+rel= 489 node= 633 Add                semantic=Add            K=140..140 votes=6/6 confidence=1.00
+rel= 490 node= 634 Sqrt               semantic=Sqrt           K=141..141 votes=6/6 confidence=1.00
+rel= 491 node= 635 Reciprocal         semantic=Reciprocal     K=142..142 votes=6/6 confidence=1.00
+rel= 492 node= 636 Mul                semantic=Mul            K=143..143 votes=6/6 confidence=1.00
+rel= 493 node= 637 Mul                semantic=Mul            K=144..144 votes=5/6 confidence=0.83
+rel= 496 node= 645 Pow                semantic=Pow            K=151..151 votes=6/6 confidence=1.00
+rel= 497 node= 648 ReduceMean         semantic=ReduceMean     K=152..152 votes=6/6 confidence=1.00
+rel= 498 node= 651 Add                semantic=Add            K=154..154 votes=6/6 confidence=1.00
+rel= 499 node= 654 Sqrt               semantic=Sqrt           K=155..155 votes=6/6 confidence=1.00
+rel= 500 node= 658 Reciprocal         semantic=Reciprocal     K=165..165 votes=6/6 confidence=1.00
+rel= 501 node= 661 Mul                semantic=Mul            K=166..166 votes=6/6 confidence=1.00
+rel= 502 node= 664 Mul                semantic=Mul            K=167..167 votes=6/6 confidence=1.00
+rel= 503 node=2691 Split              semantic=Split          K=168..168 votes=6/6 confidence=1.00
+rel= 504 node= 674 Neg                semantic=Neg            K=169..169 votes=6/6 confidence=1.00
+rel= 505 node= 676 Concat             semantic=Concat         K=170..170 votes=6/6 confidence=1.00
+rel= 506 node= 678 Mul                semantic=Mul            K=171..171 votes=6/6 confidence=1.00
+rel= 507 node= 670 Mul                semantic=Mul            K=172..172 votes=6/6 confidence=1.00
+rel= 508 node= 680 Add                semantic=Add            K=173..173 votes=6/6 confidence=1.00
+rel= 509 node= 681 Transpose          semantic=Transpose      K=174..174 votes=6/6 confidence=1.00
+rel= 511 node=  67 Transpose          semantic=Transpose      K=174..174 votes=6/6 confidence=1.00
+rel= 513 node= 683 Transpose          semantic=Transpose      K=174..174 votes=6/6 confidence=1.00
+rel= 519 node= 644 Pow                semantic=Pow            K=151..151 votes=6/6 confidence=1.00
+rel= 520 node= 647 ReduceMean         semantic=ReduceMean     K=152..152 votes=6/6 confidence=1.00
+rel= 521 node= 650 Add                semantic=Add            K=154..154 votes=6/6 confidence=1.00
+rel= 522 node= 653 Sqrt               semantic=Sqrt           K=155..155 votes=6/6 confidence=1.00
+rel= 523 node= 657 Reciprocal         semantic=Reciprocal     K=156..156 votes=6/6 confidence=1.00
+rel= 524 node= 660 Mul                semantic=Mul            K=157..157 votes=6/6 confidence=1.00
+rel= 525 node= 663 Mul                semantic=Mul            K=166..166 votes=6/6 confidence=1.00
+rel= 526 node= 665 Transpose          semantic=Transpose      K=174..174 votes=6/6 confidence=1.00
+rel= 527 node=2692 Split              semantic=Split          K=168..168 votes=6/6 confidence=1.00
+rel= 528 node= 673 Neg                semantic=Neg            K=169..169 votes=6/6 confidence=1.00
+rel= 529 node= 675 Concat             semantic=Concat         K=170..170 votes=6/6 confidence=1.00
+rel= 530 node= 677 Mul                semantic=Mul            K=171..171 votes=6/6 confidence=1.00
+rel= 531 node= 667 Mul                semantic=Mul            K=172..172 votes=6/6 confidence=1.00
+rel= 532 node= 679 Add                semantic=Add            K=163..163 votes=5/6 confidence=0.83
+rel= 534 node=2797 BiasSoftmax        semantic=ScatterND      K=175..175 votes=6/6 confidence=1.00
+rel= 535 node= 640 MatMulNBits        semantic=MatMulNBits    K=178..178 votes=6/6 confidence=1.00
+rel= 537 node= 646 Transpose          semantic=Transpose      K=176..176 votes=6/6 confidence=1.00
+rel= 541 node= 652 Transpose          semantic=Transpose      K=176..176 votes=6/6 confidence=1.00
+rel= 543 node= 659 Expand             semantic=Expand         K=177..177 votes=6/6 confidence=1.00
+rel= 545 node= 693 MatMul             semantic=MatMul         K=193..193 votes=6/6 confidence=1.00
+rel= 546 node= 694 Transpose          semantic=Transpose      K=176..176 votes=6/6 confidence=1.00
+rel= 548 node= 696 MatMulNBits        semantic=MatMulNBits    K=195..195 votes=6/6 confidence=1.00
+rel= 550 node= 698 Pow                semantic=Pow            K=179..179 votes=6/6 confidence=1.00
+rel= 551 node= 699 ReduceMean         semantic=ReduceMean     K=180..180 votes=6/6 confidence=1.00
+rel= 552 node= 700 Add                semantic=Add            K=182..182 votes=6/6 confidence=1.00
+rel= 553 node= 701 Sqrt               semantic=Sqrt           K=183..183 votes=6/6 confidence=1.00
+rel= 554 node= 702 Reciprocal         semantic=Reciprocal     K=184..184 votes=6/6 confidence=1.00
+rel= 555 node= 703 Mul                semantic=Mul            K=185..185 votes=6/6 confidence=1.00
+rel= 557 node= 705 MatMulNBits        semantic=MatMulNBits    K=195..195 votes=6/6 confidence=1.00
+rel= 558 node=2769 QuickGelu          semantic=ScatterND      K=197..197 votes=6/6 confidence=1.00
+rel= 559 node= 706 MatMulNBits        semantic=MatMulNBits    K=213..213 votes=6/6 confidence=1.00
+rel= 560 node= 709 Mul                semantic=Mul            K=214..214 votes=6/6 confidence=1.00
+rel= 561 node= 710 MatMulNBits        semantic=MatMulNBits    K=201..201 votes=6/6 confidence=1.00
+rel= 562 node= 711 Add                semantic=Add            K=202..202 votes=6/6 confidence=1.00
+rel= 563 node= 712 Pow                semantic=Pow            K=203..203 votes=6/6 confidence=1.00
+rel= 564 node= 713 ReduceMean         semantic=ReduceMean     K=204..204 votes=6/6 confidence=1.00
+rel= 565 node= 714 Add                semantic=Add            K=206..206 votes=6/6 confidence=1.00
+rel= 566 node= 715 Sqrt               semantic=Sqrt           K=207..207 votes=6/6 confidence=1.00
+rel= 567 node= 716 Reciprocal         semantic=Reciprocal     K=208..208 votes=6/6 confidence=1.00
+rel= 568 node= 717 Mul                semantic=Mul            K=209..209 votes=6/6 confidence=1.00
+rel= 570 node= 720 MatMulNBits        semantic=MatMulNBits    K=201..201 votes=6/6 confidence=1.00
+rel= 572 node= 726 Pow                semantic=Pow            K=203..203 votes=6/6 confidence=1.00
+rel= 573 node= 729 ReduceMean         semantic=ReduceMean     K=204..204 votes=6/6 confidence=1.00
+rel= 574 node= 732 Add                semantic=Add            K=206..206 votes=6/6 confidence=1.00
+rel= 575 node= 735 Sqrt               semantic=Sqrt           K=207..207 votes=6/6 confidence=1.00
+rel= 576 node= 739 Reciprocal         semantic=Reciprocal     K=208..208 votes=6/6 confidence=1.00
+rel= 577 node= 742 Mul                semantic=Mul            K=209..209 votes=6/6 confidence=1.00
+rel= 579 node=2693 Split              semantic=MatMulNBits    K=215..215 votes=6/6 confidence=1.00
+rel= 582 node= 759 Mul                semantic=Mul            K=237..237 votes=6/6 confidence=1.00
+rel= 583 node= 751 Mul                semantic=Mul            K=238..238 votes=6/6 confidence=1.00
+rel= 584 node= 761 Add                semantic=Add            K=239..239 votes=6/6 confidence=1.00
+rel= 585 node= 762 Transpose          semantic=Transpose      K=240..240 votes=6/6 confidence=1.00
+rel= 587 node=  68 Transpose          semantic=Transpose      K=240..240 votes=6/6 confidence=1.00
+rel= 588 node= 763 ScatterND          semantic=ScatterND      K=241..241 votes=6/6 confidence=1.00
+rel= 589 node= 764 Transpose          semantic=Transpose      K=242..242 votes=6/6 confidence=1.00
+rel= 591 node= 767 Expand             semantic=Expand         K=243..243 votes=6/6 confidence=1.00
+rel= 593 node= 719 MatMulNBits        semantic=MatMulNBits    K=225..225 votes=6/6 confidence=1.00
+rel= 595 node= 725 Pow                semantic=Pow            K=226..226 votes=6/6 confidence=1.00
+rel= 596 node= 728 ReduceMean         semantic=ReduceMean     K=227..227 votes=6/6 confidence=1.00
+rel= 597 node= 731 Add                semantic=Add            K=229..229 votes=6/6 confidence=1.00
+rel= 598 node= 734 Sqrt               semantic=Sqrt           K=230..230 votes=5/6 confidence=0.83
+rel= 599 node= 738 Reciprocal         semantic=Reciprocal     K=231..231 votes=5/6 confidence=0.83
+rel= 601 node= 744 Mul                semantic=Mul            K=232..232 votes=6/6 confidence=1.00
+rel= 602 node= 746 Transpose          semantic=Transpose      K=242..242 votes=6/6 confidence=1.00
+rel= 603 node=2694 Split              semantic=Split          K=234..234 votes=6/6 confidence=1.00
+rel= 604 node= 754 Neg                semantic=Neg            K=235..235 votes=6/6 confidence=1.00
+rel= 605 node= 756 Concat             semantic=Concat         K=236..236 votes=6/6 confidence=1.00
+rel= 606 node= 758 Mul                semantic=Mul            K=237..237 votes=6/6 confidence=1.00
+rel= 607 node= 748 Mul                semantic=Mul            K=257..257 votes=6/6 confidence=1.00
+rel= 608 node= 760 Add                semantic=Add            K=258..258 votes=6/6 confidence=1.00
+rel= 610 node=2798 BiasSoftmax        semantic=Transpose      K=262..262 votes=6/6 confidence=1.00
+rel= 611 node= 721 MatMulNBits        semantic=MatMulNBits    K=267..267 votes=6/6 confidence=1.00
+rel= 613 node= 727 Transpose          semantic=Transpose      K=264..264 votes=6/6 confidence=1.00
+rel= 615 node=  96 Transpose          semantic=Transpose      K=264..264 votes=6/6 confidence=1.00
+rel= 616 node= 730 ScatterND          semantic=ScatterND      K=263..263 votes=6/6 confidence=1.00
+rel= 617 node= 733 Transpose          semantic=Transpose      K=264..264 votes=6/6 confidence=1.00
+rel= 619 node= 740 Expand             semantic=Expand         K=265..265 votes=6/6 confidence=1.00
+rel= 621 node= 774 MatMul             semantic=MatMul         K=266..266 votes=6/6 confidence=1.00
+rel= 622 node= 775 Transpose          semantic=Transpose      K=264..264 votes=6/6 confidence=1.00
+rel= 624 node= 777 MatMulNBits        semantic=MatMulNBits    K=267..267 votes=6/6 confidence=1.00
+rel= 625 node= 778 Add                semantic=Add            K=268..268 votes=6/6 confidence=1.00
+rel= 626 node= 779 Pow                semantic=Pow            K=269..269 votes=6/6 confidence=1.00
+rel= 628 node= 781 Add                semantic=Add            K=272..272 votes=6/6 confidence=1.00
+rel= 629 node= 782 Sqrt               semantic=Sqrt           K=273..273 votes=6/6 confidence=1.00
+rel= 630 node= 783 Reciprocal         semantic=Reciprocal     K=274..274 votes=6/6 confidence=1.00
+rel= 631 node= 784 Mul                semantic=Mul            K=275..275 votes=6/6 confidence=1.00
+rel= 632 node= 785 Mul                semantic=Mul            K=276..276 votes=6/6 confidence=1.00
+rel= 633 node= 786 MatMulNBits        semantic=MatMulNBits    K=277..277 votes=6/6 confidence=1.00
+rel= 634 node=2770 QuickGelu          semantic=QuickGelu      K=278..278 votes=6/6 confidence=1.00
+rel= 635 node= 787 MatMulNBits        semantic=MatMulNBits    K=279..279 votes=6/6 confidence=1.00
+rel= 636 node= 790 Mul                semantic=Mul            K=280..280 votes=6/6 confidence=1.00
+rel= 637 node= 791 MatMulNBits        semantic=MatMulNBits    K=281..281 votes=6/6 confidence=1.00
+rel= 638 node= 792 Add                semantic=Add            K=282..282 votes=6/6 confidence=1.00
+rel= 639 node= 793 Pow                semantic=Pow            K=283..283 votes=6/6 confidence=1.00
+rel= 640 node= 794 ReduceMean         semantic=ReduceMean     K=284..284 votes=6/6 confidence=1.00
+rel= 641 node= 795 Add                semantic=Add            K=286..286 votes=6/6 confidence=1.00
+rel= 642 node= 796 Sqrt               semantic=Sqrt           K=287..287 votes=6/6 confidence=1.00
+rel= 643 node= 797 Reciprocal         semantic=Reciprocal     K=288..288 votes=6/6 confidence=1.00
+rel= 644 node= 798 Mul                semantic=Mul            K=289..289 votes=6/6 confidence=1.00
+rel= 648 node= 807 Pow                semantic=Pow            K=283..283 votes=6/6 confidence=1.00
+rel= 649 node= 810 ReduceMean         semantic=ReduceMean     K=284..284 votes=6/6 confidence=1.00
+rel= 650 node= 813 Add                semantic=Add            K=286..286 votes=6/6 confidence=1.00
+rel= 651 node= 816 Sqrt               semantic=Sqrt           K=287..287 votes=6/6 confidence=1.00
+rel= 652 node= 820 Reciprocal         semantic=Reciprocal     K=297..297 votes=6/6 confidence=1.00
+rel= 653 node= 823 Mul                semantic=Mul            K=298..298 votes=6/6 confidence=1.00
+rel= 654 node= 826 Mul                semantic=Mul            K=299..299 votes=6/6 confidence=1.00
+rel= 655 node=2695 Split              semantic=Expand         K=309..309 votes=6/6 confidence=1.00
+rel= 656 node= 836 Neg                semantic=Neg            K=320..320 votes=6/6 confidence=1.00
+rel= 657 node= 838 Concat             semantic=Concat         K=321..321 votes=6/6 confidence=1.00
+rel= 658 node= 840 Mul                semantic=Mul            K=322..322 votes=6/6 confidence=1.00
+rel= 659 node= 832 Mul                semantic=Mul            K=323..323 votes=6/6 confidence=1.00
+rel= 661 node= 843 Transpose          semantic=Transpose      K=330..330 votes=6/6 confidence=1.00
+rel= 664 node= 844 ScatterND          semantic=ScatterND      K=329..329 votes=6/6 confidence=1.00
+rel= 665 node= 845 Transpose          semantic=Transpose      K=330..330 votes=6/6 confidence=1.00
+rel= 667 node= 848 Expand             semantic=Expand         K=331..331 votes=6/6 confidence=1.00
+rel= 669 node= 800 MatMulNBits        semantic=MatMulNBits    K=327..327 votes=6/6 confidence=1.00
+rel= 671 node= 806 Pow                semantic=Pow            K=311..311 votes=6/6 confidence=1.00
+rel= 672 node= 809 ReduceMean         semantic=ReduceMean     K=312..312 votes=6/6 confidence=1.00
+rel= 673 node= 812 Add                semantic=Add            K=314..314 votes=6/6 confidence=1.00
+rel= 674 node= 815 Sqrt               semantic=Sqrt           K=315..315 votes=6/6 confidence=1.00
+rel= 675 node= 819 Reciprocal         semantic=Reciprocal     K=316..316 votes=6/6 confidence=1.00
+rel= 676 node= 822 Mul                semantic=Mul            K=322..322 votes=5/6 confidence=0.83
+rel= 677 node= 825 Mul                semantic=Mul            K=317..317 votes=6/6 confidence=1.00
+rel= 678 node= 827 Transpose          semantic=Transpose      K=330..330 votes=5/6 confidence=0.83
+rel= 679 node=2696 Split              semantic=Split          K=319..319 votes=6/6 confidence=1.00
+rel= 680 node= 835 Neg                semantic=Neg            K=320..320 votes=6/6 confidence=1.00
+rel= 681 node= 837 Concat             semantic=Concat         K=321..321 votes=6/6 confidence=1.00
+rel= 682 node= 839 Mul                semantic=Mul            K=322..322 votes=6/6 confidence=1.00
+rel= 683 node= 829 Mul                semantic=Mul            K=323..323 votes=6/6 confidence=1.00
+rel= 684 node= 841 Add                semantic=Add            K=324..324 votes=6/6 confidence=1.00
+rel= 686 node=2799 BiasSoftmax        semantic=MatMulNBits    K=333..333 votes=6/6 confidence=1.00
+rel= 687 node= 802 MatMulNBits        semantic=MatMulNBits    K=343..343 votes=5/6 confidence=0.83
+rel= 700 node= 858 MatMulNBits        semantic=MatMulNBits    K=347..347 votes=6/6 confidence=1.00
+rel= 701 node= 859 Add                semantic=Add            K=348..348 votes=6/6 confidence=1.00
+rel= 702 node= 860 Pow                semantic=Pow            K=349..349 votes=6/6 confidence=1.00
+rel= 703 node= 861 ReduceMean         semantic=ReduceMean     K=350..350 votes=6/6 confidence=1.00
+rel= 704 node= 862 Add                semantic=Transpose      K=372..372 votes=6/6 confidence=1.00
+rel= 705 node= 863 Sqrt               semantic=Sqrt           K=381..381 votes=6/6 confidence=1.00
+rel= 706 node= 864 Reciprocal         semantic=Reciprocal     K=382..382 votes=6/6 confidence=1.00
+rel= 709 node= 867 MatMulNBits        semantic=MatMulNBits    K=393..393 votes=6/6 confidence=1.00
+rel= 711 node= 868 MatMulNBits        semantic=MatMulNBits    K=393..393 votes=5/6 confidence=0.83
+rel= 713 node= 872 MatMulNBits        semantic=MatMulNBits    K=393..393 votes=5/6 confidence=0.83
+rel= 715 node= 874 Pow                semantic=Pow            K=377..377 votes=6/6 confidence=1.00
+rel= 716 node= 875 ReduceMean         semantic=ReduceMean     K=378..378 votes=6/6 confidence=1.00
+rel= 717 node= 876 Add                semantic=Add            K=380..380 votes=6/6 confidence=1.00
+rel= 718 node= 877 Sqrt               semantic=Sqrt           K=381..381 votes=6/6 confidence=1.00
+rel= 719 node= 878 Reciprocal         semantic=Reciprocal     K=382..382 votes=6/6 confidence=1.00
+rel= 721 node= 880 Mul                semantic=Mul            K=384..384 votes=6/6 confidence=1.00
+rel= 722 node= 882 MatMulNBits        semantic=MatMulNBits    K=393..393 votes=6/6 confidence=1.00
+rel= 724 node= 888 Pow                semantic=Pow            K=377..377 votes=6/6 confidence=1.00
+rel= 725 node= 891 ReduceMean         semantic=ReduceMean     K=378..378 votes=6/6 confidence=1.00
+rel= 726 node= 894 Add                semantic=Add            K=380..380 votes=6/6 confidence=1.00
+rel= 727 node= 897 Sqrt               semantic=Sqrt           K=381..381 votes=6/6 confidence=1.00
+rel= 728 node= 901 Reciprocal         semantic=Reciprocal     K=382..382 votes=6/6 confidence=1.00
+rel= 729 node= 904 Mul                semantic=Transpose      K=394..394 votes=6/6 confidence=1.00
+rel= 730 node= 907 Mul                semantic=Mul            K=407..407 votes=6/6 confidence=1.00
+rel= 734 node= 921 Mul                semantic=Mul            K=407..407 votes=6/6 confidence=1.00
+rel= 735 node= 913 Mul                semantic=Mul            K=407..407 votes=5/6 confidence=0.83
+rel= 736 node= 923 Add                semantic=Add            K=400..400 votes=6/6 confidence=1.00
+rel= 737 node= 924 Transpose          semantic=Transpose      K=396..396 votes=6/6 confidence=1.00
+rel= 739 node=  70 Transpose          semantic=Transpose      K=396..396 votes=6/6 confidence=1.00
+rel= 740 node= 925 ScatterND          semantic=ScatterND      K=395..395 votes=6/6 confidence=1.00
+rel= 741 node= 926 Transpose          semantic=Transpose      K=396..396 votes=6/6 confidence=1.00
+rel= 743 node= 929 Expand             semantic=Expand         K=397..397 votes=6/6 confidence=1.00
+rel= 747 node= 887 Pow                semantic=Pow            K=401..401 votes=6/6 confidence=1.00
+rel= 749 node= 893 Add                semantic=Add            K=404..404 votes=6/6 confidence=1.00
+rel= 750 node= 896 Sqrt               semantic=Sqrt           K=405..405 votes=6/6 confidence=1.00
+rel= 751 node= 900 Reciprocal         semantic=Reciprocal     K=406..406 votes=6/6 confidence=1.00
+rel= 752 node= 903 Mul                semantic=Mul            K=407..407 votes=6/6 confidence=1.00
+rel= 753 node= 906 Mul                semantic=Mul            K=430..430 votes=6/6 confidence=1.00
+rel= 755 node=2698 Split              semantic=Split          K=432..432 votes=6/6 confidence=1.00
+rel= 756 node= 916 Neg                semantic=Neg            K=433..433 votes=6/6 confidence=1.00
+rel= 757 node= 918 Concat             semantic=Concat         K=434..434 votes=6/6 confidence=1.00
+rel= 758 node= 920 Mul                semantic=Mul            K=435..435 votes=6/6 confidence=1.00
+rel= 759 node= 910 Mul                semantic=Mul            K=436..436 votes=6/6 confidence=1.00
+rel= 760 node= 922 Add                semantic=Add            K=414..414 votes=6/6 confidence=1.00
+rel= 763 node= 883 MatMulNBits        semantic=MatMulNBits    K=423..423 votes=6/6 confidence=1.00
+rel= 765 node= 889 Transpose          semantic=Transpose      K=438..438 votes=6/6 confidence=1.00
+rel= 768 node= 892 ScatterND          semantic=ScatterND      K=439..439 votes=6/6 confidence=1.00
+rel= 769 node= 895 Transpose          semantic=Transpose      K=462..462 votes=5/6 confidence=0.83
+rel= 771 node= 902 Expand             semantic=Expand         K=441..441 votes=6/6 confidence=1.00
+rel= 776 node= 939 MatMulNBits        semantic=MatMulNBits    K=465..465 votes=6/6 confidence=1.00
+rel= 778 node= 941 Pow                semantic=Pow            K=443..443 votes=6/6 confidence=1.00
+rel= 780 node= 943 Add                semantic=Add            K=470..470 votes=6/6 confidence=1.00
+rel= 781 node= 944 Sqrt               semantic=Sqrt           K=471..471 votes=6/6 confidence=1.00
+rel= 783 node= 946 Mul                semantic=Mul            K=473..473 votes=6/6 confidence=1.00
+rel= 784 node= 947 Mul                semantic=Mul            K=474..474 votes=6/6 confidence=1.00
+rel= 785 node= 948 MatMulNBits        semantic=MatMulNBits    K=475..475 votes=6/6 confidence=1.00
+rel= 786 node=2772 QuickGelu          semantic=QuickGelu      K=542..542 votes=6/6 confidence=1.00
+rel= 787 node= 949 MatMulNBits        semantic=MatMulNBits    K=543..543 votes=6/6 confidence=1.00
+rel= 788 node= 952 Mul                semantic=Mul            K=544..544 votes=6/6 confidence=1.00
+rel= 789 node= 953 MatMulNBits        semantic=MatMulNBits    K=531..531 votes=6/6 confidence=1.00
+rel= 790 node= 954 Add                semantic=Add            K=532..532 votes=6/6 confidence=1.00
+rel= 791 node= 955 Pow                semantic=Pow            K=509..509 votes=6/6 confidence=1.00
+rel= 793 node= 957 Add                semantic=Add            K=512..512 votes=6/6 confidence=1.00
+rel= 795 node= 959 Reciprocal         semantic=Reciprocal     K=538..538 votes=6/6 confidence=1.00
+rel= 796 node= 960 Mul                semantic=Mul            K=539..539 votes=6/6 confidence=1.00
+rel= 797 node= 961 Mul                semantic=Mul            K=540..540 votes=6/6 confidence=1.00
+rel= 800 node= 969 Pow                semantic=Pow            K=547..547 votes=6/6 confidence=1.00
+rel= 801 node= 972 ReduceMean         semantic=ReduceMean     K=548..548 votes=6/6 confidence=1.00
+rel= 802 node= 975 Add                semantic=Add            K=550..550 votes=6/6 confidence=1.00
+rel= 804 node= 982 Reciprocal         semantic=Reciprocal     K=561..561 votes=6/6 confidence=1.00
+rel= 805 node= 985 Mul                semantic=Mul            K=562..562 votes=6/6 confidence=1.00
+rel= 806 node= 988 Mul                semantic=Mul            K=582..582 votes=6/6 confidence=1.00
+rel= 807 node=2699 Split              semantic=Split          K=583..583 votes=6/6 confidence=1.00
+rel= 808 node= 998 Neg                semantic=Neg            K=584..584 votes=6/6 confidence=1.00
+rel= 809 node=1000 Concat             semantic=Concat         K=585..585 votes=6/6 confidence=1.00
+rel= 810 node=1002 Mul                semantic=Mul            K=633..633 votes=6/6 confidence=1.00
+rel= 811 node= 994 Mul                semantic=Mul            K=634..634 votes=6/6 confidence=1.00
+rel= 812 node=1004 Add                semantic=Add            K=635..635 votes=6/6 confidence=1.00
+rel= 813 node=1005 Transpose          semantic=Transpose      K=638..638 votes=6/6 confidence=1.00
+rel= 816 node=1006 ScatterND          semantic=ScatterND      K=637..637 votes=6/6 confidence=1.00
+rel= 817 node=1007 Transpose          semantic=Transpose      K=638..638 votes=5/6 confidence=0.83
+rel= 823 node= 968 Pow                semantic=Pow            K=665..665 votes=5/6 confidence=0.83
+rel= 825 node= 974 Add                semantic=Add            K=668..668 votes=6/6 confidence=1.00
+rel= 826 node= 977 Sqrt               semantic=Sqrt           K=669..669 votes=6/6 confidence=1.00
+rel= 827 node= 981 Reciprocal         semantic=Reciprocal     K=670..670 votes=5/6 confidence=0.83
+rel= 828 node= 984 Mul                semantic=Mul            K=671..671 votes=6/6 confidence=1.00
+rel= 829 node= 987 Mul                semantic=Mul            K=694..694 votes=6/6 confidence=1.00
+rel= 830 node= 989 Transpose          semantic=Transpose      K=704..704 votes=5/6 confidence=0.83
+rel= 831 node=2700 Split              semantic=Split          K=696..696 votes=6/6 confidence=1.00
+rel= 832 node= 997 Neg                semantic=Neg            K=697..697 votes=6/6 confidence=1.00
+rel= 833 node= 999 Concat             semantic=Concat         K=698..698 votes=6/6 confidence=1.00
+rel= 834 node=1001 Mul                semantic=Mul            K=699..699 votes=6/6 confidence=1.00
+rel= 835 node= 991 Mul                semantic=Mul            K=719..719 votes=6/6 confidence=1.00
+rel= 836 node=1003 Add                semantic=Add            K=720..720 votes=6/6 confidence=1.00
+rel= 838 node=2801 BiasSoftmax        semantic=BiasSoftmax    K=722..722 votes=6/6 confidence=1.00
+rel= 839 node= 964 MatMulNBits        semantic=MatMulNBits    K=723..723 votes=6/6 confidence=1.00
+rel= 841 node= 970 Transpose          semantic=Transpose      K=726..726 votes=6/6 confidence=1.00
+rel= 844 node= 973 ScatterND          semantic=ScatterND      K=769..769 votes=6/6 confidence=1.00
+rel= 847 node= 983 Expand             semantic=Expand         K=771..771 votes=6/6 confidence=1.00
+rel= 850 node=1018 Transpose          semantic=Transpose      K=770..770 votes=6/6 confidence=1.00
+rel= 852 node=1020 MatMulNBits        semantic=MatMulNBits    K=795..795 votes=6/6 confidence=1.00
+rel= 853 node=1021 Add                semantic=Add            K=796..796 votes=6/6 confidence=1.00
+rel= 854 node=1022 Pow                semantic=Pow            K=797..797 votes=6/6 confidence=1.00
+rel= 856 node=1024 Add                semantic=Add            K=800..800 votes=6/6 confidence=1.00
+rel= 857 node=1025 Sqrt               semantic=Sqrt           K=801..801 votes=6/6 confidence=1.00
+rel= 858 node=1026 Reciprocal         semantic=Reciprocal     K=802..802 votes=6/6 confidence=1.00
+rel= 859 node=1027 Mul                semantic=Mul            K=803..803 votes=6/6 confidence=1.00
+rel= 860 node=1028 Mul                semantic=Mul            K=870..870 votes=6/6 confidence=1.00
+rel= 861 node=1029 MatMulNBits        semantic=MatMulNBits    K=871..871 votes=6/6 confidence=1.00
+rel= 862 node=2773 QuickGelu          semantic=QuickGelu      K=872..872 votes=6/6 confidence=1.00
+rel= 863 node=1030 MatMulNBits        semantic=MatMulNBits    K=873..873 votes=6/6 confidence=1.00
+rel= 864 node=1033 Mul                semantic=Mul            K=874..874 votes=6/6 confidence=1.00
+rel= 865 node=1034 MatMulNBits        semantic=MatMulNBits    K=861..861 votes=6/6 confidence=1.00
+rel= 866 node=1035 Add                semantic=Add            K=862..862 votes=6/6 confidence=1.00
+rel= 867 node=1036 Pow                semantic=Pow            K=839..839 votes=5/6 confidence=0.83
+rel= 869 node=1038 Add                semantic=Add            K=866..866 votes=5/6 confidence=0.83
+rel= 870 node=1039 Sqrt               semantic=Sqrt           K=867..867 votes=6/6 confidence=1.00
+rel= 871 node=1040 Reciprocal         semantic=Reciprocal     K=868..868 votes=6/6 confidence=1.00
+rel= 872 node=1041 Mul                semantic=Mul            K=869..869 votes=6/6 confidence=1.00
+rel= 873 node=1042 Mul                semantic=Mul            K=870..870 votes=5/6 confidence=0.83
+rel= 876 node=1050 Pow                semantic=Pow            K=886..886 votes=6/6 confidence=1.00
+rel= 878 node=1056 Add                semantic=Add            K=889..889 votes=5/6 confidence=0.83
+rel= 879 node=1059 Sqrt               semantic=Sqrt           K=909..909 votes=5/6 confidence=0.83
+rel= 880 node=1063 Reciprocal         semantic=Reciprocal     K=910..910 votes=6/6 confidence=1.00
+rel= 881 node=1066 Mul                semantic=Mul            K=911..911 votes=6/6 confidence=1.00
+rel= 882 node=1069 Mul                semantic=Mul            K=912..912 votes=6/6 confidence=1.00
+rel= 883 node=2701 Split              semantic=Split          K=913..913 votes=6/6 confidence=1.00
+rel= 884 node=1079 Neg                semantic=Neg            K=914..914 votes=6/6 confidence=1.00
+rel= 885 node=1081 Concat             semantic=Concat         K=962..962 votes=6/6 confidence=1.00
+rel= 886 node=1083 Mul                semantic=Mul            K=963..963 votes=6/6 confidence=1.00
+rel= 887 node=1075 Mul                semantic=Mul            K=964..964 votes=6/6 confidence=1.00
+rel= 888 node=1085 Add                semantic=Add            K=965..965 votes=6/6 confidence=1.00
+rel= 889 node=1086 Transpose          semantic=Transpose      K=968..968 votes=5/6 confidence=0.83
+rel= 892 node=1087 ScatterND          semantic=ScatterND      K=967..967 votes=6/6 confidence=1.00
+rel= 899 node=1049 Pow                semantic=Pow            K=995..995 votes=6/6 confidence=1.00
+rel= 901 node=1055 Add                semantic=Add            K=998..998 votes=6/6 confidence=1.00
+rel= 902 node=1058 Sqrt               semantic=Sqrt           K=999..999 votes=6/6 confidence=1.00
+rel= 903 node=1062 Reciprocal         semantic=Reciprocal     K=1000..1000 votes=6/6 confidence=1.00
+rel= 904 node=1065 Mul                semantic=Mul            K=1015..1015 votes=6/6 confidence=1.00
+rel= 905 node=1068 Mul                semantic=Mul            K=1024..1024 votes=6/6 confidence=1.00
+rel= 906 node=1070 Transpose          semantic=Transpose      K=1034..1034 votes=5/6 confidence=0.83
+rel= 907 node=2702 Split              semantic=Split          K=1026..1026 votes=6/6 confidence=1.00
+rel= 908 node=1078 Neg                semantic=Neg            K=1027..1027 votes=6/6 confidence=1.00
+rel= 909 node=1080 Concat             semantic=Concat         K=1028..1028 votes=6/6 confidence=1.00
+rel= 910 node=1082 Mul                semantic=Mul            K=1082..1082 votes=6/6 confidence=1.00
+rel= 911 node=1072 Mul                semantic=Mul            K=1096..1096 votes=6/6 confidence=1.00
+rel= 912 node=1084 Add                semantic=Add            K=1087..1087 votes=5/6 confidence=0.83
+rel= 915 node=1045 MatMulNBits        semantic=MatMulNBits    K=1083..1083 votes=5/6 confidence=0.83
+rel= 917 node=1051 Transpose          semantic=Transpose      K=1100..1100 votes=6/6 confidence=1.00
+rel= 920 node=1054 ScatterND          semantic=ScatterND      K=1099..1099 votes=6/6 confidence=1.00
+rel= 921 node=1057 Transpose          semantic=Transpose      K=1100..1100 votes=6/6 confidence=1.00
+rel= 923 node=1064 Expand             semantic=Expand         K=1101..1101 votes=6/6 confidence=1.00
+rel= 926 node=1099 Transpose          semantic=Transpose      K=1100..1100 votes=6/6 confidence=1.00
+rel= 928 node=1101 MatMulNBits        semantic=MatMulNBits    K=1083..1083 votes=5/6 confidence=0.83
+rel= 929 node=1102 Add                semantic=Add            K=1087..1087 votes=5/6 confidence=0.83
+rel= 930 node=1103 Pow                semantic=Pow            K=1084..1084 votes=6/6 confidence=1.00
+rel= 931 node=1104 ReduceMean         semantic=ReduceMean     K=1104..1104 votes=6/6 confidence=1.00
+rel= 932 node=1105 Add                semantic=Add            K=1087..1087 votes=6/6 confidence=1.00
+rel= 933 node=1106 Sqrt               semantic=Sqrt           K=1088..1088 votes=6/6 confidence=1.00
+rel= 934 node=1107 Reciprocal         semantic=Reciprocal     K=1089..1089 votes=5/6 confidence=0.83
+rel= 936 node=1109 Mul                semantic=Mul            K=1091..1091 votes=6/6 confidence=1.00
+rel= 937 node=1110 MatMulNBits        semantic=MatMulNBits    K=1119..1119 votes=5/6 confidence=0.83
+rel= 939 node=1111 MatMulNBits        semantic=MatMulNBits    K=1119..1119 votes=5/6 confidence=0.83
+rel= 940 node=1114 Mul                semantic=Mul            K=1095..1095 votes=5/6 confidence=0.83
+rel= 941 node=1115 MatMulNBits        semantic=MatMulNBits    K=1119..1119 votes=5/6 confidence=0.83
+rel= 942 node=1116 Add                semantic=Add            K=1097..1097 votes=6/6 confidence=1.00
+rel= 943 node=1117 Pow                semantic=Pow            K=1103..1103 votes=6/6 confidence=1.00
+rel= 944 node=1118 ReduceMean         semantic=ReduceMean     K=1104..1104 votes=6/6 confidence=1.00
+rel= 945 node=1119 Add                semantic=Add            K=1106..1106 votes=6/6 confidence=1.00
+rel= 946 node=1120 Sqrt               semantic=Sqrt           K=1107..1107 votes=6/6 confidence=1.00
+rel= 947 node=1121 Reciprocal         semantic=Reciprocal     K=1108..1108 votes=6/6 confidence=1.00
+rel= 950 node=1125 MatMulNBits        semantic=MatMulNBits    K=1125..1125 votes=6/6 confidence=1.00
+rel= 952 node=1131 Pow                semantic=Pow            K=1127..1127 votes=6/6 confidence=1.00
+rel= 954 node=1137 Add                semantic=Add            K=1130..1130 votes=6/6 confidence=1.00
+rel= 955 node=1140 Sqrt               semantic=Sqrt           K=1131..1131 votes=6/6 confidence=1.00
+rel= 956 node=1144 Reciprocal         semantic=Reciprocal     K=1155..1155 votes=5/6 confidence=0.83
+rel= 957 node=1147 Mul                semantic=Mul            K=1156..1156 votes=6/6 confidence=1.00
+rel= 958 node=1150 Mul                semantic=Mul            K=1157..1157 votes=6/6 confidence=1.00
+rel= 959 node=2703 Split              semantic=Split          K=1158..1158 votes=6/6 confidence=1.00
+rel= 960 node=1160 Neg                semantic=Neg            K=1159..1159 votes=6/6 confidence=1.00
+rel= 961 node=1162 Concat             semantic=Concat         K=1160..1160 votes=6/6 confidence=1.00
+rel= 962 node=1164 Mul                semantic=Mul            K=1161..1161 votes=6/6 confidence=1.00
+rel= 963 node=1156 Mul                semantic=Mul            K=1162..1162 votes=6/6 confidence=1.00
+rel= 964 node=1166 Add                semantic=Add            K=1163..1163 votes=6/6 confidence=1.00
+rel= 965 node=1167 Transpose          semantic=Transpose      K=1166..1166 votes=6/6 confidence=1.00
+rel= 968 node=1168 ScatterND          semantic=ScatterND      K=1165..1165 votes=6/6 confidence=1.00
+rel= 969 node=1169 Transpose          semantic=Transpose      K=1166..1166 votes=6/6 confidence=1.00
+rel= 971 node=1172 Expand             semantic=Expand         K=1167..1167 votes=6/6 confidence=1.00
+rel= 975 node=1130 Pow                semantic=Pow            K=1127..1127 votes=6/6 confidence=1.00
+rel= 977 node=1136 Add                semantic=Add            K=1130..1130 votes=6/6 confidence=1.00
+rel= 978 node=1139 Sqrt               semantic=Sqrt           K=1131..1131 votes=6/6 confidence=1.00
+rel= 979 node=1143 Reciprocal         semantic=Reciprocal     K=1132..1132 votes=6/6 confidence=1.00
+rel= 980 node=1146 Mul                semantic=Mul            K=1133..1133 votes=6/6 confidence=1.00
+rel= 981 node=1149 Mul                semantic=Mul            K=1156..1156 votes=6/6 confidence=1.00
+rel= 982 node=1151 Transpose          semantic=Transpose      K=1166..1166 votes=6/6 confidence=1.00
+rel= 983 node=2704 Split              semantic=Split          K=1158..1158 votes=6/6 confidence=1.00
+rel= 984 node=1159 Neg                semantic=Neg            K=1159..1159 votes=6/6 confidence=1.00
+rel= 985 node=1161 Concat             semantic=Concat         K=1160..1160 votes=6/6 confidence=1.00
+rel= 986 node=1163 Mul                semantic=Mul            K=1161..1161 votes=6/6 confidence=1.00
+rel= 987 node=1153 Mul                semantic=Mul            K=1181..1181 votes=6/6 confidence=1.00
+rel= 988 node=1165 Add                semantic=Add            K=1182..1182 votes=6/6 confidence=1.00
+rel= 990 node=2803 BiasSoftmax        semantic=BiasSoftmax    K=1184..1184 votes=6/6 confidence=1.00
+rel= 991 node=1126 MatMulNBits        semantic=MatMulNBits    K=1149..1149 votes=5/6 confidence=0.83
+rel= 993 node=1132 Transpose          semantic=Transpose      K=1166..1166 votes=6/6 confidence=1.00
+rel= 996 node=1135 ScatterND          semantic=ScatterND      K=1165..1165 votes=6/6 confidence=1.00
+rel= 997 node=1138 Transpose          semantic=Transpose      K=1166..1166 votes=6/6 confidence=1.00
+rel= 999 node=1145 Expand             semantic=Expand         K=1167..1167 votes=6/6 confidence=1.00
+rel=1001 node=1179 MatMul             semantic=MatMul         K=1190..1190 votes=5/6 confidence=0.83
+rel=1002 node=1180 Transpose          semantic=Transpose      K=1166..1166 votes=6/6 confidence=1.00
+rel=1004 node=1182 MatMulNBits        semantic=MatMulNBits    K=1139..1139 votes=6/6 confidence=1.00
+rel=1005 node=1183 Add                semantic=Add            K=1126..1126 votes=6/6 confidence=1.00
+rel=1006 node=1184 Pow                semantic=Pow            K=1127..1127 votes=6/6 confidence=1.00
+rel=1008 node=1186 Add                semantic=Add            K=1130..1130 votes=6/6 confidence=1.00
+rel=1009 node=1187 Sqrt               semantic=Sqrt           K=1131..1131 votes=6/6 confidence=1.00
+rel=1010 node=1188 Reciprocal         semantic=Reciprocal     K=1132..1132 votes=6/6 confidence=1.00
+rel=1011 node=1189 Mul                semantic=Mul            K=1133..1133 votes=6/6 confidence=1.00
+rel=1012 node=1190 Mul                semantic=Mul            K=1134..1134 votes=6/6 confidence=1.00
+rel=1013 node=1191 MatMulNBits        semantic=MatMulNBits    K=1135..1135 votes=6/6 confidence=1.00
+rel=1014 node=2775 QuickGelu          semantic=QuickGelu      K=1136..1136 votes=6/6 confidence=1.00
+rel=1015 node=1192 MatMulNBits        semantic=MatMulNBits    K=1137..1137 votes=6/6 confidence=1.00
+rel=1016 node=1195 Mul                semantic=Mul            K=1138..1138 votes=6/6 confidence=1.00
+rel=1017 node=1196 MatMulNBits        semantic=MatMulNBits    K=1139..1139 votes=6/6 confidence=1.00
+rel=1018 node=1197 Add                semantic=Add            K=1126..1126 votes=6/6 confidence=1.00
+rel=1019 node=1198 Pow                semantic=Pow            K=1127..1127 votes=6/6 confidence=1.00
+rel=1021 node=1200 Add                semantic=Add            K=1130..1130 votes=6/6 confidence=1.00
+rel=1022 node=1201 Sqrt               semantic=Sqrt           K=1131..1131 votes=6/6 confidence=1.00
+rel=1023 node=1202 Reciprocal         semantic=Reciprocal     K=1132..1132 votes=6/6 confidence=1.00
+rel=1024 node=1203 Mul                semantic=Mul            K=1133..1133 votes=6/6 confidence=1.00
+rel=1025 node=1204 Mul                semantic=Mul            K=1134..1134 votes=5/6 confidence=0.83
+rel=1028 node=1212 Pow                semantic=Pow            K=1127..1127 votes=6/6 confidence=1.00
+rel=1030 node=1218 Add                semantic=Add            K=1130..1130 votes=6/6 confidence=1.00
+rel=1031 node=1221 Sqrt               semantic=Sqrt           K=1131..1131 votes=6/6 confidence=1.00
+rel=1032 node=1225 Reciprocal         semantic=Reciprocal     K=1155..1155 votes=6/6 confidence=1.00
+rel=1033 node=1228 Mul                semantic=Mul            K=1156..1156 votes=6/6 confidence=1.00
+rel=1034 node=1231 Mul                semantic=Mul            K=1157..1157 votes=6/6 confidence=1.00
+rel=1035 node=2705 Split              semantic=Split          K=1158..1158 votes=6/6 confidence=1.00
+rel=1036 node=1241 Neg                semantic=Neg            K=1159..1159 votes=6/6 confidence=1.00
+rel=1037 node=1243 Concat             semantic=Concat         K=1160..1160 votes=6/6 confidence=1.00
+rel=1038 node=1245 Mul                semantic=Mul            K=1161..1161 votes=6/6 confidence=1.00
+rel=1039 node=1237 Mul                semantic=Mul            K=1162..1162 votes=6/6 confidence=1.00
+rel=1040 node=1247 Add                semantic=Add            K=1163..1163 votes=6/6 confidence=1.00
+rel=1041 node=1248 Transpose          semantic=Transpose      K=1166..1166 votes=6/6 confidence=1.00
+rel=1044 node=1249 ScatterND          semantic=ScatterND      K=1165..1165 votes=6/6 confidence=1.00
+rel=1045 node=1250 Transpose          semantic=Transpose      K=1166..1166 votes=6/6 confidence=1.00
+rel=1047 node=1253 Expand             semantic=Expand         K=1189..1189 votes=5/6 confidence=0.83
+rel=1051 node=1211 Pow                semantic=Pow            K=1141..1141 votes=6/6 confidence=1.00
+rel=1052 node=1214 ReduceMean         semantic=ReduceMean     K=1142..1142 votes=6/6 confidence=1.00
+rel=1053 node=1217 Add                semantic=Add            K=1144..1144 votes=6/6 confidence=1.00
+rel=1054 node=1220 Sqrt               semantic=Sqrt           K=1131..1131 votes=6/6 confidence=1.00
+rel=1055 node=1224 Reciprocal         semantic=Reciprocal     K=1132..1132 votes=6/6 confidence=1.00
+rel=1056 node=1227 Mul                semantic=Mul            K=1133..1133 votes=6/6 confidence=1.00
+rel=1057 node=1230 Mul                semantic=Mul            K=1156..1156 votes=6/6 confidence=1.00
+rel=1058 node=1232 Transpose          semantic=Transpose      K=1166..1166 votes=6/6 confidence=1.00
+rel=1059 node=2706 Split              semantic=Split          K=1158..1158 votes=6/6 confidence=1.00
+rel=1060 node=1240 Neg                semantic=Neg            K=1159..1159 votes=6/6 confidence=1.00
+rel=1061 node=1242 Concat             semantic=Concat         K=1160..1160 votes=6/6 confidence=1.00
+rel=1062 node=1244 Mul                semantic=Mul            K=1161..1161 votes=6/6 confidence=1.00
+rel=1063 node=1234 Mul                semantic=Mul            K=1181..1181 votes=6/6 confidence=1.00
+rel=1064 node=1246 Add                semantic=Add            K=1182..1182 votes=6/6 confidence=1.00
+rel=1066 node=2804 BiasSoftmax        semantic=BiasSoftmax    K=1184..1184 votes=6/6 confidence=1.00
+rel=1069 node=1213 Transpose          semantic=Transpose      K=1166..1166 votes=6/6 confidence=1.00
+rel=1072 node=1216 ScatterND          semantic=ScatterND      K=1165..1165 votes=6/6 confidence=1.00
+rel=1073 node=1219 Transpose          semantic=Transpose      K=1166..1166 votes=6/6 confidence=1.00
+rel=1075 node=1226 Expand             semantic=Expand         K=1167..1167 votes=6/6 confidence=1.00
+rel=1077 node=1260 MatMul             semantic=MatMul         K=1190..1190 votes=5/6 confidence=0.83
+rel=1078 node=1261 Transpose          semantic=Transpose      K=1166..1166 votes=6/6 confidence=1.00
+rel=1080 node=1263 MatMulNBits        semantic=MatMulNBits    K=1191..1191 votes=6/6 confidence=1.00
+rel=1081 node=1264 Add                semantic=Add            K=1192..1192 votes=6/6 confidence=1.00
+rel=1082 node=1265 Pow                semantic=Pow            K=1150..1150 votes=6/6 confidence=1.00
+rel=1084 node=1267 Add                semantic=Add            K=1153..1153 votes=6/6 confidence=1.00
+rel=1087 node=1270 Mul                semantic=Mul            K=1199..1199 votes=6/6 confidence=1.00
+rel=1088 node=1271 Mul                semantic=Mul            K=1200..1200 votes=6/6 confidence=1.00
+rel=1089 node=1272 MatMulNBits        semantic=MatMulNBits    K=1201..1201 votes=6/6 confidence=1.00
+rel=1090 node=2776 QuickGelu          semantic=QuickGelu      K=1202..1202 votes=6/6 confidence=1.00
+rel=1091 node=1273 MatMulNBits        semantic=MatMulNBits    K=1203..1203 votes=6/6 confidence=1.00
+rel=1092 node=1276 Mul                semantic=Mul            K=1204..1204 votes=6/6 confidence=1.00
+rel=1093 node=1277 MatMulNBits        semantic=MatMulNBits    K=1191..1191 votes=6/6 confidence=1.00
+rel=1094 node=1278 Add                semantic=Add            K=1192..1192 votes=6/6 confidence=1.00
+rel=1095 node=1279 Pow                semantic=Pow            K=1169..1169 votes=6/6 confidence=1.00
+rel=1096 node=1280 ReduceMean         semantic=ReduceMean     K=1208..1208 votes=5/6 confidence=0.83
+rel=1097 node=1281 Add                semantic=Add            K=1172..1172 votes=6/6 confidence=1.00
+rel=1099 node=1283 Reciprocal         semantic=Reciprocal     K=1198..1198 votes=6/6 confidence=1.00
+rel=1100 node=1284 Mul                semantic=Mul            K=1199..1199 votes=6/6 confidence=1.00
+rel=1101 node=1285 Mul                semantic=Mul            K=1200..1200 votes=6/6 confidence=1.00
+rel=1102 node=1287 MatMulNBits        semantic=MatMulNBits    K=1185..1185 votes=6/6 confidence=1.00
+rel=1104 node=1293 Pow                semantic=Pow            K=1169..1169 votes=6/6 confidence=1.00
+rel=1105 node=1296 ReduceMean         semantic=ReduceMean     K=1208..1208 votes=5/6 confidence=0.83
+rel=1106 node=1299 Add                semantic=Add            K=1172..1172 votes=6/6 confidence=1.00
+rel=1107 node=1302 Sqrt               semantic=Sqrt           K=1173..1173 votes=6/6 confidence=1.00
+rel=1108 node=1306 Reciprocal         semantic=Reciprocal     K=1174..1174 votes=6/6 confidence=1.00
+rel=1109 node=1309 Mul                semantic=Mul            K=1175..1175 votes=6/6 confidence=1.00
+rel=1110 node=1312 Mul                semantic=Mul            K=1176..1176 votes=6/6 confidence=1.00
+rel=1111 node=2707 Split              semantic=Split          K=1177..1177 votes=6/6 confidence=1.00
+rel=1112 node=1322 Neg                semantic=Neg            K=1178..1178 votes=6/6 confidence=1.00
+rel=1113 node=1324 Concat             semantic=Concat         K=1179..1179 votes=6/6 confidence=1.00
+rel=1114 node=1326 Mul                semantic=Mul            K=1227..1227 votes=6/6 confidence=1.00
+rel=1115 node=1318 Mul                semantic=Mul            K=1228..1228 votes=6/6 confidence=1.00
+rel=1116 node=1328 Add                semantic=Add            K=1229..1229 votes=6/6 confidence=1.00
+rel=1117 node=1329 Transpose          semantic=Transpose      K=1166..1166 votes=6/6 confidence=1.00
+rel=1120 node=1330 ScatterND          semantic=ScatterND      K=1187..1187 votes=6/6 confidence=1.00
+rel=1121 node=1331 Transpose          semantic=Transpose      K=1188..1188 votes=5/6 confidence=0.83
+rel=1123 node=1334 Expand             semantic=Expand         K=1189..1189 votes=5/6 confidence=0.83
+rel=1125 node=1286 MatMulNBits        semantic=MatMulNBits    K=1185..1185 votes=6/6 confidence=1.00
+rel=1127 node=1292 Pow                semantic=Pow            K=1193..1193 votes=6/6 confidence=1.00
+rel=1129 node=1298 Add                semantic=Add            K=1172..1172 votes=6/6 confidence=1.00
+rel=1131 node=1305 Reciprocal         semantic=Reciprocal     K=1174..1174 votes=6/6 confidence=1.00
+rel=1133 node=1311 Mul                semantic=Mul            K=1175..1175 votes=6/6 confidence=1.00
+rel=1134 node=1313 Transpose          semantic=Transpose      K=1188..1188 votes=5/6 confidence=0.83
+rel=1135 node=2708 Split              semantic=Split          K=1177..1177 votes=6/6 confidence=1.00
+rel=1136 node=1321 Neg                semantic=Neg            K=1178..1178 votes=6/6 confidence=1.00
+rel=1137 node=1323 Concat             semantic=Concat         K=1179..1179 votes=6/6 confidence=1.00
+rel=1138 node=1325 Mul                semantic=Mul            K=1180..1180 votes=6/6 confidence=1.00
+rel=1139 node=1315 Mul                semantic=Mul            K=1181..1181 votes=6/6 confidence=1.00
+rel=1140 node=1327 Add                semantic=Add            K=1182..1182 votes=6/6 confidence=1.00
+rel=1142 node=2805 BiasSoftmax        semantic=BiasSoftmax    K=1184..1184 votes=6/6 confidence=1.00
+rel=1143 node=1288 MatMulNBits        semantic=MatMulNBits    K=1185..1185 votes=6/6 confidence=1.00
+rel=1145 node=1294 Transpose          semantic=Transpose      K=1188..1188 votes=5/6 confidence=0.83
+rel=1148 node=1297 ScatterND          semantic=ScatterND      K=1187..1187 votes=6/6 confidence=1.00
+rel=1149 node=1300 Transpose          semantic=Transpose      K=1188..1188 votes=5/6 confidence=0.83
+rel=1153 node=1341 MatMul             semantic=MatMul         K=1190..1190 votes=5/6 confidence=0.83
+rel=1154 node=1342 Transpose          semantic=Transpose      K=1232..1232 votes=6/6 confidence=1.00
+rel=1156 node=1344 MatMulNBits        semantic=MatMulNBits    K=1191..1191 votes=5/6 confidence=0.83
+rel=1157 node=1345 Add                semantic=Add            K=1192..1192 votes=6/6 confidence=1.00
+rel=1158 node=1346 Pow                semantic=Pow            K=1193..1193 votes=6/6 confidence=1.00
+rel=1160 node=1348 Add                semantic=Add            K=1196..1196 votes=6/6 confidence=1.00
+rel=1161 node=1349 Sqrt               semantic=Sqrt           K=1197..1197 votes=6/6 confidence=1.00
+rel=1162 node=1350 Reciprocal         semantic=Reciprocal     K=1198..1198 votes=5/6 confidence=0.83
+rel=1163 node=1351 Mul                semantic=Mul            K=1199..1199 votes=6/6 confidence=1.00
+rel=1164 node=1352 Mul                semantic=Mul            K=1200..1200 votes=6/6 confidence=1.00
+rel=1165 node=1353 MatMulNBits        semantic=MatMulNBits    K=1201..1201 votes=6/6 confidence=1.00
+rel=1166 node=2777 QuickGelu          semantic=QuickGelu      K=1202..1202 votes=6/6 confidence=1.00
+rel=1167 node=1354 MatMulNBits        semantic=MatMulNBits    K=1203..1203 votes=6/6 confidence=1.00
+rel=1168 node=1357 Mul                semantic=Mul            K=1204..1204 votes=6/6 confidence=1.00
+rel=1169 node=1358 MatMulNBits        semantic=MatMulNBits    K=1205..1205 votes=6/6 confidence=1.00
+rel=1171 node=1360 Pow                semantic=Pow            K=1207..1207 votes=6/6 confidence=1.00
+rel=1172 node=1361 ReduceMean         semantic=ReduceMean     K=1208..1208 votes=5/6 confidence=0.83
+rel=1173 node=1362 Add                semantic=Add            K=1196..1196 votes=6/6 confidence=1.00
+rel=1174 node=1363 Sqrt               semantic=Sqrt           K=1197..1197 votes=6/6 confidence=1.00
+rel=1175 node=1364 Reciprocal         semantic=Reciprocal     K=1198..1198 votes=5/6 confidence=0.83
+rel=1176 node=1365 Mul                semantic=Mul            K=1199..1199 votes=6/6 confidence=1.00
+rel=1180 node=1374 Pow                semantic=Pow            K=1207..1207 votes=6/6 confidence=1.00
+rel=1181 node=1377 ReduceMean         semantic=ReduceMean     K=1208..1208 votes=6/6 confidence=1.00
+rel=1182 node=1380 Add                semantic=Add            K=1210..1210 votes=6/6 confidence=1.00
+rel=1183 node=1383 Sqrt               semantic=Sqrt           K=1211..1211 votes=5/6 confidence=0.83
+rel=1185 node=1390 Mul                semantic=Mul            K=1222..1222 votes=6/6 confidence=1.00
+rel=1186 node=1393 Mul                semantic=Mul            K=1223..1223 votes=6/6 confidence=1.00
+rel=1187 node=2709 Split              semantic=Split          K=1224..1224 votes=6/6 confidence=1.00
+rel=1188 node=1403 Neg                semantic=Neg            K=1225..1225 votes=6/6 confidence=1.00
+rel=1189 node=1405 Concat             semantic=Concat         K=1226..1226 votes=6/6 confidence=1.00
+rel=1190 node=1407 Mul                semantic=Mul            K=1227..1227 votes=6/6 confidence=1.00
+rel=1191 node=1399 Mul                semantic=Mul            K=1228..1228 votes=6/6 confidence=1.00
+rel=1192 node=1409 Add                semantic=Add            K=1229..1229 votes=6/6 confidence=1.00
+rel=1193 node=1410 Transpose          semantic=Transpose      K=1232..1232 votes=5/6 confidence=0.83
+rel=1196 node=1411 ScatterND          semantic=ScatterND      K=1231..1231 votes=6/6 confidence=1.00
+rel=1197 node=1412 Transpose          semantic=Transpose      K=1232..1232 votes=5/6 confidence=0.83
+rel=1199 node=1415 Expand             semantic=Expand         K=1233..1233 votes=5/6 confidence=0.83
+rel=1203 node=1373 Pow                semantic=Pow            K=1216..1216 votes=6/6 confidence=1.00
+rel=1205 node=1379 Add                semantic=Add            K=1219..1219 votes=6/6 confidence=1.00
+rel=1206 node=1382 Sqrt               semantic=Sqrt           K=1220..1220 votes=6/6 confidence=1.00
+rel=1209 node=1392 Mul                semantic=Mul            K=1222..1222 votes=6/6 confidence=1.00
+rel=1210 node=1394 Transpose          semantic=Transpose      K=1232..1232 votes=5/6 confidence=0.83
+rel=1211 node=2710 Split              semantic=Split          K=1224..1224 votes=6/6 confidence=1.00
+rel=1212 node=1402 Neg                semantic=Neg            K=1225..1225 votes=6/6 confidence=1.00
+rel=1213 node=1404 Concat             semantic=Concat         K=1226..1226 votes=6/6 confidence=1.00
+rel=1214 node=1406 Mul                semantic=Mul            K=1227..1227 votes=6/6 confidence=1.00
+rel=1215 node=1396 Mul                semantic=Mul            K=1247..1247 votes=6/6 confidence=1.00
+rel=1216 node=1408 Add                semantic=Add            K=1248..1248 votes=6/6 confidence=1.00
+rel=1218 node=2806 BiasSoftmax        semantic=BiasSoftmax    K=1250..1250 votes=6/6 confidence=1.00
+rel=1219 node=1369 MatMulNBits        semantic=MatMulNBits    K=1251..1251 votes=5/6 confidence=0.83
+rel=1221 node=1375 Transpose          semantic=Transpose      K=1232..1232 votes=5/6 confidence=0.83
+rel=1224 node=1378 ScatterND          semantic=ScatterND      K=1231..1231 votes=6/6 confidence=1.00
+rel=1225 node=1381 Transpose          semantic=Transpose      K=1232..1232 votes=5/6 confidence=0.83
+rel=1227 node=1388 Expand             semantic=Expand         K=1233..1233 votes=6/6 confidence=1.00
+rel=1230 node=1423 Transpose          semantic=Transpose      K=1232..1232 votes=6/6 confidence=1.00
+rel=1232 node=1425 MatMulNBits        semantic=MatMulNBits    K=1257..1257 votes=6/6 confidence=1.00
+rel=1233 node=1426 Add                semantic=Add            K=1258..1258 votes=6/6 confidence=1.00
+rel=1234 node=1427 Pow                semantic=Pow            K=1235..1235 votes=5/6 confidence=0.83
+rel=1236 node=1429 Add                semantic=Add            K=1238..1238 votes=6/6 confidence=1.00
+rel=1237 node=1430 Sqrt               semantic=Sqrt           K=1239..1239 votes=5/6 confidence=0.83
+rel=1238 node=1431 Reciprocal         semantic=Reciprocal     K=1264..1264 votes=6/6 confidence=1.00
+rel=1239 node=1432 Mul                semantic=Mul            K=1265..1265 votes=6/6 confidence=1.00
+rel=1240 node=1433 Mul                semantic=Mul            K=1266..1266 votes=6/6 confidence=1.00
+rel=1241 node=1434 MatMulNBits        semantic=MatMulNBits    K=1267..1267 votes=6/6 confidence=1.00
+rel=1242 node=2778 QuickGelu          semantic=QuickGelu      K=1268..1268 votes=6/6 confidence=1.00
+rel=1243 node=1435 MatMulNBits        semantic=MatMulNBits    K=1269..1269 votes=6/6 confidence=1.00
+rel=1244 node=1438 Mul                semantic=Mul            K=1270..1270 votes=6/6 confidence=1.00
+rel=1245 node=1439 MatMulNBits        semantic=MatMulNBits    K=1257..1257 votes=6/6 confidence=1.00
+rel=1246 node=1440 Add                semantic=Add            K=1258..1258 votes=6/6 confidence=1.00
+rel=1247 node=1441 Pow                semantic=Pow            K=1259..1259 votes=5/6 confidence=0.83
+rel=1249 node=1443 Add                semantic=Add            K=1238..1238 votes=6/6 confidence=1.00
+rel=1250 node=1444 Sqrt               semantic=Sqrt           K=1239..1239 votes=5/6 confidence=0.83
+rel=1251 node=1445 Reciprocal         semantic=Reciprocal     K=1264..1264 votes=6/6 confidence=1.00
+rel=1252 node=1446 Mul                semantic=Mul            K=1265..1265 votes=6/6 confidence=1.00
+rel=1256 node=1455 Pow                semantic=Pow            K=1259..1259 votes=5/6 confidence=0.83
+rel=1257 node=1458 ReduceMean         semantic=ReduceMean     K=1260..1260 votes=5/6 confidence=0.83
+rel=1258 node=1461 Add                semantic=Add            K=1262..1262 votes=6/6 confidence=1.00
+rel=1259 node=1464 Sqrt               semantic=Sqrt           K=1263..1263 votes=5/6 confidence=0.83
+rel=1260 node=1468 Reciprocal         semantic=Reciprocal     K=1287..1287 votes=5/6 confidence=0.83
+rel=1261 node=1471 Mul                semantic=Mul            K=1288..1288 votes=6/6 confidence=1.00
+rel=1262 node=1474 Mul                semantic=Mul            K=1289..1289 votes=6/6 confidence=1.00
+rel=1263 node=2711 Split              semantic=Split          K=1290..1290 votes=6/6 confidence=1.00
+rel=1264 node=1484 Neg                semantic=Neg            K=1291..1291 votes=6/6 confidence=1.00
+rel=1265 node=1486 Concat             semantic=Concat         K=1292..1292 votes=6/6 confidence=1.00
+rel=1266 node=1488 Mul                semantic=Mul            K=1293..1293 votes=6/6 confidence=1.00
+rel=1267 node=1480 Mul                semantic=Mul            K=1294..1294 votes=6/6 confidence=1.00
+rel=1268 node=1490 Add                semantic=Add            K=1295..1295 votes=6/6 confidence=1.00
+rel=1271 node=  77 Transpose          semantic=Transpose      K=1252..1252 votes=5/6 confidence=0.83
+rel=1272 node=1492 ScatterND          semantic=ScatterND      K=1253..1253 votes=6/6 confidence=1.00
+rel=1279 node=1454 Pow                semantic=Pow            K=1259..1259 votes=5/6 confidence=0.83
+rel=1280 node=1457 ReduceMean         semantic=ReduceMean     K=1260..1260 votes=5/6 confidence=0.83
+rel=1281 node=1460 Add                semantic=Add            K=1262..1262 votes=6/6 confidence=1.00
+rel=1282 node=1463 Sqrt               semantic=Sqrt           K=1263..1263 votes=5/6 confidence=0.83
+rel=1283 node=1467 Reciprocal         semantic=Reciprocal     K=1264..1264 votes=6/6 confidence=1.00
+rel=1284 node=1470 Mul                semantic=Mul            K=1265..1265 votes=6/6 confidence=1.00
+rel=1285 node=1473 Mul                semantic=Mul            K=1288..1288 votes=6/6 confidence=1.00
+rel=1287 node=2712 Split              semantic=Split          K=1290..1290 votes=6/6 confidence=1.00
+rel=1288 node=1483 Neg                semantic=Neg            K=1291..1291 votes=6/6 confidence=1.00
+rel=1289 node=1485 Concat             semantic=Concat         K=1292..1292 votes=6/6 confidence=1.00
+rel=1290 node=1487 Mul                semantic=Mul            K=1293..1293 votes=6/6 confidence=1.00
+rel=1291 node=1477 Mul                semantic=Mul            K=1313..1313 votes=6/6 confidence=1.00
+rel=1292 node=1489 Add                semantic=Add            K=1314..1314 votes=6/6 confidence=1.00
+rel=1294 node=2807 BiasSoftmax        semantic=BiasSoftmax    K=1316..1316 votes=6/6 confidence=1.00
+rel=1299 node= 105 Transpose          semantic=Transpose      K=1296..1296 votes=5/6 confidence=0.83
+rel=1300 node=1459 ScatterND          semantic=ScatterND      K=1297..1297 votes=6/6 confidence=1.00
+rel=1303 node=1469 Expand             semantic=Expand         K=1299..1299 votes=6/6 confidence=1.00
+rel=1306 node=1504 Transpose          semantic=Transpose      K=1298..1298 votes=6/6 confidence=1.00
+rel=1308 node=1506 MatMulNBits        semantic=MatMulNBits    K=1271..1271 votes=6/6 confidence=1.00
+rel=1310 node=1508 Pow                semantic=Pow            K=1273..1273 votes=5/6 confidence=0.83
+rel=1311 node=1509 ReduceMean         semantic=ReduceMean     K=1274..1274 votes=6/6 confidence=1.00
+rel=1312 node=1510 Add                semantic=Add            K=1276..1276 votes=6/6 confidence=1.00
+rel=1314 node=1512 Reciprocal         semantic=Reciprocal     K=1278..1278 votes=5/6 confidence=0.83
+rel=1315 node=1513 Mul                semantic=Mul            K=1331..1331 votes=6/6 confidence=1.00
+rel=1316 node=1514 Mul                semantic=Mul            K=1332..1332 votes=6/6 confidence=1.00
+rel=1317 node=1515 MatMulNBits        semantic=MatMulNBits    K=1333..1333 votes=6/6 confidence=1.00
+rel=1318 node=2779 QuickGelu          semantic=QuickGelu      K=1334..1334 votes=6/6 confidence=1.00
+rel=1319 node=1516 MatMulNBits        semantic=MatMulNBits    K=1335..1335 votes=6/6 confidence=1.00
+rel=1320 node=1519 Mul                semantic=Mul            K=1336..1336 votes=6/6 confidence=1.00
+rel=1321 node=1520 MatMulNBits        semantic=MatMulNBits    K=1323..1323 votes=6/6 confidence=1.00
+rel=1322 node=1521 Add                semantic=Add            K=1324..1324 votes=6/6 confidence=1.00
+rel=1323 node=1522 Pow                semantic=Pow            K=1282..1282 votes=5/6 confidence=0.83
+rel=1325 node=1524 Add                semantic=Add            K=1285..1285 votes=6/6 confidence=1.00
+rel=1327 node=1526 Reciprocal         semantic=Reciprocal     K=1330..1330 votes=5/6 confidence=0.83
+rel=1328 node=1527 Mul                semantic=Mul            K=1331..1331 votes=6/6 confidence=1.00
+rel=1332 node=1536 Pow                semantic=Pow            K=1282..1282 votes=5/6 confidence=0.83
+rel=1334 node=1542 Add                semantic=Add            K=1285..1285 votes=6/6 confidence=1.00
+rel=1336 node=1549 Reciprocal         semantic=Reciprocal     K=1287..1287 votes=5/6 confidence=0.83
+rel=1337 node=1552 Mul                semantic=Mul            K=1288..1288 votes=6/6 confidence=1.00
+rel=1338 node=1555 Mul                semantic=Mul            K=1289..1289 votes=6/6 confidence=1.00
+rel=1339 node=2713 Split              semantic=Split          K=1290..1290 votes=6/6 confidence=1.00
+rel=1340 node=1565 Neg                semantic=Neg            K=1291..1291 votes=6/6 confidence=1.00
+rel=1341 node=1567 Concat             semantic=Concat         K=1292..1292 votes=6/6 confidence=1.00
+rel=1342 node=1569 Mul                semantic=Mul            K=1293..1293 votes=6/6 confidence=1.00
+rel=1343 node=1561 Mul                semantic=Mul            K=1294..1294 votes=6/6 confidence=1.00
+rel=1344 node=1571 Add                semantic=Add            K=1295..1295 votes=6/6 confidence=1.00
+rel=1348 node=1573 ScatterND          semantic=ScatterND      K=1297..1297 votes=6/6 confidence=1.00
+rel=1349 node=1574 Transpose          semantic=Transpose      K=1298..1298 votes=5/6 confidence=0.83
+rel=1355 node=1535 Pow                semantic=Pow            K=1301..1301 votes=5/6 confidence=0.83
+rel=1357 node=1541 Add                semantic=Add            K=1304..1304 votes=6/6 confidence=1.00
+rel=1358 node=1544 Sqrt               semantic=Sqrt           K=1305..1305 votes=5/6 confidence=0.83
+rel=1359 node=1548 Reciprocal         semantic=Reciprocal     K=1306..1306 votes=6/6 confidence=1.00
+rel=1360 node=1551 Mul                semantic=Mul            K=1307..1307 votes=6/6 confidence=1.00
+rel=1361 node=1554 Mul                semantic=Mul            K=1307..1307 votes=6/6 confidence=1.00
+rel=1362 node=1556 Transpose          semantic=Transpose      K=1320..1320 votes=5/6 confidence=0.83
+rel=1363 node=2714 Split              semantic=Split          K=1309..1309 votes=6/6 confidence=1.00
+rel=1364 node=1564 Neg                semantic=Neg            K=1310..1310 votes=6/6 confidence=1.00
+rel=1365 node=1566 Concat             semantic=Concat         K=1311..1311 votes=6/6 confidence=1.00
+rel=1366 node=1568 Mul                semantic=Mul            K=1312..1312 votes=6/6 confidence=1.00
+rel=1367 node=1558 Mul                semantic=Mul            K=1313..1313 votes=6/6 confidence=1.00
+rel=1368 node=1570 Add                semantic=Add            K=1314..1314 votes=6/6 confidence=1.00
+rel=1370 node=2808 BiasSoftmax        semantic=BiasSoftmax    K=1316..1316 votes=6/6 confidence=1.00
+rel=1376 node=1540 ScatterND          semantic=ScatterND      K=1319..1319 votes=6/6 confidence=1.00
+rel=1382 node=1585 Transpose          semantic=Transpose      K=1364..1364 votes=5/6 confidence=0.83
+rel=1384 node=1587 MatMulNBits        semantic=MatMulNBits    K=1323..1323 votes=6/6 confidence=1.00
+rel=1385 node=1588 Add                semantic=Add            K=1324..1324 votes=6/6 confidence=1.00
+rel=1386 node=1589 Pow                semantic=Pow            K=1325..1325 votes=6/6 confidence=1.00
+rel=1387 node=1590 ReduceMean         semantic=ReduceMean     K=1326..1326 votes=6/6 confidence=1.00
+rel=1388 node=1591 Add                semantic=Add            K=1328..1328 votes=6/6 confidence=1.00
+rel=1389 node=1592 Sqrt               semantic=Sqrt           K=1329..1329 votes=6/6 confidence=1.00
+rel=1390 node=1593 Reciprocal         semantic=Reciprocal     K=1330..1330 votes=6/6 confidence=1.00
+rel=1391 node=1594 Mul                semantic=Mul            K=1331..1331 votes=6/6 confidence=1.00
+rel=1392 node=1595 Mul                semantic=Mul            K=1332..1332 votes=6/6 confidence=1.00
+rel=1393 node=1596 MatMulNBits        semantic=MatMulNBits    K=1333..1333 votes=6/6 confidence=1.00
+rel=1394 node=2780 QuickGelu          semantic=QuickGelu      K=1334..1334 votes=6/6 confidence=1.00
+rel=1395 node=1597 MatMulNBits        semantic=MatMulNBits    K=1335..1335 votes=6/6 confidence=1.00
+rel=1396 node=1600 Mul                semantic=Mul            K=1336..1336 votes=6/6 confidence=1.00
+rel=1397 node=1601 MatMulNBits        semantic=MatMulNBits    K=1323..1323 votes=6/6 confidence=1.00
+rel=1398 node=1602 Add                semantic=Add            K=1324..1324 votes=6/6 confidence=1.00
+rel=1399 node=1603 Pow                semantic=Pow            K=1325..1325 votes=6/6 confidence=1.00
+rel=1401 node=1605 Add                semantic=Add            K=1328..1328 votes=6/6 confidence=1.00
+rel=1402 node=1606 Sqrt               semantic=Sqrt           K=1329..1329 votes=6/6 confidence=1.00
+rel=1403 node=1607 Reciprocal         semantic=Reciprocal     K=1330..1330 votes=5/6 confidence=0.83
+rel=1404 node=1608 Mul                semantic=Mul            K=1331..1331 votes=6/6 confidence=1.00
+rel=1408 node=1617 Pow                semantic=Pow            K=1325..1325 votes=6/6 confidence=1.00
+rel=1410 node=1623 Add                semantic=Add            K=1328..1328 votes=6/6 confidence=1.00
+rel=1411 node=1626 Sqrt               semantic=Sqrt           K=1329..1329 votes=6/6 confidence=1.00
+rel=1413 node=1633 Mul                semantic=Mul            K=1354..1354 votes=6/6 confidence=1.00
+rel=1414 node=1636 Mul                semantic=Mul            K=1355..1355 votes=6/6 confidence=1.00
+rel=1415 node=2715 Split              semantic=Split          K=1356..1356 votes=6/6 confidence=1.00
+rel=1416 node=1646 Neg                semantic=Neg            K=1357..1357 votes=6/6 confidence=1.00
+rel=1417 node=1648 Concat             semantic=Concat         K=1358..1358 votes=6/6 confidence=1.00
+rel=1418 node=1650 Mul                semantic=Mul            K=1359..1359 votes=6/6 confidence=1.00
+rel=1419 node=1642 Mul                semantic=Mul            K=1360..1360 votes=6/6 confidence=1.00
+rel=1420 node=1652 Add                semantic=Add            K=1361..1361 votes=6/6 confidence=1.00
+rel=1423 node=  79 Transpose          semantic=Transpose      K=1362..1362 votes=5/6 confidence=0.83
+rel=1424 node=1654 ScatterND          semantic=ScatterND      K=1363..1363 votes=6/6 confidence=1.00
+rel=1425 node=1655 Transpose          semantic=Transpose      K=1364..1364 votes=5/6 confidence=0.83
+rel=1431 node=1616 Pow                semantic=Pow            K=1339..1339 votes=6/6 confidence=1.00
+rel=1432 node=1619 ReduceMean         semantic=ReduceMean     K=1340..1340 votes=6/6 confidence=1.00
+rel=1433 node=1622 Add                semantic=Add            K=1342..1342 votes=6/6 confidence=1.00
+rel=1434 node=1625 Sqrt               semantic=Sqrt           K=1343..1343 votes=5/6 confidence=0.83
+rel=1436 node=1632 Mul                semantic=Mul            K=1345..1345 votes=5/6 confidence=0.83
+rel=1437 node=1635 Mul                semantic=Mul            K=1354..1354 votes=6/6 confidence=1.00
+rel=1438 node=1637 Transpose          semantic=Transpose      K=1364..1364 votes=5/6 confidence=0.83
+rel=1439 node=2716 Split              semantic=Split          K=1356..1356 votes=6/6 confidence=1.00
+rel=1440 node=1645 Neg                semantic=Neg            K=1357..1357 votes=6/6 confidence=1.00
+rel=1441 node=1647 Concat             semantic=Concat         K=1358..1358 votes=6/6 confidence=1.00
+rel=1442 node=1649 Mul                semantic=Mul            K=1359..1359 votes=6/6 confidence=1.00
+rel=1443 node=1639 Mul                semantic=Mul            K=1379..1379 votes=6/6 confidence=1.00
+rel=1444 node=1651 Add                semantic=Add            K=1380..1380 votes=6/6 confidence=1.00
+rel=1446 node=2809 BiasSoftmax        semantic=BiasSoftmax    K=1382..1382 votes=6/6 confidence=1.00
+rel=1447 node=1612 MatMulNBits        semantic=MatMulNBits    K=1347..1347 votes=5/6 confidence=0.83
+rel=1449 node=1618 Transpose          semantic=Transpose      K=1364..1364 votes=5/6 confidence=0.83
+rel=1452 node=1621 ScatterND          semantic=ScatterND      K=1363..1363 votes=6/6 confidence=1.00
+rel=1453 node=1624 Transpose          semantic=Transpose      K=1364..1364 votes=5/6 confidence=0.83
+rel=1455 node=1631 Expand             semantic=Expand         K=1365..1365 votes=6/6 confidence=1.00
+rel=1458 node=1666 Transpose          semantic=Transpose      K=1364..1364 votes=6/6 confidence=1.00
+rel=1460 node=1668 MatMulNBits        semantic=MatMulNBits    K=1389..1389 votes=6/6 confidence=1.00
+rel=1461 node=1669 Add                semantic=Add            K=1390..1390 votes=6/6 confidence=1.00
+rel=1462 node=1670 Pow                semantic=Pow            K=1367..1367 votes=6/6 confidence=1.00
+rel=1464 node=1672 Add                semantic=Add            K=1370..1370 votes=6/6 confidence=1.00
+rel=1465 node=1673 Sqrt               semantic=Sqrt           K=1371..1371 votes=5/6 confidence=0.83
+rel=1466 node=1674 Reciprocal         semantic=Reciprocal     K=1396..1396 votes=6/6 confidence=1.00
+rel=1467 node=1675 Mul                semantic=Mul            K=1397..1397 votes=6/6 confidence=1.00
+rel=1468 node=1676 Mul                semantic=Mul            K=1398..1398 votes=6/6 confidence=1.00
+rel=1469 node=1677 MatMulNBits        semantic=MatMulNBits    K=1399..1399 votes=6/6 confidence=1.00
+rel=1470 node=2781 QuickGelu          semantic=QuickGelu      K=1400..1400 votes=6/6 confidence=1.00
+rel=1471 node=1678 MatMulNBits        semantic=MatMulNBits    K=1401..1401 votes=6/6 confidence=1.00
+rel=1472 node=1681 Mul                semantic=Mul            K=1402..1402 votes=6/6 confidence=1.00
+rel=1473 node=1682 MatMulNBits        semantic=MatMulNBits    K=1389..1389 votes=6/6 confidence=1.00
+rel=1475 node=1684 Pow                semantic=Pow            K=1367..1367 votes=6/6 confidence=1.00
+rel=1477 node=1686 Add                semantic=Add            K=1370..1370 votes=6/6 confidence=1.00
+rel=1479 node=1688 Reciprocal         semantic=Reciprocal     K=1396..1396 votes=6/6 confidence=1.00
+rel=1480 node=1689 Mul                semantic=Mul            K=1397..1397 votes=6/6 confidence=1.00
+rel=1482 node=1692 MatMulNBits        semantic=MatMulNBits    K=1383..1383 votes=5/6 confidence=0.83
+rel=1484 node=1698 Pow                semantic=Pow            K=1367..1367 votes=6/6 confidence=1.00
+rel=1486 node=1704 Add                semantic=Add            K=1370..1370 votes=6/6 confidence=1.00
+rel=1487 node=1707 Sqrt               semantic=Sqrt           K=1371..1371 votes=6/6 confidence=1.00
+rel=1488 node=1711 Reciprocal         semantic=Reciprocal     K=1372..1372 votes=6/6 confidence=1.00
+rel=1489 node=1714 Mul                semantic=Mul            K=1373..1373 votes=6/6 confidence=1.00
+rel=1490 node=1717 Mul                semantic=Mul            K=1374..1374 votes=6/6 confidence=1.00
+rel=1491 node=2717 Split              semantic=Split          K=1375..1375 votes=6/6 confidence=1.00
+rel=1492 node=1727 Neg                semantic=Neg            K=1376..1376 votes=6/6 confidence=1.00
+rel=1493 node=1729 Concat             semantic=Concat         K=1377..1377 votes=6/6 confidence=1.00
+rel=1494 node=1731 Mul                semantic=Mul            K=1425..1425 votes=6/6 confidence=1.00
+rel=1495 node=1723 Mul                semantic=Mul            K=1426..1426 votes=6/6 confidence=1.00
+rel=1496 node=1733 Add                semantic=Add            K=1427..1427 votes=6/6 confidence=1.00
+rel=1497 node=1734 Transpose          semantic=Transpose      K=1386..1386 votes=5/6 confidence=0.83
+rel=1499 node=  80 Transpose          semantic=Transpose      K=1384..1384 votes=5/6 confidence=0.83
+rel=1500 node=1735 ScatterND          semantic=ScatterND      K=1385..1385 votes=6/6 confidence=1.00
+rel=1501 node=1736 Transpose          semantic=Transpose      K=1386..1386 votes=5/6 confidence=0.83
+rel=1507 node=1697 Pow                semantic=Pow            K=1391..1391 votes=6/6 confidence=1.00
+rel=1509 node=1703 Add                semantic=Add            K=1394..1394 votes=6/6 confidence=1.00
+rel=1510 node=1706 Sqrt               semantic=Sqrt           K=1395..1395 votes=6/6 confidence=1.00
+rel=1511 node=1710 Reciprocal         semantic=Reciprocal     K=1396..1396 votes=6/6 confidence=1.00
+rel=1512 node=1713 Mul                semantic=Mul            K=1397..1397 votes=5/6 confidence=0.83
+rel=1513 node=1716 Mul                semantic=Mul            K=1420..1420 votes=6/6 confidence=1.00
+rel=1514 node=1718 Transpose          semantic=Transpose      K=1386..1386 votes=5/6 confidence=0.83
+rel=1515 node=2718 Split              semantic=Split          K=1422..1422 votes=6/6 confidence=1.00
+rel=1516 node=1726 Neg                semantic=Neg            K=1423..1423 votes=6/6 confidence=1.00
+rel=1517 node=1728 Concat             semantic=Concat         K=1424..1424 votes=6/6 confidence=1.00
+rel=1518 node=1730 Mul                semantic=Mul            K=1425..1425 votes=6/6 confidence=1.00
+rel=1519 node=1720 Mul                semantic=Mul            K=1445..1445 votes=6/6 confidence=1.00
+rel=1520 node=1732 Add                semantic=Add            K=1446..1446 votes=6/6 confidence=1.00
+rel=1522 node=2810 BiasSoftmax        semantic=BiasSoftmax    K=1448..1448 votes=6/6 confidence=1.00
+rel=1528 node=1702 ScatterND          semantic=ScatterND      K=1429..1429 votes=6/6 confidence=1.00
+rel=1531 node=1712 Expand             semantic=Expand         K=1431..1431 votes=6/6 confidence=1.00
+rel=1534 node=1747 Transpose          semantic=Transpose      K=1430..1430 votes=6/6 confidence=1.00
+rel=1536 node=1749 MatMulNBits        semantic=MatMulNBits    K=1403..1403 votes=6/6 confidence=1.00
+rel=1538 node=1751 Pow                semantic=Pow            K=1405..1405 votes=6/6 confidence=1.00
+rel=1539 node=1752 ReduceMean         semantic=ReduceMean     K=1406..1406 votes=6/6 confidence=1.00
+rel=1540 node=1753 Add                semantic=Add            K=1408..1408 votes=6/6 confidence=1.00
+rel=1541 node=1754 Sqrt               semantic=Sqrt           K=1409..1409 votes=5/6 confidence=0.83
+rel=1542 node=1755 Reciprocal         semantic=Reciprocal     K=1396..1396 votes=6/6 confidence=1.00
+rel=1543 node=1756 Mul                semantic=Mul            K=1397..1397 votes=6/6 confidence=1.00
+rel=1544 node=1757 Mul                semantic=Mul            K=1398..1398 votes=6/6 confidence=1.00
+rel=1545 node=1758 MatMulNBits        semantic=MatMulNBits    K=1399..1399 votes=6/6 confidence=1.00
+rel=1546 node=2782 QuickGelu          semantic=QuickGelu      K=1400..1400 votes=6/6 confidence=1.00
+rel=1547 node=1759 MatMulNBits        semantic=MatMulNBits    K=1401..1401 votes=6/6 confidence=1.00
+rel=1548 node=1762 Mul                semantic=Mul            K=1402..1402 votes=6/6 confidence=1.00
+rel=1549 node=1763 MatMulNBits        semantic=MatMulNBits    K=1403..1403 votes=6/6 confidence=1.00
+rel=1551 node=1765 Pow                semantic=Pow            K=1405..1405 votes=6/6 confidence=1.00
+rel=1552 node=1766 ReduceMean         semantic=ReduceMean     K=1406..1406 votes=6/6 confidence=1.00
+rel=1553 node=1767 Add                semantic=Add            K=1408..1408 votes=6/6 confidence=1.00
+rel=1554 node=1768 Sqrt               semantic=Sqrt           K=1409..1409 votes=5/6 confidence=0.83
+rel=1555 node=1769 Reciprocal         semantic=Reciprocal     K=1410..1410 votes=5/6 confidence=0.83
+rel=1556 node=1770 Mul                semantic=Mul            K=1411..1411 votes=6/6 confidence=1.00
+rel=1560 node=1779 Pow                semantic=Pow            K=1414..1414 votes=6/6 confidence=1.00
+rel=1562 node=1785 Add                semantic=Add            K=1408..1408 votes=6/6 confidence=1.00
+rel=1563 node=1788 Sqrt               semantic=Sqrt           K=1409..1409 votes=6/6 confidence=1.00
+rel=1564 node=1792 Reciprocal         semantic=Reciprocal     K=1419..1419 votes=6/6 confidence=1.00
+rel=1565 node=1795 Mul                semantic=Mul            K=1420..1420 votes=6/6 confidence=1.00
+rel=1566 node=1798 Mul                semantic=Mul            K=1421..1421 votes=6/6 confidence=1.00
+rel=1567 node=2719 Split              semantic=Split          K=1422..1422 votes=6/6 confidence=1.00
+rel=1568 node=1808 Neg                semantic=Neg            K=1423..1423 votes=6/6 confidence=1.00
+rel=1569 node=1810 Concat             semantic=Concat         K=1424..1424 votes=6/6 confidence=1.00
+rel=1570 node=1812 Mul                semantic=Mul            K=1425..1425 votes=6/6 confidence=1.00
+rel=1571 node=1804 Mul                semantic=Mul            K=1426..1426 votes=6/6 confidence=1.00
+rel=1572 node=1814 Add                semantic=Add            K=1427..1427 votes=6/6 confidence=1.00
+rel=1576 node=1816 ScatterND          semantic=ScatterND      K=1429..1429 votes=6/6 confidence=1.00
+rel=1579 node=1820 Expand             semantic=Expand         K=1431..1431 votes=5/6 confidence=0.83
+rel=1583 node=1778 Pow                semantic=Pow            K=1433..1433 votes=6/6 confidence=1.00
+rel=1585 node=1784 Add                semantic=Add            K=1436..1436 votes=6/6 confidence=1.00
+rel=1586 node=1787 Sqrt               semantic=Sqrt           K=1437..1437 votes=6/6 confidence=1.00
+rel=1587 node=1791 Reciprocal         semantic=Reciprocal     K=1438..1438 votes=5/6 confidence=0.83
+rel=1588 node=1794 Mul                semantic=Mul            K=1425..1425 votes=6/6 confidence=1.00
+rel=1589 node=1797 Mul                semantic=Mul            K=1439..1439 votes=6/6 confidence=1.00
+rel=1591 node=2720 Split              semantic=Split          K=1441..1441 votes=6/6 confidence=1.00
+rel=1592 node=1807 Neg                semantic=Neg            K=1423..1423 votes=6/6 confidence=1.00
+rel=1593 node=1809 Concat             semantic=Concat         K=1424..1424 votes=6/6 confidence=1.00
+rel=1594 node=1811 Mul                semantic=Mul            K=1425..1425 votes=6/6 confidence=1.00
+rel=1595 node=1801 Mul                semantic=Mul            K=1445..1445 votes=6/6 confidence=1.00
+rel=1596 node=1813 Add                semantic=Add            K=1446..1446 votes=6/6 confidence=1.00
+rel=1598 node=2811 BiasSoftmax        semantic=BiasSoftmax    K=1448..1448 votes=6/6 confidence=1.00
+rel=1604 node=1783 ScatterND          semantic=ScatterND      K=1451..1451 votes=6/6 confidence=1.00
+rel=1607 node=1793 Expand             semantic=Expand         K=1497..1497 votes=5/6 confidence=0.83
+rel=1610 node=1828 Transpose          semantic=Transpose      K=1496..1496 votes=6/6 confidence=1.00
+rel=1612 node=1830 MatMulNBits        semantic=MatMulNBits    K=1455..1455 votes=6/6 confidence=1.00
+rel=1613 node=1831 Add                semantic=Add            K=1456..1456 votes=6/6 confidence=1.00
+rel=1616 node=1834 Add                semantic=Add            K=1436..1436 votes=6/6 confidence=1.00
+rel=1617 node=1835 Sqrt               semantic=Sqrt           K=1437..1437 votes=6/6 confidence=1.00
+rel=1618 node=1836 Reciprocal         semantic=Reciprocal     K=1462..1462 votes=6/6 confidence=1.00
+rel=1619 node=1837 Mul                semantic=Mul            K=1463..1463 votes=6/6 confidence=1.00
+rel=1620 node=1838 Mul                semantic=Mul            K=1464..1464 votes=6/6 confidence=1.00
+rel=1621 node=1839 MatMulNBits        semantic=MatMulNBits    K=1465..1465 votes=6/6 confidence=1.00
+rel=1622 node=2783 QuickGelu          semantic=QuickGelu      K=1466..1466 votes=6/6 confidence=1.00
+rel=1623 node=1840 MatMulNBits        semantic=MatMulNBits    K=1467..1467 votes=6/6 confidence=1.00
+rel=1624 node=1843 Mul                semantic=Mul            K=1468..1468 votes=6/6 confidence=1.00
+rel=1625 node=1844 MatMulNBits        semantic=MatMulNBits    K=1455..1455 votes=6/6 confidence=1.00
+rel=1626 node=1845 Add                semantic=Add            K=1456..1456 votes=6/6 confidence=1.00
+rel=1629 node=1848 Add                semantic=Add            K=1460..1460 votes=6/6 confidence=1.00
+rel=1630 node=1849 Sqrt               semantic=Sqrt           K=1461..1461 votes=6/6 confidence=1.00
+rel=1631 node=1850 Reciprocal         semantic=Reciprocal     K=1462..1462 votes=6/6 confidence=1.00
+rel=1632 node=1851 Mul                semantic=Mul            K=1463..1463 votes=6/6 confidence=1.00
+rel=1638 node=1866 Add                semantic=Add            K=1460..1460 votes=6/6 confidence=1.00
+rel=1639 node=1869 Sqrt               semantic=Sqrt           K=1461..1461 votes=6/6 confidence=1.00
+rel=1640 node=1873 Reciprocal         semantic=Reciprocal     K=1485..1485 votes=5/6 confidence=0.83
+rel=1641 node=1876 Mul                semantic=Mul            K=1486..1486 votes=6/6 confidence=1.00
+rel=1642 node=1879 Mul                semantic=Mul            K=1487..1487 votes=6/6 confidence=1.00
+rel=1643 node=2721 Split              semantic=Split          K=1488..1488 votes=6/6 confidence=1.00
+rel=1644 node=1889 Neg                semantic=Neg            K=1489..1489 votes=6/6 confidence=1.00
+rel=1645 node=1891 Concat             semantic=Concat         K=1490..1490 votes=6/6 confidence=1.00
+rel=1646 node=1893 Mul                semantic=Mul            K=1491..1491 votes=6/6 confidence=1.00
+rel=1647 node=1885 Mul                semantic=Mul            K=1492..1492 votes=6/6 confidence=1.00
+rel=1648 node=1895 Add                semantic=Add            K=1493..1493 votes=6/6 confidence=1.00
+rel=1649 node=1896 Transpose          semantic=Transpose      K=1496..1496 votes=5/6 confidence=0.83
+rel=1652 node=1897 ScatterND          semantic=ScatterND      K=1495..1495 votes=6/6 confidence=1.00
+rel=1660 node=1862 ReduceMean         semantic=ReduceMean     K=1472..1472 votes=6/6 confidence=1.00
+rel=1661 node=1865 Add                semantic=Add            K=1474..1474 votes=6/6 confidence=1.00
+rel=1662 node=1868 Sqrt               semantic=Sqrt           K=1461..1461 votes=6/6 confidence=1.00
+rel=1663 node=1872 Reciprocal         semantic=Reciprocal     K=1462..1462 votes=5/6 confidence=0.83
+rel=1664 node=1875 Mul                semantic=Mul            K=1463..1463 votes=6/6 confidence=1.00
+rel=1665 node=1878 Mul                semantic=Mul            K=1486..1486 votes=6/6 confidence=1.00
+rel=1666 node=1880 Transpose          semantic=Transpose      K=1496..1496 votes=5/6 confidence=0.83
+rel=1667 node=2722 Split              semantic=Split          K=1488..1488 votes=6/6 confidence=1.00
+rel=1668 node=1888 Neg                semantic=Neg            K=1489..1489 votes=6/6 confidence=1.00
+rel=1669 node=1890 Concat             semantic=Concat         K=1490..1490 votes=6/6 confidence=1.00
+rel=1670 node=1892 Mul                semantic=Mul            K=1491..1491 votes=6/6 confidence=1.00
+rel=1671 node=1882 Mul                semantic=Mul            K=1511..1511 votes=6/6 confidence=1.00
+rel=1672 node=1894 Add                semantic=Add            K=1512..1512 votes=6/6 confidence=1.00
+rel=1674 node=2812 BiasSoftmax        semantic=BiasSoftmax    K=1514..1514 votes=6/6 confidence=1.00
+rel=1680 node=1864 ScatterND          semantic=ScatterND      K=1495..1495 votes=6/6 confidence=1.00
+rel=1683 node=1874 Expand             semantic=Expand         K=1497..1497 votes=6/6 confidence=1.00
+rel=1688 node=1911 MatMulNBits        semantic=MatMulNBits    K=1521..1521 votes=6/6 confidence=1.00
+rel=1689 node=1912 Add                semantic=Add            K=1522..1522 votes=6/6 confidence=1.00
+rel=1690 node=1913 Pow                semantic=Pow            K=1480..1480 votes=5/6 confidence=0.83
+rel=1692 node=1915 Add                semantic=Add            K=1483..1483 votes=6/6 confidence=1.00
+rel=1693 node=1916 Sqrt               semantic=Sqrt           K=1484..1484 votes=5/6 confidence=0.83
+rel=1694 node=1917 Reciprocal         semantic=Reciprocal     K=1528..1528 votes=5/6 confidence=0.83
+rel=1695 node=1918 Mul                semantic=Mul            K=1529..1529 votes=6/6 confidence=1.00
+rel=1696 node=1919 Mul                semantic=Mul            K=1530..1530 votes=6/6 confidence=1.00
+rel=1697 node=1920 MatMulNBits        semantic=MatMulNBits    K=1531..1531 votes=6/6 confidence=1.00
+rel=1698 node=2784 QuickGelu          semantic=QuickGelu      K=1532..1532 votes=6/6 confidence=1.00
+rel=1699 node=1921 MatMulNBits        semantic=MatMulNBits    K=1533..1533 votes=6/6 confidence=1.00
+rel=1700 node=1924 Mul                semantic=Mul            K=1534..1534 votes=6/6 confidence=1.00
+rel=1701 node=1925 MatMulNBits        semantic=MatMulNBits    K=1521..1521 votes=6/6 confidence=1.00
+rel=1702 node=1926 Add                semantic=Add            K=1522..1522 votes=6/6 confidence=1.00
+rel=1703 node=1927 Pow                semantic=Pow            K=1499..1499 votes=5/6 confidence=0.83
+rel=1705 node=1929 Add                semantic=Add            K=1502..1502 votes=6/6 confidence=1.00
+rel=1708 node=1932 Mul                semantic=Mul            K=1529..1529 votes=6/6 confidence=1.00
+rel=1714 node=1947 Add                semantic=Add            K=1502..1502 votes=6/6 confidence=1.00
+rel=1716 node=1954 Reciprocal         semantic=Reciprocal     K=1504..1504 votes=6/6 confidence=1.00
+rel=1717 node=1957 Mul                semantic=Mul            K=1505..1505 votes=6/6 confidence=1.00
+rel=1718 node=1960 Mul                semantic=Mul            K=1506..1506 votes=6/6 confidence=1.00
+rel=1719 node=2723 Split              semantic=Split          K=1507..1507 votes=6/6 confidence=1.00
+rel=1720 node=1970 Neg                semantic=Neg            K=1508..1508 votes=6/6 confidence=1.00
+rel=1721 node=1972 Concat             semantic=Concat         K=1509..1509 votes=6/6 confidence=1.00
+rel=1722 node=1974 Mul                semantic=Mul            K=1557..1557 votes=6/6 confidence=1.00
+rel=1723 node=1966 Mul                semantic=Mul            K=1558..1558 votes=6/6 confidence=1.00
+rel=1724 node=1976 Add                semantic=Add            K=1559..1559 votes=6/6 confidence=1.00
+rel=1727 node=  83 Transpose          semantic=Transpose      K=1516..1516 votes=5/6 confidence=0.83
+rel=1728 node=1978 ScatterND          semantic=ScatterND      K=1517..1517 votes=6/6 confidence=1.00
+rel=1735 node=1940 Pow                semantic=Pow            K=1523..1523 votes=6/6 confidence=1.00
+rel=1737 node=1946 Add                semantic=Add            K=1502..1502 votes=6/6 confidence=1.00
+rel=1738 node=1949 Sqrt               semantic=Sqrt           K=1503..1503 votes=6/6 confidence=1.00
+rel=1739 node=1953 Reciprocal         semantic=Reciprocal     K=1504..1504 votes=6/6 confidence=1.00
+rel=1741 node=1959 Mul                semantic=Mul            K=1505..1505 votes=6/6 confidence=1.00
+rel=1743 node=2724 Split              semantic=Split          K=1507..1507 votes=6/6 confidence=1.00
+rel=1744 node=1969 Neg                semantic=Neg            K=1508..1508 votes=6/6 confidence=1.00
+rel=1745 node=1971 Concat             semantic=Concat         K=1509..1509 votes=6/6 confidence=1.00
+rel=1746 node=1973 Mul                semantic=Mul            K=1510..1510 votes=6/6 confidence=1.00
+rel=1747 node=1963 Mul                semantic=Mul            K=1511..1511 votes=6/6 confidence=1.00
+rel=1748 node=1975 Add                semantic=Add            K=1512..1512 votes=6/6 confidence=1.00
+rel=1750 node=2813 BiasSoftmax        semantic=BiasSoftmax    K=1514..1514 votes=6/6 confidence=1.00
+rel=1756 node=1945 ScatterND          semantic=ScatterND      K=1517..1517 votes=6/6 confidence=1.00
+rel=1761 node=1989 MatMul             semantic=MatMul         K=1520..1520 votes=5/6 confidence=0.83
+rel=1762 node=1990 Transpose          semantic=Transpose      K=1562..1562 votes=6/6 confidence=1.00
+rel=1764 node=1992 MatMulNBits        semantic=MatMulNBits    K=1521..1521 votes=6/6 confidence=1.00
+rel=1766 node=1994 Pow                semantic=Pow            K=1523..1523 votes=6/6 confidence=1.00
+rel=1767 node=1995 ReduceMean         semantic=ReduceMean     K=1524..1524 votes=5/6 confidence=0.83
+rel=1768 node=1996 Add                semantic=Add            K=1526..1526 votes=6/6 confidence=1.00
+rel=1769 node=1997 Sqrt               semantic=Sqrt           K=1527..1527 votes=6/6 confidence=1.00
+rel=1770 node=1998 Reciprocal         semantic=Reciprocal     K=1528..1528 votes=6/6 confidence=1.00
+rel=1771 node=1999 Mul                semantic=Mul            K=1529..1529 votes=6/6 confidence=1.00
+rel=1772 node=2000 Mul                semantic=Mul            K=1530..1530 votes=6/6 confidence=1.00
+rel=1773 node=2001 MatMulNBits        semantic=MatMulNBits    K=1531..1531 votes=6/6 confidence=1.00
+rel=1774 node=2785 QuickGelu          semantic=QuickGelu      K=1532..1532 votes=6/6 confidence=1.00
+rel=1775 node=2002 MatMulNBits        semantic=MatMulNBits    K=1533..1533 votes=5/6 confidence=0.83
+rel=1776 node=2005 Mul                semantic=Mul            K=1534..1534 votes=6/6 confidence=1.00
+rel=1777 node=2006 MatMulNBits        semantic=MatMulNBits    K=1535..1535 votes=6/6 confidence=1.00
+rel=1778 node=2007 Add                semantic=Add            K=1536..1536 votes=5/6 confidence=0.83
+rel=1779 node=2008 Pow                semantic=Pow            K=1537..1537 votes=6/6 confidence=1.00
+rel=1780 node=2009 ReduceMean         semantic=ReduceMean     K=1538..1538 votes=6/6 confidence=1.00
+rel=1781 node=2010 Add                semantic=Add            K=1526..1526 votes=6/6 confidence=1.00
+rel=1782 node=2011 Sqrt               semantic=Sqrt           K=1527..1527 votes=6/6 confidence=1.00
+rel=1783 node=2012 Reciprocal         semantic=Reciprocal     K=1528..1528 votes=6/6 confidence=1.00
+rel=1784 node=2013 Mul                semantic=Mul            K=1529..1529 votes=6/6 confidence=1.00
+rel=1788 node=2022 Pow                semantic=Pow            K=1537..1537 votes=6/6 confidence=1.00
+rel=1789 node=2025 ReduceMean         semantic=ReduceMean     K=1538..1538 votes=6/6 confidence=1.00
+rel=1790 node=2028 Add                semantic=Add            K=1540..1540 votes=6/6 confidence=1.00
+rel=1791 node=2031 Sqrt               semantic=Sqrt           K=1541..1541 votes=6/6 confidence=1.00
+rel=1792 node=2035 Reciprocal         semantic=Reciprocal     K=1551..1551 votes=5/6 confidence=0.83
+rel=1793 node=2038 Mul                semantic=Mul            K=1552..1552 votes=6/6 confidence=1.00
+rel=1794 node=2041 Mul                semantic=Mul            K=1553..1553 votes=6/6 confidence=1.00
+rel=1795 node=2725 Split              semantic=Split          K=1554..1554 votes=6/6 confidence=1.00
+rel=1796 node=2051 Neg                semantic=Neg            K=1555..1555 votes=6/6 confidence=1.00
+rel=1797 node=2053 Concat             semantic=Concat         K=1556..1556 votes=6/6 confidence=1.00
+rel=1798 node=2055 Mul                semantic=Mul            K=1557..1557 votes=6/6 confidence=1.00
+rel=1799 node=2047 Mul                semantic=Mul            K=1558..1558 votes=6/6 confidence=1.00
+rel=1800 node=2057 Add                semantic=Add            K=1559..1559 votes=6/6 confidence=1.00
+rel=1803 node=  84 Transpose          semantic=Transpose      K=1560..1560 votes=5/6 confidence=0.83
+rel=1804 node=2059 ScatterND          semantic=ScatterND      K=1561..1561 votes=6/6 confidence=1.00
+rel=1805 node=2060 Transpose          semantic=Transpose      K=1562..1562 votes=5/6 confidence=0.83
+rel=1807 node=2063 Expand             semantic=Expand         K=1563..1563 votes=5/6 confidence=0.83
+rel=1811 node=2021 Pow                semantic=Pow            K=1546..1546 votes=6/6 confidence=1.00
+rel=1813 node=2027 Add                semantic=Add            K=1549..1549 votes=6/6 confidence=1.00
+rel=1814 node=2030 Sqrt               semantic=Sqrt           K=1550..1550 votes=5/6 confidence=0.83
+rel=1815 node=2034 Reciprocal         semantic=Reciprocal     K=1551..1551 votes=6/6 confidence=1.00
+rel=1817 node=2040 Mul                semantic=Mul            K=1552..1552 votes=6/6 confidence=1.00
+rel=1818 node=2042 Transpose          semantic=Transpose      K=1562..1562 votes=5/6 confidence=0.83
+rel=1819 node=2726 Split              semantic=Split          K=1554..1554 votes=6/6 confidence=1.00
+rel=1820 node=2050 Neg                semantic=Neg            K=1555..1555 votes=6/6 confidence=1.00
+rel=1821 node=2052 Concat             semantic=Concat         K=1556..1556 votes=6/6 confidence=1.00
+rel=1822 node=2054 Mul                semantic=Mul            K=1557..1557 votes=6/6 confidence=1.00
+rel=1823 node=2044 Mul                semantic=Mul            K=1577..1577 votes=6/6 confidence=1.00
+rel=1824 node=2056 Add                semantic=Add            K=1578..1578 votes=6/6 confidence=1.00
+rel=1826 node=2814 BiasSoftmax        semantic=BiasSoftmax    K=1580..1580 votes=6/6 confidence=1.00
+rel=1829 node=2023 Transpose          semantic=Transpose      K=1562..1562 votes=5/6 confidence=0.83
+rel=1832 node=2026 ScatterND          semantic=ScatterND      K=1561..1561 votes=6/6 confidence=1.00
+rel=1833 node=2029 Transpose          semantic=Transpose      K=1562..1562 votes=5/6 confidence=0.83
+rel=1835 node=2036 Expand             semantic=Expand         K=1563..1563 votes=6/6 confidence=1.00
+rel=1838 node=2071 Transpose          semantic=Transpose      K=1562..1562 votes=6/6 confidence=1.00
+rel=1840 node=2073 MatMulNBits        semantic=MatMulNBits    K=1587..1587 votes=6/6 confidence=1.00
+rel=1841 node=2074 Add                semantic=Add            K=1588..1588 votes=6/6 confidence=1.00
+rel=1842 node=2075 Pow                semantic=Pow            K=1565..1565 votes=5/6 confidence=0.83
+rel=1844 node=2077 Add                semantic=Add            K=1568..1568 votes=6/6 confidence=1.00
+rel=1846 node=2079 Reciprocal         semantic=Reciprocal     K=1594..1594 votes=5/6 confidence=0.83
+rel=1847 node=2080 Mul                semantic=Mul            K=1595..1595 votes=6/6 confidence=1.00
+rel=1848 node=2081 Mul                semantic=Mul            K=1596..1596 votes=6/6 confidence=1.00
+rel=1849 node=2082 MatMulNBits        semantic=MatMulNBits    K=1597..1597 votes=6/6 confidence=1.00
+rel=1850 node=2786 QuickGelu          semantic=QuickGelu      K=1598..1598 votes=6/6 confidence=1.00
+rel=1851 node=2083 MatMulNBits        semantic=MatMulNBits    K=1599..1599 votes=6/6 confidence=1.00
+rel=1852 node=2086 Mul                semantic=Mul            K=1600..1600 votes=6/6 confidence=1.00
+rel=1853 node=2087 MatMulNBits        semantic=MatMulNBits    K=1587..1587 votes=6/6 confidence=1.00
+rel=1854 node=2088 Add                semantic=Add            K=1588..1588 votes=6/6 confidence=1.00
+rel=1855 node=2089 Pow                semantic=Pow            K=1589..1589 votes=5/6 confidence=0.83
+rel=1857 node=2091 Add                semantic=Add            K=1568..1568 votes=6/6 confidence=1.00
+rel=1859 node=2093 Reciprocal         semantic=Reciprocal     K=1594..1594 votes=6/6 confidence=1.00
+rel=1860 node=2094 Mul                semantic=Mul            K=1595..1595 votes=6/6 confidence=1.00
+rel=1864 node=2103 Pow                semantic=Pow            K=1589..1589 votes=5/6 confidence=0.83
+rel=1866 node=2109 Add                semantic=Add            K=1592..1592 votes=6/6 confidence=1.00
+rel=1867 node=2112 Sqrt               semantic=Sqrt           K=1593..1593 votes=6/6 confidence=1.00
+rel=1868 node=2116 Reciprocal         semantic=Reciprocal     K=1617..1617 votes=5/6 confidence=0.83
+rel=1869 node=2119 Mul                semantic=Mul            K=1618..1618 votes=6/6 confidence=1.00
+rel=1870 node=2122 Mul                semantic=Mul            K=1619..1619 votes=6/6 confidence=1.00
+rel=1871 node=2727 Split              semantic=Split          K=1620..1620 votes=6/6 confidence=1.00
+rel=1872 node=2132 Neg                semantic=Neg            K=1621..1621 votes=6/6 confidence=1.00
+rel=1873 node=2134 Concat             semantic=Concat         K=1622..1622 votes=6/6 confidence=1.00
+rel=1874 node=2136 Mul                semantic=Mul            K=1623..1623 votes=6/6 confidence=1.00
+rel=1875 node=2128 Mul                semantic=Mul            K=1624..1624 votes=6/6 confidence=1.00
+rel=1876 node=2138 Add                semantic=Add            K=1625..1625 votes=6/6 confidence=1.00
+rel=1880 node=2140 ScatterND          semantic=ScatterND      K=1583..1583 votes=6/6 confidence=1.00
+rel=1881 node=2141 Transpose          semantic=Transpose      K=1584..1584 votes=5/6 confidence=0.83
+rel=1887 node=2102 Pow                semantic=Pow            K=1589..1589 votes=5/6 confidence=0.83
+rel=1889 node=2108 Add                semantic=Add            K=1592..1592 votes=6/6 confidence=1.00
+rel=1890 node=2111 Sqrt               semantic=Sqrt           K=1593..1593 votes=6/6 confidence=1.00
+rel=1891 node=2115 Reciprocal         semantic=Reciprocal     K=1594..1594 votes=5/6 confidence=0.83
+rel=1892 node=2118 Mul                semantic=Mul            K=1595..1595 votes=6/6 confidence=1.00
+rel=1893 node=2121 Mul                semantic=Mul            K=1618..1618 votes=6/6 confidence=1.00
+rel=1894 node=2123 Transpose          semantic=Transpose      K=1628..1628 votes=5/6 confidence=0.83
+rel=1895 node=2728 Split              semantic=Split          K=1620..1620 votes=6/6 confidence=1.00
+rel=1896 node=2131 Neg                semantic=Neg            K=1621..1621 votes=6/6 confidence=1.00
+rel=1897 node=2133 Concat             semantic=Concat         K=1622..1622 votes=6/6 confidence=1.00
+rel=1898 node=2135 Mul                semantic=Mul            K=1623..1623 votes=6/6 confidence=1.00
+rel=1899 node=2125 Mul                semantic=Mul            K=1643..1643 votes=6/6 confidence=1.00
+rel=1900 node=2137 Add                semantic=Add            K=1644..1644 votes=6/6 confidence=1.00
+rel=1902 node=2815 BiasSoftmax        semantic=BiasSoftmax    K=1646..1646 votes=6/6 confidence=1.00
+rel=1905 node=2104 Transpose          semantic=Transpose      K=1628..1628 votes=5/6 confidence=0.83
+rel=1908 node=2107 ScatterND          semantic=ScatterND      K=1627..1627 votes=6/6 confidence=1.00
+rel=1911 node=2117 Expand             semantic=Expand         K=1629..1629 votes=5/6 confidence=0.83
+rel=1914 node=2152 Transpose          semantic=Transpose      K=1628..1628 votes=6/6 confidence=1.00
+rel=1916 node=2154 MatMulNBits        semantic=MatMulNBits    K=1601..1601 votes=6/6 confidence=1.00
+rel=1918 node=2156 Pow                semantic=Pow            K=1603..1603 votes=5/6 confidence=0.83
+rel=1919 node=2157 ReduceMean         semantic=ReduceMean     K=1604..1604 votes=5/6 confidence=0.83
+rel=1920 node=2158 Add                semantic=Add            K=1606..1606 votes=6/6 confidence=1.00
+rel=1922 node=2160 Reciprocal         semantic=Reciprocal     K=1608..1608 votes=6/6 confidence=1.00
+rel=1923 node=2161 Mul                semantic=Mul            K=1661..1661 votes=6/6 confidence=1.00
+rel=1924 node=2162 Mul                semantic=Mul            K=1662..1662 votes=6/6 confidence=1.00
+rel=1925 node=2163 MatMulNBits        semantic=MatMulNBits    K=1663..1663 votes=6/6 confidence=1.00
+rel=1926 node=2787 QuickGelu          semantic=QuickGelu      K=1664..1664 votes=6/6 confidence=1.00
+rel=1927 node=2164 MatMulNBits        semantic=MatMulNBits    K=1665..1665 votes=6/6 confidence=1.00
+rel=1928 node=2167 Mul                semantic=Mul            K=1666..1666 votes=6/6 confidence=1.00
+rel=1929 node=2168 MatMulNBits        semantic=MatMulNBits    K=1653..1653 votes=6/6 confidence=1.00
+rel=1930 node=2169 Add                semantic=Add            K=1654..1654 votes=6/6 confidence=1.00
+rel=1931 node=2170 Pow                semantic=Pow            K=1612..1612 votes=6/6 confidence=1.00
+rel=1933 node=2172 Add                semantic=Add            K=1615..1615 votes=6/6 confidence=1.00
+rel=1935 node=2174 Reciprocal         semantic=Reciprocal     K=1660..1660 votes=6/6 confidence=1.00
+rel=1936 node=2175 Mul                semantic=Mul            K=1661..1661 votes=6/6 confidence=1.00
+rel=1940 node=2184 Pow                semantic=Pow            K=1612..1612 votes=5/6 confidence=0.83
+rel=1942 node=2190 Add                semantic=Add            K=1615..1615 votes=6/6 confidence=1.00
+rel=1943 node=2193 Sqrt               semantic=Sqrt           K=1616..1616 votes=5/6 confidence=0.83
+rel=1944 node=2197 Reciprocal         semantic=Reciprocal     K=1617..1617 votes=6/6 confidence=1.00
+rel=1945 node=2200 Mul                semantic=Mul            K=1618..1618 votes=6/6 confidence=1.00
+rel=1946 node=2203 Mul                semantic=Mul            K=1619..1619 votes=6/6 confidence=1.00
+rel=1947 node=2729 Split              semantic=Split          K=1620..1620 votes=6/6 confidence=1.00
+rel=1948 node=2213 Neg                semantic=Neg            K=1621..1621 votes=6/6 confidence=1.00
+rel=1949 node=2215 Concat             semantic=Concat         K=1622..1622 votes=6/6 confidence=1.00
+rel=1950 node=2217 Mul                semantic=Mul            K=1623..1623 votes=6/6 confidence=1.00
+rel=1951 node=2209 Mul                semantic=Mul            K=1624..1624 votes=6/6 confidence=1.00
+rel=1952 node=2219 Add                semantic=Add            K=1625..1625 votes=6/6 confidence=1.00
+rel=1956 node=2221 ScatterND          semantic=ScatterND      K=1627..1627 votes=6/6 confidence=1.00
+rel=1963 node=2183 Pow                semantic=Pow            K=1631..1631 votes=5/6 confidence=0.83
+rel=1965 node=2189 Add                semantic=Add            K=1634..1634 votes=6/6 confidence=1.00
+rel=1967 node=2196 Reciprocal         semantic=Reciprocal     K=1636..1636 votes=6/6 confidence=1.00
+rel=1969 node=2202 Mul                semantic=Mul            K=1637..1637 votes=6/6 confidence=1.00
+rel=1970 node=2204 Transpose          semantic=Transpose      K=1650..1650 votes=5/6 confidence=0.83
+rel=1971 node=2730 Split              semantic=Split          K=1639..1639 votes=6/6 confidence=1.00
+rel=1972 node=2212 Neg                semantic=Neg            K=1640..1640 votes=6/6 confidence=1.00
+rel=1973 node=2214 Concat             semantic=Concat         K=1641..1641 votes=6/6 confidence=1.00
+rel=1974 node=2216 Mul                semantic=Mul            K=1642..1642 votes=6/6 confidence=1.00
+rel=1975 node=2206 Mul                semantic=Mul            K=1643..1643 votes=6/6 confidence=1.00
+rel=1976 node=2218 Add                semantic=Add            K=1644..1644 votes=6/6 confidence=1.00
+rel=1978 node=2816 BiasSoftmax        semantic=BiasSoftmax    K=1646..1646 votes=5/6 confidence=0.83
+rel=1979 node=2179 MatMulNBits        semantic=MatMulNBits    K=1647..1647 votes=5/6 confidence=0.83
+rel=1981 node=2185 Transpose          semantic=Transpose      K=1650..1650 votes=5/6 confidence=0.83
+rel=1984 node=2188 ScatterND          semantic=ScatterND      K=1649..1649 votes=6/6 confidence=1.00
+rel=1985 node=2191 Transpose          semantic=Transpose      K=1650..1650 votes=5/6 confidence=0.83
+rel=1990 node=2233 Transpose          semantic=Transpose      K=1694..1694 votes=5/6 confidence=0.83
+rel=1992 node=2235 MatMulNBits        semantic=MatMulNBits    K=1653..1653 votes=6/6 confidence=1.00
+rel=1993 node=2236 Add                semantic=Add            K=1654..1654 votes=5/6 confidence=0.83
+rel=1994 node=2237 Pow                semantic=Pow            K=1655..1655 votes=6/6 confidence=1.00
+rel=1996 node=2239 Add                semantic=Add            K=1658..1658 votes=6/6 confidence=1.00
+rel=1997 node=2240 Sqrt               semantic=Sqrt           K=1659..1659 votes=6/6 confidence=1.00
+rel=1998 node=2241 Reciprocal         semantic=Reciprocal     K=1660..1660 votes=6/6 confidence=1.00
+rel=1999 node=2242 Mul                semantic=Mul            K=1661..1661 votes=6/6 confidence=1.00
+rel=2000 node=2243 Mul                semantic=Mul            K=1662..1662 votes=6/6 confidence=1.00
+rel=2001 node=2244 MatMulNBits        semantic=MatMulNBits    K=1663..1663 votes=6/6 confidence=1.00
+rel=2002 node=2788 QuickGelu          semantic=QuickGelu      K=1664..1664 votes=6/6 confidence=1.00
+rel=2003 node=2245 MatMulNBits        semantic=MatMulNBits    K=1665..1665 votes=6/6 confidence=1.00
+rel=2004 node=2248 Mul                semantic=Mul            K=1666..1666 votes=6/6 confidence=1.00
+rel=2005 node=2249 MatMulNBits        semantic=MatMulNBits    K=1653..1653 votes=6/6 confidence=1.00
+rel=2006 node=2250 Add                semantic=Add            K=1654..1654 votes=6/6 confidence=1.00
+rel=2007 node=2251 Pow                semantic=Pow            K=1655..1655 votes=6/6 confidence=1.00
+rel=2009 node=2253 Add                semantic=Add            K=1658..1658 votes=6/6 confidence=1.00
+rel=2010 node=2254 Sqrt               semantic=Sqrt           K=1659..1659 votes=6/6 confidence=1.00
+rel=2011 node=2255 Reciprocal         semantic=Reciprocal     K=1660..1660 votes=6/6 confidence=1.00
+rel=2012 node=2256 Mul                semantic=Mul            K=1661..1661 votes=6/6 confidence=1.00
+rel=2016 node=2265 Pow                semantic=Pow            K=1655..1655 votes=6/6 confidence=1.00
+rel=2018 node=2271 Add                semantic=Add            K=1658..1658 votes=6/6 confidence=1.00
+rel=2019 node=2274 Sqrt               semantic=Sqrt           K=1659..1659 votes=6/6 confidence=1.00
+rel=2020 node=2278 Reciprocal         semantic=Reciprocal     K=1683..1683 votes=5/6 confidence=0.83
+rel=2021 node=2281 Mul                semantic=Mul            K=1684..1684 votes=6/6 confidence=1.00
+rel=2022 node=2284 Mul                semantic=Mul            K=1685..1685 votes=6/6 confidence=1.00
+rel=2023 node=2731 Split              semantic=Split          K=1686..1686 votes=6/6 confidence=1.00
+rel=2024 node=2294 Neg                semantic=Neg            K=1687..1687 votes=6/6 confidence=1.00
+rel=2025 node=2296 Concat             semantic=Concat         K=1688..1688 votes=6/6 confidence=1.00
+rel=2026 node=2298 Mul                semantic=Mul            K=1689..1689 votes=6/6 confidence=1.00
+rel=2027 node=2290 Mul                semantic=Mul            K=1690..1690 votes=6/6 confidence=1.00
+rel=2028 node=2300 Add                semantic=Add            K=1691..1691 votes=6/6 confidence=1.00
+rel=2029 node=2301 Transpose          semantic=Transpose      K=1694..1694 votes=5/6 confidence=0.83
+rel=2032 node=2302 ScatterND          semantic=ScatterND      K=1693..1693 votes=6/6 confidence=1.00
+rel=2033 node=2303 Transpose          semantic=Transpose      K=1694..1694 votes=5/6 confidence=0.83
+rel=2035 node=2306 Expand             semantic=Expand         K=1695..1695 votes=5/6 confidence=0.83
+rel=2039 node=2264 Pow                semantic=Pow            K=1669..1669 votes=6/6 confidence=1.00
+rel=2040 node=2267 ReduceMean         semantic=ReduceMean     K=1670..1670 votes=6/6 confidence=1.00
+rel=2041 node=2270 Add                semantic=Add            K=1672..1672 votes=6/6 confidence=1.00
+rel=2043 node=2277 Reciprocal         semantic=Reciprocal     K=1674..1674 votes=5/6 confidence=0.83
+rel=2044 node=2280 Mul                semantic=Mul            K=1675..1675 votes=6/6 confidence=1.00
+rel=2045 node=2283 Mul                semantic=Mul            K=1684..1684 votes=6/6 confidence=1.00
+rel=2047 node=2732 Split              semantic=Split          K=1686..1686 votes=6/6 confidence=1.00
+rel=2048 node=2293 Neg                semantic=Neg            K=1687..1687 votes=6/6 confidence=1.00
+rel=2049 node=2295 Concat             semantic=Concat         K=1688..1688 votes=6/6 confidence=1.00
+rel=2050 node=2297 Mul                semantic=Mul            K=1689..1689 votes=6/6 confidence=1.00
+rel=2051 node=2287 Mul                semantic=Mul            K=1709..1709 votes=6/6 confidence=1.00
+rel=2052 node=2299 Add                semantic=Add            K=1710..1710 votes=6/6 confidence=1.00
+rel=2054 node=2817 BiasSoftmax        semantic=BiasSoftmax    K=1712..1712 votes=6/6 confidence=1.00
+rel=2060 node=2269 ScatterND          semantic=ScatterND      K=1693..1693 votes=6/6 confidence=1.00
+rel=2063 node=2279 Expand             semantic=Expand         K=1695..1695 votes=6/6 confidence=1.00
+rel=2065 node=2313 MatMul             semantic=MatMul         K=1711..1711 votes=5/6 confidence=0.83
+rel=2066 node=2314 Transpose          semantic=Transpose      K=1694..1694 votes=6/6 confidence=1.00
+rel=2068 node=2316 MatMulNBits        semantic=MatMulNBits    K=1719..1719 votes=6/6 confidence=1.00
+rel=2069 node=2317 Add                semantic=Add            K=1720..1720 votes=6/6 confidence=1.00
+rel=2070 node=2318 Pow                semantic=Pow            K=1697..1697 votes=6/6 confidence=1.00
+rel=2072 node=2320 Add                semantic=Add            K=1700..1700 votes=6/6 confidence=1.00
+rel=2073 node=2321 Sqrt               semantic=Sqrt           K=1701..1701 votes=5/6 confidence=0.83
+rel=2074 node=2322 Reciprocal         semantic=Reciprocal     K=1726..1726 votes=6/6 confidence=1.00
+rel=2075 node=2323 Mul                semantic=Mul            K=1727..1727 votes=6/6 confidence=1.00
+rel=2076 node=2324 Mul                semantic=Mul            K=1728..1728 votes=6/6 confidence=1.00
+rel=2077 node=2325 MatMulNBits        semantic=MatMulNBits    K=1729..1729 votes=6/6 confidence=1.00
+rel=2078 node=2789 QuickGelu          semantic=QuickGelu      K=1730..1730 votes=6/6 confidence=1.00
+rel=2079 node=2326 MatMulNBits        semantic=MatMulNBits    K=1731..1731 votes=6/6 confidence=1.00
+rel=2080 node=2329 Mul                semantic=Mul            K=1732..1732 votes=6/6 confidence=1.00
+rel=2081 node=2330 MatMulNBits        semantic=MatMulNBits    K=1719..1719 votes=6/6 confidence=1.00
+rel=2082 node=2331 Add                semantic=Add            K=1720..1720 votes=6/6 confidence=1.00
+rel=2083 node=2332 Pow                semantic=Pow            K=1697..1697 votes=6/6 confidence=1.00
+rel=2085 node=2334 Add                semantic=Add            K=1700..1700 votes=6/6 confidence=1.00
+rel=2086 node=2335 Sqrt               semantic=Sqrt           K=1701..1701 votes=6/6 confidence=1.00
+rel=2087 node=2336 Reciprocal         semantic=Reciprocal     K=1726..1726 votes=5/6 confidence=0.83
+rel=2088 node=2337 Mul                semantic=Mul            K=1727..1727 votes=6/6 confidence=1.00
+rel=2089 node=2338 Mul                semantic=Mul            K=1732..1732 votes=5/6 confidence=0.83
+rel=2092 node=2346 Pow                semantic=Pow            K=1697..1697 votes=6/6 confidence=1.00
+rel=2094 node=2352 Add                semantic=Add            K=1700..1700 votes=6/6 confidence=1.00
+rel=2095 node=2355 Sqrt               semantic=Sqrt           K=1701..1701 votes=6/6 confidence=1.00
+rel=2096 node=2359 Reciprocal         semantic=Reciprocal     K=1702..1702 votes=6/6 confidence=1.00
+rel=2097 node=2363 Mul                semantic=Mul            K=1703..1703 votes=6/6 confidence=1.00
+rel=2098 node=2366 Mul                semantic=Mul            K=1704..1704 votes=6/6 confidence=1.00
+rel=2099 node=2733 Split              semantic=Split          K=1705..1705 votes=6/6 confidence=1.00
+rel=2100 node=2376 Neg                semantic=Neg            K=1706..1706 votes=6/6 confidence=1.00
+rel=2101 node=2378 Concat             semantic=Concat         K=1707..1707 votes=6/6 confidence=1.00
+rel=2102 node=2380 Mul                semantic=Mul            K=1708..1708 votes=6/6 confidence=1.00
+rel=2103 node=2372 Mul                semantic=Mul            K=1709..1709 votes=6/6 confidence=1.00
+rel=2104 node=2382 Add                semantic=Add            K=1710..1710 votes=6/6 confidence=1.00
+rel=2107 node=  88 Transpose          semantic=Transpose      K=1714..1714 votes=5/6 confidence=0.83
+rel=2108 node=2384 ScatterND          semantic=Mul            K=1755..1755 votes=6/6 confidence=1.00
+rel=2109 node=2385 Transpose          semantic=MatMulNBits    K=1875..1875 votes=6/6 confidence=1.00
+rel=2195 node=2389 Concat             semantic=Concat         K=1876..1876 votes=6/6 confidence=1.00
+rel=2224 node=2361 Concat             semantic=Concat         K=1877..1877 votes=6/6 confidence=1.00
+
+High-confidence mappings: 1458
+
+==============================================================================================================
+OUTPUT
+==============================================================================================================
+/home/sky/qwen3-asr-test/ort_graph_mapping_v9.json
+/home/sky/qwen3-asr-test/cuda_graph_mapping_v9.json
+/home/sky/qwen3-asr-test/ort_graph_mapping_v9.txt
+sky@archlinux:~/qwen3-asr-test$ 
+
+
