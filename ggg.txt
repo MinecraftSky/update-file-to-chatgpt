@@ -1,0 +1,860 @@
+uv run python /tmp/audit_v14_6_global_76_period.py
+==============================================================================================================
+V14.6 GLOBAL 76-PERIOD ORT -> CUDA PHASE RECONSTRUCTION
+==============================================================================================================
+V11 graph-kernel rows : 758712
+
+==============================================================================================================
+REFERENCE PHASE -> ORT SLOT
+==============================================================================================================
+phase= 0 slot=0
+phase= 1 slot=1
+phase= 2 slot=2
+phase= 3 slot=3
+phase= 4 slot=4
+phase= 5 slot=4
+phase= 6 slot=5
+phase= 7 slot=6
+phase= 8 slot=7
+phase= 9 slot=8
+phase=10 slot=9
+phase=11 slot=10
+phase=12 slot=11
+phase=13 slot=12
+phase=14 slot=13
+phase=15 slot=14
+phase=16 slot=15
+phase=17 slot=16
+phase=18 slot=17
+phase=19 slot=17
+phase=20 slot=18
+phase=21 slot=19
+phase=22 slot=20
+phase=23 slot=21
+phase=24 slot=22
+phase=25 slot=24
+phase=26 slot=25
+phase=27 slot=26
+phase=28 slot=26
+phase=29 slot=27
+phase=30 slot=28
+phase=31 slot=29
+phase=32 slot=30
+phase=33 slot=31
+phase=34 slot=32
+phase=35 slot=33
+phase=36 slot=34
+phase=37 slot=35
+phase=38 slot=36
+phase=39 slot=37
+phase=40 slot=40
+phase=41 slot=41
+phase=42 slot=43
+phase=43 slot=45
+phase=44 slot=47
+phase=45 slot=48
+phase=46 slot=49
+phase=47 slot=49
+phase=48 slot=50
+phase=49 slot=51
+phase=50 slot=52
+phase=51 slot=53
+phase=52 slot=55
+phase=53 slot=56
+phase=54 slot=57
+phase=55 slot=58
+phase=56 slot=59
+phase=57 slot=60
+
+==============================================================================================================
+GLOBAL CUDA PHASE -> ACTUAL ORT COORDINATES
+==============================================================================================================
+
+CUDA BLOCK K1191..K1256
+phase= 0 K=1191 canonical_slot=0 owners=['I12/off= 0/ORT=1004/MatMulNBits']
+phase= 1 K=1192 canonical_slot=1 owners=['I12/off= 1/ORT=1005/Add']
+phase= 2 K=1193 canonical_slot=2 owners=['I12/off= 2/ORT=1006/Pow']
+phase= 3 K=1194 canonical_slot=3 owners=['I12/off= 3/ORT=1007/ReduceMean']
+phase= 4 K=1195 canonical_slot=4 owners=['I12/off= 4/ORT=1008/Add']
+phase= 5 K=1196 canonical_slot=4 owners=['I12/off= 4/ORT=1008/Add']
+phase= 6 K=1197 canonical_slot=5 owners=['I12/off= 5/ORT=1009/Sqrt']
+phase= 7 K=1198 canonical_slot=6 owners=['I12/off= 6/ORT=1010/Reciprocal']
+phase= 8 K=1199 canonical_slot=7 owners=['I12/off= 7/ORT=1011/Mul']
+phase= 9 K=1200 canonical_slot=8 owners=['I12/off= 8/ORT=1012/Mul']
+phase=10 K=1201 canonical_slot=9 owners=['I12/off= 9/ORT=1013/MatMulNBits']
+phase=11 K=1202 canonical_slot=10 owners=['I12/off=10/ORT=1014/QuickGelu']
+phase=12 K=1203 canonical_slot=11 owners=['I12/off=11/ORT=1015/MatMulNBits']
+phase=13 K=1204 canonical_slot=12 owners=['I12/off=12/ORT=1016/Mul']
+phase=14 K=1205 canonical_slot=13 owners=['I12/off=13/ORT=1017/MatMulNBits']
+phase=15 K=1206 canonical_slot=14 owners=['I12/off=14/ORT=1018/Add']
+phase=16 K=1207 canonical_slot=15 owners=['I12/off=15/ORT=1019/Pow']
+phase=17 K=1208 canonical_slot=16 owners=['I12/off=16/ORT=1020/ReduceMean']
+phase=18 K=1209 canonical_slot=17 owners=['I12/off=17/ORT=1021/Add']
+phase=19 K=1210 canonical_slot=17 owners=['I12/off=17/ORT=1021/Add']
+phase=20 K=1211 canonical_slot=18 owners=['I12/off=18/ORT=1022/Sqrt']
+phase=21 K=1212 canonical_slot=19 owners=['I12/off=19/ORT=1023/Reciprocal']
+phase=22 K=1213 canonical_slot=20 owners=['I12/off=20/ORT=1024/Mul']
+phase=23 K=1214 canonical_slot=21 owners=['I12/off=21/ORT=1025/Mul']
+phase=24 K=1215 canonical_slot=22 owners=['I12/off=22/ORT=1026/MatMulNBits']
+phase=25 K=1216 canonical_slot=24 owners=['I12/off=24/ORT=1028/Pow']
+phase=26 K=1217 canonical_slot=25 owners=['I12/off=25/ORT=1029/ReduceMean']
+phase=27 K=1218 canonical_slot=26 owners=['I12/off=26/ORT=1030/Add']
+phase=28 K=1219 canonical_slot=26 owners=['I12/off=26/ORT=1030/Add']
+phase=29 K=1220 canonical_slot=27 owners=['I12/off=27/ORT=1031/Sqrt']
+phase=30 K=1221 canonical_slot=28 owners=['I12/off=28/ORT=1032/Reciprocal']
+phase=31 K=1222 canonical_slot=29 owners=['I12/off=29/ORT=1033/Mul']
+phase=32 K=1223 canonical_slot=30 owners=['I12/off=30/ORT=1034/Mul']
+phase=33 K=1224 canonical_slot=31 owners=['I12/off=31/ORT=1035/Split']
+phase=34 K=1225 canonical_slot=32 owners=['I12/off=32/ORT=1036/Neg']
+phase=35 K=1226 canonical_slot=33 owners=['I12/off=33/ORT=1037/Concat']
+phase=36 K=1227 canonical_slot=34 owners=['I12/off=34/ORT=1038/Mul']
+phase=37 K=1228 canonical_slot=35 owners=['I12/off=35/ORT=1039/Mul']
+phase=38 K=1229 canonical_slot=36 owners=['I12/off=36/ORT=1040/Add']
+phase=39 K=1230 canonical_slot=37 owners=['I12/off=37/ORT=1041/Transpose']
+phase=40 K=1231 canonical_slot=40 owners=['I12/off=40/ORT=1044/ScatterND']
+phase=41 K=1232 canonical_slot=41 owners=['I12/off=41/ORT=1045/Transpose']
+phase=42 K=1233 canonical_slot=43 owners=['I12/off=43/ORT=1047/Expand']
+phase=43 K=1234 canonical_slot=45 owners=['I12/off=45/ORT=1049/MatMulNBits']
+phase=44 K=1235 canonical_slot=47 owners=['I12/off=47/ORT=1051/Pow']
+phase=45 K=1236 canonical_slot=48 owners=['I12/off=48/ORT=1052/ReduceMean']
+phase=46 K=1237 canonical_slot=49 owners=['I12/off=49/ORT=1053/Add']
+phase=47 K=1238 canonical_slot=49 owners=['I12/off=49/ORT=1053/Add']
+phase=48 K=1239 canonical_slot=50 owners=['I12/off=50/ORT=1054/Sqrt']
+phase=49 K=1240 canonical_slot=51 owners=['I12/off=51/ORT=1055/Reciprocal']
+phase=50 K=1241 canonical_slot=52 owners=['I12/off=52/ORT=1056/Mul']
+phase=51 K=1242 canonical_slot=53 owners=['I12/off=53/ORT=1057/Mul']
+phase=52 K=1243 canonical_slot=55 owners=['I12/off=55/ORT=1059/Split']
+phase=53 K=1244 canonical_slot=56 owners=['I12/off=56/ORT=1060/Neg']
+phase=54 K=1245 canonical_slot=57 owners=['I12/off=57/ORT=1061/Concat']
+phase=55 K=1246 canonical_slot=58 owners=['I12/off=58/ORT=1062/Mul']
+phase=56 K=1247 canonical_slot=59 owners=['I12/off=59/ORT=1063/Mul']
+phase=57 K=1248 canonical_slot=60 owners=['I12/off=60/ORT=1064/Add']
+
+CUDA BLOCK K1257..K1322
+phase= 0 K=1257 canonical_slot=0 owners=['I13/off= 0/ORT=1080/MatMulNBits']
+phase= 1 K=1258 canonical_slot=1 owners=['I13/off= 1/ORT=1081/Add']
+phase= 2 K=1259 canonical_slot=2 owners=['I13/off= 2/ORT=1082/Pow']
+phase= 3 K=1260 canonical_slot=3 owners=['I13/off= 3/ORT=1083/ReduceMean']
+phase= 4 K=1261 canonical_slot=4 owners=['I13/off= 4/ORT=1084/Add']
+phase= 5 K=1262 canonical_slot=4 owners=['I13/off= 4/ORT=1084/Add']
+phase= 6 K=1263 canonical_slot=5 owners=['I13/off= 5/ORT=1085/Sqrt']
+phase= 7 K=1264 canonical_slot=6 owners=['I13/off= 6/ORT=1086/Reciprocal']
+phase= 8 K=1265 canonical_slot=7 owners=['I13/off= 7/ORT=1087/Mul']
+phase= 9 K=1266 canonical_slot=8 owners=['I13/off= 8/ORT=1088/Mul']
+phase=10 K=1267 canonical_slot=9 owners=['I13/off= 9/ORT=1089/MatMulNBits']
+phase=11 K=1268 canonical_slot=10 owners=['I13/off=10/ORT=1090/QuickGelu']
+phase=12 K=1269 canonical_slot=11 owners=['I13/off=11/ORT=1091/MatMulNBits']
+phase=13 K=1270 canonical_slot=12 owners=['I13/off=12/ORT=1092/Mul']
+phase=14 K=1271 canonical_slot=13 owners=['I13/off=13/ORT=1093/MatMulNBits']
+phase=15 K=1272 canonical_slot=14 owners=['I13/off=14/ORT=1094/Add']
+phase=16 K=1273 canonical_slot=15 owners=['I13/off=15/ORT=1095/Pow']
+phase=17 K=1274 canonical_slot=16 owners=['I13/off=16/ORT=1096/ReduceMean']
+phase=18 K=1275 canonical_slot=17 owners=['I13/off=17/ORT=1097/Add']
+phase=19 K=1276 canonical_slot=17 owners=['I13/off=17/ORT=1097/Add']
+phase=20 K=1277 canonical_slot=18 owners=['I13/off=18/ORT=1098/Sqrt']
+phase=21 K=1278 canonical_slot=19 owners=['I13/off=19/ORT=1099/Reciprocal']
+phase=22 K=1279 canonical_slot=20 owners=['I13/off=20/ORT=1100/Mul']
+phase=23 K=1280 canonical_slot=21 owners=['I13/off=21/ORT=1101/Mul']
+phase=24 K=1281 canonical_slot=22 owners=['I13/off=22/ORT=1102/MatMulNBits']
+phase=25 K=1282 canonical_slot=24 owners=['I13/off=24/ORT=1104/Pow']
+phase=26 K=1283 canonical_slot=25 owners=['I13/off=25/ORT=1105/ReduceMean']
+phase=27 K=1284 canonical_slot=26 owners=['I13/off=26/ORT=1106/Add']
+phase=28 K=1285 canonical_slot=26 owners=['I13/off=26/ORT=1106/Add']
+phase=29 K=1286 canonical_slot=27 owners=['I13/off=27/ORT=1107/Sqrt']
+phase=30 K=1287 canonical_slot=28 owners=['I13/off=28/ORT=1108/Reciprocal']
+phase=31 K=1288 canonical_slot=29 owners=['I13/off=29/ORT=1109/Mul']
+phase=32 K=1289 canonical_slot=30 owners=['I13/off=30/ORT=1110/Mul']
+phase=33 K=1290 canonical_slot=31 owners=['I13/off=31/ORT=1111/Split']
+phase=34 K=1291 canonical_slot=32 owners=['I13/off=32/ORT=1112/Neg']
+phase=35 K=1292 canonical_slot=33 owners=['I13/off=33/ORT=1113/Concat']
+phase=36 K=1293 canonical_slot=34 owners=['I13/off=34/ORT=1114/Mul']
+phase=37 K=1294 canonical_slot=35 owners=['I13/off=35/ORT=1115/Mul']
+phase=38 K=1295 canonical_slot=36 owners=['I13/off=36/ORT=1116/Add']
+phase=39 K=1296 canonical_slot=37 owners=['I13/off=37/ORT=1117/Transpose']
+phase=40 K=1297 canonical_slot=40 owners=['I13/off=40/ORT=1120/ScatterND']
+phase=41 K=1298 canonical_slot=41 owners=['I13/off=41/ORT=1121/Transpose']
+phase=42 K=1299 canonical_slot=43 owners=['I13/off=43/ORT=1123/Expand']
+phase=43 K=1300 canonical_slot=45 owners=['I13/off=45/ORT=1125/MatMulNBits']
+phase=44 K=1301 canonical_slot=47 owners=['I13/off=47/ORT=1127/Pow']
+phase=45 K=1302 canonical_slot=48 owners=['I13/off=48/ORT=1128/ReduceMean']
+phase=46 K=1303 canonical_slot=49 owners=['I13/off=49/ORT=1129/Add']
+phase=47 K=1304 canonical_slot=49 owners=['I13/off=49/ORT=1129/Add']
+phase=48 K=1305 canonical_slot=50 owners=['I13/off=50/ORT=1130/Sqrt']
+phase=49 K=1306 canonical_slot=51 owners=['I13/off=51/ORT=1131/Reciprocal']
+phase=50 K=1307 canonical_slot=52 owners=['I13/off=52/ORT=1132/Mul']
+phase=51 K=1308 canonical_slot=53 owners=['I13/off=53/ORT=1133/Mul']
+phase=52 K=1309 canonical_slot=55 owners=['I13/off=55/ORT=1135/Split']
+phase=53 K=1310 canonical_slot=56 owners=['I13/off=56/ORT=1136/Neg']
+phase=54 K=1311 canonical_slot=57 owners=['I13/off=57/ORT=1137/Concat']
+phase=55 K=1312 canonical_slot=58 owners=['I13/off=58/ORT=1138/Mul']
+phase=56 K=1313 canonical_slot=59 owners=['I13/off=59/ORT=1139/Mul']
+phase=57 K=1314 canonical_slot=60 owners=['I13/off=60/ORT=1140/Add']
+
+CUDA BLOCK K1323..K1388
+phase= 0 K=1323 canonical_slot=0 owners=['I14/off= 0/ORT=1156/MatMulNBits']
+phase= 1 K=1324 canonical_slot=1 owners=['I14/off= 1/ORT=1157/Add']
+phase= 2 K=1325 canonical_slot=2 owners=['I14/off= 2/ORT=1158/Pow']
+phase= 3 K=1326 canonical_slot=3 owners=['I14/off= 3/ORT=1159/ReduceMean']
+phase= 4 K=1327 canonical_slot=4 owners=['I14/off= 4/ORT=1160/Add']
+phase= 5 K=1328 canonical_slot=4 owners=['I14/off= 4/ORT=1160/Add']
+phase= 6 K=1329 canonical_slot=5 owners=['I14/off= 5/ORT=1161/Sqrt']
+phase= 7 K=1330 canonical_slot=6 owners=['I14/off= 6/ORT=1162/Reciprocal']
+phase= 8 K=1331 canonical_slot=7 owners=['I14/off= 7/ORT=1163/Mul']
+phase= 9 K=1332 canonical_slot=8 owners=['I14/off= 8/ORT=1164/Mul']
+phase=10 K=1333 canonical_slot=9 owners=['I14/off= 9/ORT=1165/MatMulNBits']
+phase=11 K=1334 canonical_slot=10 owners=['I14/off=10/ORT=1166/QuickGelu']
+phase=12 K=1335 canonical_slot=11 owners=['I14/off=11/ORT=1167/MatMulNBits']
+phase=13 K=1336 canonical_slot=12 owners=['I14/off=12/ORT=1168/Mul']
+phase=14 K=1337 canonical_slot=13 owners=['I14/off=13/ORT=1169/MatMulNBits']
+phase=15 K=1338 canonical_slot=14 owners=['I14/off=14/ORT=1170/Add']
+phase=16 K=1339 canonical_slot=15 owners=['I14/off=15/ORT=1171/Pow']
+phase=17 K=1340 canonical_slot=16 owners=['I14/off=16/ORT=1172/ReduceMean']
+phase=18 K=1341 canonical_slot=17 owners=['I14/off=17/ORT=1173/Add']
+phase=19 K=1342 canonical_slot=17 owners=['I14/off=17/ORT=1173/Add']
+phase=20 K=1343 canonical_slot=18 owners=['I14/off=18/ORT=1174/Sqrt']
+phase=21 K=1344 canonical_slot=19 owners=['I14/off=19/ORT=1175/Reciprocal']
+phase=22 K=1345 canonical_slot=20 owners=['I14/off=20/ORT=1176/Mul']
+phase=23 K=1346 canonical_slot=21 owners=['I14/off=21/ORT=1177/Mul']
+phase=24 K=1347 canonical_slot=22 owners=['I14/off=22/ORT=1178/MatMulNBits']
+phase=25 K=1348 canonical_slot=24 owners=['I14/off=24/ORT=1180/Pow']
+phase=26 K=1349 canonical_slot=25 owners=['I14/off=25/ORT=1181/ReduceMean']
+phase=27 K=1350 canonical_slot=26 owners=['I14/off=26/ORT=1182/Add']
+phase=28 K=1351 canonical_slot=26 owners=['I14/off=26/ORT=1182/Add']
+phase=29 K=1352 canonical_slot=27 owners=['I14/off=27/ORT=1183/Sqrt']
+phase=30 K=1353 canonical_slot=28 owners=['I14/off=28/ORT=1184/Reciprocal']
+phase=31 K=1354 canonical_slot=29 owners=['I14/off=29/ORT=1185/Mul']
+phase=32 K=1355 canonical_slot=30 owners=['I14/off=30/ORT=1186/Mul']
+phase=33 K=1356 canonical_slot=31 owners=['I14/off=31/ORT=1187/Split']
+phase=34 K=1357 canonical_slot=32 owners=['I14/off=32/ORT=1188/Neg']
+phase=35 K=1358 canonical_slot=33 owners=['I14/off=33/ORT=1189/Concat']
+phase=36 K=1359 canonical_slot=34 owners=['I14/off=34/ORT=1190/Mul']
+phase=37 K=1360 canonical_slot=35 owners=['I14/off=35/ORT=1191/Mul']
+phase=38 K=1361 canonical_slot=36 owners=['I14/off=36/ORT=1192/Add']
+phase=39 K=1362 canonical_slot=37 owners=['I14/off=37/ORT=1193/Transpose']
+phase=40 K=1363 canonical_slot=40 owners=['I14/off=40/ORT=1196/ScatterND']
+phase=41 K=1364 canonical_slot=41 owners=['I14/off=41/ORT=1197/Transpose']
+phase=42 K=1365 canonical_slot=43 owners=['I14/off=43/ORT=1199/Expand']
+phase=43 K=1366 canonical_slot=45 owners=['I14/off=45/ORT=1201/MatMulNBits']
+phase=44 K=1367 canonical_slot=47 owners=['I14/off=47/ORT=1203/Pow']
+phase=45 K=1368 canonical_slot=48 owners=['I14/off=48/ORT=1204/ReduceMean']
+phase=46 K=1369 canonical_slot=49 owners=['I14/off=49/ORT=1205/Add']
+phase=47 K=1370 canonical_slot=49 owners=['I14/off=49/ORT=1205/Add']
+phase=48 K=1371 canonical_slot=50 owners=['I14/off=50/ORT=1206/Sqrt']
+phase=49 K=1372 canonical_slot=51 owners=['I14/off=51/ORT=1207/Reciprocal']
+phase=50 K=1373 canonical_slot=52 owners=['I14/off=52/ORT=1208/Mul']
+phase=51 K=1374 canonical_slot=53 owners=['I14/off=53/ORT=1209/Mul']
+phase=52 K=1375 canonical_slot=55 owners=['I14/off=55/ORT=1211/Split']
+phase=53 K=1376 canonical_slot=56 owners=['I14/off=56/ORT=1212/Neg']
+phase=54 K=1377 canonical_slot=57 owners=['I14/off=57/ORT=1213/Concat']
+phase=55 K=1378 canonical_slot=58 owners=['I14/off=58/ORT=1214/Mul']
+phase=56 K=1379 canonical_slot=59 owners=['I14/off=59/ORT=1215/Mul']
+phase=57 K=1380 canonical_slot=60 owners=['I14/off=60/ORT=1216/Add']
+
+CUDA BLOCK K1389..K1454
+phase= 0 K=1389 canonical_slot=0 owners=['I15/off= 0/ORT=1232/MatMulNBits']
+phase= 1 K=1390 canonical_slot=1 owners=['I15/off= 1/ORT=1233/Add']
+phase= 2 K=1391 canonical_slot=2 owners=['I15/off= 2/ORT=1234/Pow']
+phase= 3 K=1392 canonical_slot=3 owners=['I15/off= 3/ORT=1235/ReduceMean']
+phase= 4 K=1393 canonical_slot=4 owners=['I15/off= 4/ORT=1236/Add']
+phase= 5 K=1394 canonical_slot=4 owners=['I15/off= 4/ORT=1236/Add']
+phase= 6 K=1395 canonical_slot=5 owners=['I15/off= 5/ORT=1237/Sqrt']
+phase= 7 K=1396 canonical_slot=6 owners=['I15/off= 6/ORT=1238/Reciprocal']
+phase= 8 K=1397 canonical_slot=7 owners=['I15/off= 7/ORT=1239/Mul']
+phase= 9 K=1398 canonical_slot=8 owners=['I15/off= 8/ORT=1240/Mul']
+phase=10 K=1399 canonical_slot=9 owners=['I15/off= 9/ORT=1241/MatMulNBits']
+phase=11 K=1400 canonical_slot=10 owners=['I15/off=10/ORT=1242/QuickGelu']
+phase=12 K=1401 canonical_slot=11 owners=['I15/off=11/ORT=1243/MatMulNBits']
+phase=13 K=1402 canonical_slot=12 owners=['I15/off=12/ORT=1244/Mul']
+phase=14 K=1403 canonical_slot=13 owners=['I15/off=13/ORT=1245/MatMulNBits']
+phase=15 K=1404 canonical_slot=14 owners=['I15/off=14/ORT=1246/Add']
+phase=16 K=1405 canonical_slot=15 owners=['I15/off=15/ORT=1247/Pow']
+phase=17 K=1406 canonical_slot=16 owners=['I15/off=16/ORT=1248/ReduceMean']
+phase=18 K=1407 canonical_slot=17 owners=['I15/off=17/ORT=1249/Add']
+phase=19 K=1408 canonical_slot=17 owners=['I15/off=17/ORT=1249/Add']
+phase=20 K=1409 canonical_slot=18 owners=['I15/off=18/ORT=1250/Sqrt']
+phase=21 K=1410 canonical_slot=19 owners=['I15/off=19/ORT=1251/Reciprocal']
+phase=22 K=1411 canonical_slot=20 owners=['I15/off=20/ORT=1252/Mul']
+phase=23 K=1412 canonical_slot=21 owners=['I15/off=21/ORT=1253/Mul']
+phase=24 K=1413 canonical_slot=22 owners=['I15/off=22/ORT=1254/MatMulNBits']
+phase=25 K=1414 canonical_slot=24 owners=['I15/off=24/ORT=1256/Pow']
+phase=26 K=1415 canonical_slot=25 owners=['I15/off=25/ORT=1257/ReduceMean']
+phase=27 K=1416 canonical_slot=26 owners=['I15/off=25/ORT=1257/ReduceMean']
+phase=28 K=1417 canonical_slot=26 owners=['I15/off=26/ORT=1258/Add']
+phase=29 K=1418 canonical_slot=27 owners=['I15/off=27/ORT=1259/Sqrt']
+phase=30 K=1419 canonical_slot=28 owners=['I15/off=28/ORT=1260/Reciprocal']
+phase=31 K=1420 canonical_slot=29 owners=['I15/off=29/ORT=1261/Mul']
+phase=32 K=1421 canonical_slot=30 owners=['I15/off=30/ORT=1262/Mul']
+phase=33 K=1422 canonical_slot=31 owners=['I15/off=31/ORT=1263/Split']
+phase=34 K=1423 canonical_slot=32 owners=['I15/off=32/ORT=1264/Neg']
+phase=35 K=1424 canonical_slot=33 owners=['I15/off=33/ORT=1265/Concat']
+phase=36 K=1425 canonical_slot=34 owners=['I15/off=34/ORT=1266/Mul']
+phase=37 K=1426 canonical_slot=35 owners=['I15/off=35/ORT=1267/Mul']
+phase=38 K=1427 canonical_slot=36 owners=['I15/off=36/ORT=1268/Add']
+phase=39 K=1428 canonical_slot=37 owners=['I15/off=37/ORT=1269/Transpose']
+phase=40 K=1429 canonical_slot=40 owners=['I15/off=40/ORT=1272/ScatterND']
+phase=41 K=1430 canonical_slot=41 owners=['I15/off=41/ORT=1273/Transpose']
+phase=42 K=1431 canonical_slot=43 owners=['I15/off=43/ORT=1275/Expand']
+phase=43 K=1432 canonical_slot=45 owners=['I15/off=45/ORT=1277/MatMulNBits']
+phase=44 K=1433 canonical_slot=47 owners=['I15/off=47/ORT=1279/Pow']
+phase=45 K=1434 canonical_slot=48 owners=['I15/off=48/ORT=1280/ReduceMean']
+phase=46 K=1435 canonical_slot=49 owners=['I15/off=48/ORT=1280/ReduceMean']
+phase=47 K=1436 canonical_slot=49 owners=['I15/off=49/ORT=1281/Add']
+phase=48 K=1437 canonical_slot=50 owners=['I15/off=50/ORT=1282/Sqrt']
+phase=49 K=1438 canonical_slot=51 owners=['I15/off=51/ORT=1283/Reciprocal']
+phase=50 K=1439 canonical_slot=52 owners=['I15/off=52/ORT=1284/Mul']
+phase=51 K=1440 canonical_slot=53 owners=['I15/off=53/ORT=1285/Mul']
+phase=52 K=1441 canonical_slot=55 owners=['I15/off=55/ORT=1287/Split']
+phase=53 K=1442 canonical_slot=56 owners=['I15/off=56/ORT=1288/Neg']
+phase=54 K=1443 canonical_slot=57 owners=['I15/off=57/ORT=1289/Concat']
+phase=55 K=1444 canonical_slot=58 owners=['I15/off=58/ORT=1290/Mul']
+phase=56 K=1445 canonical_slot=59 owners=['I15/off=59/ORT=1291/Mul']
+phase=57 K=1446 canonical_slot=60 owners=['I15/off=60/ORT=1292/Add']
+
+CUDA BLOCK K1455..K1520
+phase= 0 K=1455 canonical_slot=0 owners=['I16/off= 0/ORT=1308/MatMulNBits']
+phase= 1 K=1456 canonical_slot=1 owners=['I16/off= 1/ORT=1309/Add']
+phase= 2 K=1457 canonical_slot=2 owners=['I16/off= 2/ORT=1310/Pow']
+phase= 3 K=1458 canonical_slot=3 owners=['I16/off= 3/ORT=1311/ReduceMean']
+phase= 4 K=1459 canonical_slot=4 owners=['I16/off= 3/ORT=1311/ReduceMean']
+phase= 5 K=1460 canonical_slot=4 owners=['I16/off= 4/ORT=1312/Add']
+phase= 6 K=1461 canonical_slot=5 owners=['I16/off= 5/ORT=1313/Sqrt']
+phase= 7 K=1462 canonical_slot=6 owners=['I16/off= 6/ORT=1314/Reciprocal']
+phase= 8 K=1463 canonical_slot=7 owners=['I16/off= 7/ORT=1315/Mul']
+phase= 9 K=1464 canonical_slot=8 owners=['I16/off= 8/ORT=1316/Mul']
+phase=10 K=1465 canonical_slot=9 owners=['I16/off= 9/ORT=1317/MatMulNBits']
+phase=11 K=1466 canonical_slot=10 owners=['I16/off=10/ORT=1318/QuickGelu']
+phase=12 K=1467 canonical_slot=11 owners=['I16/off=11/ORT=1319/MatMulNBits']
+phase=13 K=1468 canonical_slot=12 owners=['I16/off=12/ORT=1320/Mul']
+phase=14 K=1469 canonical_slot=13 owners=['I16/off=13/ORT=1321/MatMulNBits']
+phase=15 K=1470 canonical_slot=14 owners=['I16/off=14/ORT=1322/Add']
+phase=16 K=1471 canonical_slot=15 owners=['I16/off=15/ORT=1323/Pow']
+phase=17 K=1472 canonical_slot=16 owners=['I16/off=16/ORT=1324/ReduceMean']
+phase=18 K=1473 canonical_slot=17 owners=['I16/off=17/ORT=1325/Add']
+phase=19 K=1474 canonical_slot=17 owners=['I16/off=17/ORT=1325/Add']
+phase=20 K=1475 canonical_slot=18 owners=['I16/off=18/ORT=1326/Sqrt']
+phase=21 K=1476 canonical_slot=19 owners=['I16/off=19/ORT=1327/Reciprocal']
+phase=22 K=1477 canonical_slot=20 owners=['I16/off=20/ORT=1328/Mul']
+phase=23 K=1478 canonical_slot=21 owners=['I16/off=21/ORT=1329/Mul']
+phase=24 K=1479 canonical_slot=22 owners=['I16/off=22/ORT=1330/MatMulNBits']
+phase=25 K=1480 canonical_slot=24 owners=['I16/off=24/ORT=1332/Pow']
+phase=26 K=1481 canonical_slot=25 owners=['I16/off=25/ORT=1333/ReduceMean']
+phase=27 K=1482 canonical_slot=26 owners=['I16/off=26/ORT=1334/Add']
+phase=28 K=1483 canonical_slot=26 owners=['I16/off=26/ORT=1334/Add']
+phase=29 K=1484 canonical_slot=27 owners=['I16/off=27/ORT=1335/Sqrt']
+phase=30 K=1485 canonical_slot=28 owners=['I16/off=28/ORT=1336/Reciprocal']
+phase=31 K=1486 canonical_slot=29 owners=['I16/off=29/ORT=1337/Mul']
+phase=32 K=1487 canonical_slot=30 owners=['I16/off=30/ORT=1338/Mul']
+phase=33 K=1488 canonical_slot=31 owners=['I16/off=31/ORT=1339/Split']
+phase=34 K=1489 canonical_slot=32 owners=['I16/off=32/ORT=1340/Neg']
+phase=35 K=1490 canonical_slot=33 owners=['I16/off=33/ORT=1341/Concat']
+phase=36 K=1491 canonical_slot=34 owners=['I16/off=34/ORT=1342/Mul']
+phase=37 K=1492 canonical_slot=35 owners=['I16/off=35/ORT=1343/Mul']
+phase=38 K=1493 canonical_slot=36 owners=['I16/off=36/ORT=1344/Add']
+phase=39 K=1494 canonical_slot=37 owners=['I16/off=37/ORT=1345/Transpose']
+phase=40 K=1495 canonical_slot=40 owners=['I16/off=40/ORT=1348/ScatterND']
+phase=41 K=1496 canonical_slot=41 owners=['I16/off=41/ORT=1349/Transpose']
+phase=42 K=1497 canonical_slot=43 owners=['I16/off=43/ORT=1351/Expand']
+phase=43 K=1498 canonical_slot=45 owners=['I16/off=45/ORT=1353/MatMulNBits']
+phase=44 K=1499 canonical_slot=47 owners=['I16/off=47/ORT=1355/Pow']
+phase=45 K=1500 canonical_slot=48 owners=['I16/off=48/ORT=1356/ReduceMean']
+phase=46 K=1501 canonical_slot=49 owners=['I16/off=49/ORT=1357/Add']
+phase=47 K=1502 canonical_slot=49 owners=['I16/off=49/ORT=1357/Add']
+phase=48 K=1503 canonical_slot=50 owners=['I16/off=50/ORT=1358/Sqrt']
+phase=49 K=1504 canonical_slot=51 owners=['I16/off=51/ORT=1359/Reciprocal']
+phase=50 K=1505 canonical_slot=52 owners=['I16/off=52/ORT=1360/Mul']
+phase=51 K=1506 canonical_slot=53 owners=['I16/off=53/ORT=1361/Mul']
+phase=52 K=1507 canonical_slot=55 owners=['I16/off=55/ORT=1363/Split']
+phase=53 K=1508 canonical_slot=56 owners=['I16/off=56/ORT=1364/Neg']
+phase=54 K=1509 canonical_slot=57 owners=['I16/off=57/ORT=1365/Concat']
+phase=55 K=1510 canonical_slot=58 owners=['I16/off=58/ORT=1366/Mul']
+phase=56 K=1511 canonical_slot=59 owners=['I16/off=59/ORT=1367/Mul']
+phase=57 K=1512 canonical_slot=60 owners=['I16/off=60/ORT=1368/Add']
+
+CUDA BLOCK K1521..K1586
+phase= 0 K=1521 canonical_slot=0 owners=['I17/off= 0/ORT=1384/MatMulNBits']
+phase= 1 K=1522 canonical_slot=1 owners=['I17/off= 1/ORT=1385/Add']
+phase= 2 K=1523 canonical_slot=2 owners=['I17/off= 2/ORT=1386/Pow']
+phase= 3 K=1524 canonical_slot=3 owners=['I17/off= 3/ORT=1387/ReduceMean']
+phase= 4 K=1525 canonical_slot=4 owners=['I17/off= 3/ORT=1387/ReduceMean']
+phase= 5 K=1526 canonical_slot=4 owners=['I17/off= 4/ORT=1388/Add']
+phase= 6 K=1527 canonical_slot=5 owners=['I17/off= 5/ORT=1389/Sqrt']
+phase= 7 K=1528 canonical_slot=6 owners=['I17/off= 6/ORT=1390/Reciprocal']
+phase= 8 K=1529 canonical_slot=7 owners=['I17/off= 7/ORT=1391/Mul']
+phase= 9 K=1530 canonical_slot=8 owners=['I17/off= 8/ORT=1392/Mul']
+phase=10 K=1531 canonical_slot=9 owners=['I17/off= 9/ORT=1393/MatMulNBits']
+phase=11 K=1532 canonical_slot=10 owners=['I17/off=10/ORT=1394/QuickGelu']
+phase=12 K=1533 canonical_slot=11 owners=['I17/off=11/ORT=1395/MatMulNBits']
+phase=13 K=1534 canonical_slot=12 owners=['I17/off=12/ORT=1396/Mul']
+phase=14 K=1535 canonical_slot=13 owners=['I17/off=13/ORT=1397/MatMulNBits']
+phase=15 K=1536 canonical_slot=14 owners=['I17/off=14/ORT=1398/Add']
+phase=16 K=1537 canonical_slot=15 owners=['I17/off=15/ORT=1399/Pow']
+phase=17 K=1538 canonical_slot=16 owners=['I17/off=16/ORT=1400/ReduceMean']
+phase=18 K=1539 canonical_slot=17 owners=['I17/off=17/ORT=1401/Add']
+phase=19 K=1540 canonical_slot=17 owners=['I17/off=17/ORT=1401/Add']
+phase=20 K=1541 canonical_slot=18 owners=['I17/off=18/ORT=1402/Sqrt']
+phase=21 K=1542 canonical_slot=19 owners=['I17/off=19/ORT=1403/Reciprocal']
+phase=22 K=1543 canonical_slot=20 owners=['I17/off=20/ORT=1404/Mul']
+phase=23 K=1544 canonical_slot=21 owners=['I17/off=21/ORT=1405/Mul']
+phase=24 K=1545 canonical_slot=22 owners=['I17/off=22/ORT=1406/MatMulNBits']
+phase=25 K=1546 canonical_slot=24 owners=['I17/off=24/ORT=1408/Pow']
+phase=26 K=1547 canonical_slot=25 owners=['I17/off=25/ORT=1409/ReduceMean']
+phase=27 K=1548 canonical_slot=26 owners=['I17/off=26/ORT=1410/Add']
+phase=28 K=1549 canonical_slot=26 owners=['I17/off=26/ORT=1410/Add']
+phase=29 K=1550 canonical_slot=27 owners=['I17/off=27/ORT=1411/Sqrt']
+phase=30 K=1551 canonical_slot=28 owners=['I17/off=28/ORT=1412/Reciprocal']
+phase=31 K=1552 canonical_slot=29 owners=['I17/off=29/ORT=1413/Mul']
+phase=32 K=1553 canonical_slot=30 owners=['I17/off=30/ORT=1414/Mul']
+phase=33 K=1554 canonical_slot=31 owners=['I17/off=31/ORT=1415/Split']
+phase=34 K=1555 canonical_slot=32 owners=['I17/off=32/ORT=1416/Neg']
+phase=35 K=1556 canonical_slot=33 owners=['I17/off=33/ORT=1417/Concat']
+phase=36 K=1557 canonical_slot=34 owners=['I17/off=34/ORT=1418/Mul']
+phase=37 K=1558 canonical_slot=35 owners=['I17/off=35/ORT=1419/Mul']
+phase=38 K=1559 canonical_slot=36 owners=['I17/off=36/ORT=1420/Add']
+phase=39 K=1560 canonical_slot=37 owners=['I17/off=37/ORT=1421/Transpose']
+phase=40 K=1561 canonical_slot=40 owners=['I17/off=40/ORT=1424/ScatterND']
+phase=41 K=1562 canonical_slot=41 owners=['I17/off=41/ORT=1425/Transpose']
+phase=42 K=1563 canonical_slot=43 owners=['I17/off=43/ORT=1427/Expand']
+phase=43 K=1564 canonical_slot=45 owners=['I17/off=45/ORT=1429/MatMulNBits']
+phase=44 K=1565 canonical_slot=47 owners=['I17/off=47/ORT=1431/Pow']
+phase=45 K=1566 canonical_slot=48 owners=['I17/off=48/ORT=1432/ReduceMean']
+phase=46 K=1567 canonical_slot=49 owners=['I17/off=48/ORT=1432/ReduceMean']
+phase=47 K=1568 canonical_slot=49 owners=['I17/off=49/ORT=1433/Add']
+phase=48 K=1569 canonical_slot=50 owners=['I17/off=50/ORT=1434/Sqrt']
+phase=49 K=1570 canonical_slot=51 owners=['I17/off=51/ORT=1435/Reciprocal']
+phase=50 K=1571 canonical_slot=52 owners=['I17/off=52/ORT=1436/Mul']
+phase=51 K=1572 canonical_slot=53 owners=['I17/off=53/ORT=1437/Mul']
+phase=52 K=1573 canonical_slot=55 owners=['I17/off=55/ORT=1439/Split']
+phase=53 K=1574 canonical_slot=56 owners=['I17/off=56/ORT=1440/Neg']
+phase=54 K=1575 canonical_slot=57 owners=['I17/off=57/ORT=1441/Concat']
+phase=55 K=1576 canonical_slot=58 owners=['I17/off=58/ORT=1442/Mul']
+phase=56 K=1577 canonical_slot=59 owners=['I17/off=59/ORT=1443/Mul']
+phase=57 K=1578 canonical_slot=60 owners=['I17/off=60/ORT=1444/Add']
+
+CUDA BLOCK K1587..K1652
+phase= 0 K=1587 canonical_slot=0 owners=['I18/off= 0/ORT=1460/MatMulNBits']
+phase= 1 K=1588 canonical_slot=1 owners=['I18/off= 1/ORT=1461/Add']
+phase= 2 K=1589 canonical_slot=2 owners=['I18/off= 2/ORT=1462/Pow']
+phase= 3 K=1590 canonical_slot=3 owners=['I18/off= 3/ORT=1463/ReduceMean']
+phase= 4 K=1591 canonical_slot=4 owners=['I18/off= 4/ORT=1464/Add']
+phase= 5 K=1592 canonical_slot=4 owners=['I18/off= 4/ORT=1464/Add']
+phase= 6 K=1593 canonical_slot=5 owners=['I18/off= 5/ORT=1465/Sqrt']
+phase= 7 K=1594 canonical_slot=6 owners=['I18/off= 6/ORT=1466/Reciprocal']
+phase= 8 K=1595 canonical_slot=7 owners=['I18/off= 7/ORT=1467/Mul']
+phase= 9 K=1596 canonical_slot=8 owners=['I18/off= 8/ORT=1468/Mul']
+phase=10 K=1597 canonical_slot=9 owners=['I18/off= 9/ORT=1469/MatMulNBits']
+phase=11 K=1598 canonical_slot=10 owners=['I18/off=10/ORT=1470/QuickGelu']
+phase=12 K=1599 canonical_slot=11 owners=['I18/off=11/ORT=1471/MatMulNBits']
+phase=13 K=1600 canonical_slot=12 owners=['I18/off=12/ORT=1472/Mul']
+phase=14 K=1601 canonical_slot=13 owners=['I18/off=13/ORT=1473/MatMulNBits']
+phase=15 K=1602 canonical_slot=14 owners=['I18/off=14/ORT=1474/Add']
+phase=16 K=1603 canonical_slot=15 owners=['I18/off=15/ORT=1475/Pow']
+phase=17 K=1604 canonical_slot=16 owners=['I18/off=16/ORT=1476/ReduceMean']
+phase=18 K=1605 canonical_slot=17 owners=['I18/off=23/ORT=1483/Reshape']
+phase=19 K=1606 canonical_slot=17 owners=['I18/off=26/ORT=1486/Add']
+phase=20 K=1607 canonical_slot=18 owners=['I18/off=27/ORT=1487/Sqrt']
+phase=21 K=1608 canonical_slot=19 owners=['I18/off=28/ORT=1488/Reciprocal']
+phase=22 K=1609 canonical_slot=20 owners=['I18/off=29/ORT=1489/Mul']
+phase=23 K=1610 canonical_slot=21 owners=['I18/off=35/ORT=1495/Mul']
+phase=24 K=1611 canonical_slot=22 owners=['I18/off=45/ORT=1505/MatMulNBits']
+phase=25 K=1612 canonical_slot=24 owners=['I18/off=47/ORT=1507/Pow']
+phase=26 K=1613 canonical_slot=25 owners=['I18/off=48/ORT=1508/ReduceMean']
+phase=27 K=1614 canonical_slot=26 owners=['I18/off=49/ORT=1509/Add']
+phase=28 K=1615 canonical_slot=26 owners=['I18/off=49/ORT=1509/Add']
+phase=29 K=1616 canonical_slot=27 owners=['I18/off=50/ORT=1510/Sqrt']
+phase=30 K=1617 canonical_slot=28 owners=['I18/off=51/ORT=1511/Reciprocal']
+phase=31 K=1618 canonical_slot=29 owners=['I18/off=52/ORT=1512/Mul']
+phase=32 K=1619 canonical_slot=30 owners=['I18/off=53/ORT=1513/Mul']
+phase=33 K=1620 canonical_slot=31 owners=['I18/off=55/ORT=1515/Split']
+phase=34 K=1621 canonical_slot=32 owners=['I18/off=56/ORT=1516/Neg']
+phase=35 K=1622 canonical_slot=33 owners=['I18/off=57/ORT=1517/Concat']
+phase=36 K=1623 canonical_slot=34 owners=['I18/off=58/ORT=1518/Mul']
+phase=37 K=1624 canonical_slot=35 owners=['I18/off=59/ORT=1519/Mul']
+phase=38 K=1625 canonical_slot=36 owners=['I18/off=60/ORT=1520/Add']
+phase=39 K=1626 canonical_slot=37 owners=['I18/off=65/ORT=1525/Transpose']
+phase=40 K=1627 canonical_slot=40 owners=['I18/off=68/ORT=1528/ScatterND']
+phase=41 K=1628 canonical_slot=41 owners=['I18/off=69/ORT=1529/Transpose']
+phase=42 K=1629 canonical_slot=43 owners=['I18/off=71/ORT=1531/Expand']
+phase=43 K=1630 canonical_slot=45 owners=['I19/off= 0/ORT=1536/MatMulNBits']
+phase=44 K=1631 canonical_slot=47 owners=['I19/off= 2/ORT=1538/Pow']
+phase=45 K=1632 canonical_slot=48 owners=['I19/off= 3/ORT=1539/ReduceMean']
+phase=46 K=1633 canonical_slot=49 owners=['I19/off=23/ORT=1559/Reshape']
+phase=47 K=1634 canonical_slot=49 owners=['I19/off=26/ORT=1562/Add']
+phase=48 K=1635 canonical_slot=50 owners=['I19/off=27/ORT=1563/Sqrt']
+phase=49 K=1636 canonical_slot=51 owners=['I19/off=28/ORT=1564/Reciprocal']
+phase=50 K=1637 canonical_slot=52 owners=['I19/off=29/ORT=1565/Mul']
+phase=51 K=1638 canonical_slot=53 owners=['I19/off=30/ORT=1566/Mul']
+phase=52 K=1639 canonical_slot=55 owners=['I19/off=31/ORT=1567/Split']
+phase=53 K=1640 canonical_slot=56 owners=['I19/off=32/ORT=1568/Neg']
+phase=54 K=1641 canonical_slot=57 owners=['I19/off=33/ORT=1569/Concat']
+phase=55 K=1642 canonical_slot=58 owners=['I19/off=34/ORT=1570/Mul']
+phase=56 K=1643 canonical_slot=59 owners=['I19/off=35/ORT=1571/Mul']
+phase=57 K=1644 canonical_slot=60 owners=['I19/off=36/ORT=1572/Add']
+
+CUDA BLOCK K1653..K1718
+phase= 0 K=1653 canonical_slot=0 owners=['I21/off= 0/ORT=1688/MatMulNBits']
+phase= 1 K=1654 canonical_slot=1 owners=['I21/off= 1/ORT=1689/Add']
+phase= 2 K=1655 canonical_slot=2 owners=['I21/off=15/ORT=1703/Pow']
+phase= 3 K=1656 canonical_slot=3 owners=['I21/off=16/ORT=1704/ReduceMean']
+phase= 4 K=1657 canonical_slot=4 owners=['I21/off=23/ORT=1711/Reshape']
+phase= 5 K=1658 canonical_slot=4 owners=['I21/off=26/ORT=1714/Add']
+phase= 6 K=1659 canonical_slot=5 owners=['I21/off=27/ORT=1715/Sqrt']
+phase= 7 K=1660 canonical_slot=6 owners=['I21/off=28/ORT=1716/Reciprocal']
+phase= 8 K=1661 canonical_slot=7 owners=['I21/off=29/ORT=1717/Mul']
+phase= 9 K=1662 canonical_slot=8 owners=['I21/off=35/ORT=1723/Mul']
+phase=10 K=1663 canonical_slot=9 owners=['I21/off=45/ORT=1733/MatMulNBits']
+phase=11 K=1664 canonical_slot=10 owners=['I22/off=10/ORT=1774/QuickGelu']
+phase=12 K=1665 canonical_slot=11 owners=['I22/off=11/ORT=1775/MatMulNBits']
+phase=13 K=1666 canonical_slot=12 owners=['I22/off=12/ORT=1776/Mul']
+phase=14 K=1667 canonical_slot=13 owners=['I22/off=13/ORT=1777/MatMulNBits']
+phase=15 K=1668 canonical_slot=14 owners=['I22/off=14/ORT=1778/Add']
+phase=16 K=1669 canonical_slot=15 owners=['I22/off=15/ORT=1779/Pow']
+phase=17 K=1670 canonical_slot=16 owners=['I22/off=16/ORT=1780/ReduceMean']
+phase=18 K=1671 canonical_slot=17 owners=['I22/off=17/ORT=1781/Add']
+phase=19 K=1672 canonical_slot=17 owners=['I22/off=26/ORT=1790/Add']
+phase=20 K=1673 canonical_slot=18 owners=['I22/off=27/ORT=1791/Sqrt']
+phase=21 K=1674 canonical_slot=19 owners=['I22/off=28/ORT=1792/Reciprocal']
+phase=22 K=1675 canonical_slot=20 owners=['I22/off=29/ORT=1793/Mul']
+phase=23 K=1676 canonical_slot=21 owners=['I22/off=30/ORT=1794/Mul']
+phase=24 K=1677 canonical_slot=22 owners=['I22/off=45/ORT=1809/MatMulNBits']
+phase=25 K=1678 canonical_slot=24 owners=['I22/off=47/ORT=1811/Pow']
+phase=26 K=1679 canonical_slot=25 owners=['I22/off=48/ORT=1812/ReduceMean']
+phase=27 K=1680 canonical_slot=26 owners=['I22/off=49/ORT=1813/Add']
+phase=28 K=1681 canonical_slot=26 owners=['I22/off=60/ORT=1824/Add']
+phase=29 K=1682 canonical_slot=27 owners=['I23/off= 5/ORT=1845/Sqrt']
+phase=30 K=1683 canonical_slot=28 owners=['I23/off= 6/ORT=1846/Reciprocal']
+phase=31 K=1684 canonical_slot=29 owners=['I23/off= 7/ORT=1847/Mul']
+phase=32 K=1685 canonical_slot=30 owners=['I23/off= 8/ORT=1848/Mul']
+phase=33 K=1686 canonical_slot=31 owners=['I23/off=31/ORT=1871/Split']
+phase=34 K=1687 canonical_slot=32 owners=['I23/off=32/ORT=1872/Neg']
+phase=35 K=1688 canonical_slot=33 owners=['I23/off=33/ORT=1873/Concat']
+phase=36 K=1689 canonical_slot=34 owners=['I23/off=34/ORT=1874/Mul']
+phase=37 K=1690 canonical_slot=35 owners=['I23/off=35/ORT=1875/Mul']
+phase=38 K=1691 canonical_slot=36 owners=['I23/off=36/ORT=1876/Add']
+phase=39 K=1692 canonical_slot=37 owners=['I23/off=37/ORT=1877/Transpose']
+phase=40 K=1693 canonical_slot=40 owners=['I23/off=40/ORT=1880/ScatterND']
+phase=41 K=1694 canonical_slot=41 owners=['I23/off=41/ORT=1881/Transpose']
+phase=42 K=1695 canonical_slot=43 owners=['I23/off=43/ORT=1883/Expand']
+phase=43 K=1696 canonical_slot=45 owners=['I23/off=45/ORT=1885/MatMulNBits']
+phase=44 K=1697 canonical_slot=47 owners=['I23/off=47/ORT=1887/Pow']
+phase=45 K=1698 canonical_slot=48 owners=['I23/off=48/ORT=1888/ReduceMean']
+phase=46 K=1699 canonical_slot=49 owners=['I23/off=49/ORT=1889/Add']
+phase=47 K=1700 canonical_slot=49 owners=['I23/off=49/ORT=1889/Add']
+phase=48 K=1701 canonical_slot=50 owners=['I23/off=50/ORT=1890/Sqrt']
+phase=49 K=1702 canonical_slot=51 owners=['I23/off=51/ORT=1891/Reciprocal']
+phase=50 K=1703 canonical_slot=52 owners=['I23/off=52/ORT=1892/Mul']
+phase=51 K=1704 canonical_slot=53 owners=['I23/off=53/ORT=1893/Mul']
+phase=52 K=1705 canonical_slot=55 owners=['I23/off=55/ORT=1895/Split']
+phase=53 K=1706 canonical_slot=56 owners=['I23/off=56/ORT=1896/Neg']
+phase=54 K=1707 canonical_slot=57 owners=['I23/off=57/ORT=1897/Concat']
+phase=55 K=1708 canonical_slot=58 owners=['I23/off=58/ORT=1898/Mul']
+phase=56 K=1709 canonical_slot=59 owners=['I23/off=59/ORT=1899/Mul']
+phase=57 K=1710 canonical_slot=60 owners=['I23/off=60/ORT=1900/Add']
+
+CUDA BLOCK K1719..K1784
+phase= 0 K=1719 canonical_slot=0 owners=['I25/off= 0/ORT=1992/MatMulNBits']
+phase= 1 K=1720 canonical_slot=1 owners=['I25/off= 1/ORT=1993/Add']
+phase= 2 K=1721 canonical_slot=2 owners=['I25/off= 2/ORT=1994/Pow']
+phase= 3 K=1722 canonical_slot=3 owners=['I25/off= 3/ORT=1995/ReduceMean']
+phase= 4 K=1723 canonical_slot=4 owners=['I25/off= 4/ORT=1996/Add']
+phase= 5 K=1724 canonical_slot=4 owners=['I25/off= 4/ORT=1996/Add']
+phase= 6 K=1725 canonical_slot=5 owners=['I25/off= 5/ORT=1997/Sqrt']
+phase= 7 K=1726 canonical_slot=6 owners=['I25/off= 6/ORT=1998/Reciprocal']
+phase= 8 K=1727 canonical_slot=7 owners=['I25/off= 7/ORT=1999/Mul']
+phase= 9 K=1728 canonical_slot=8 owners=['I25/off= 8/ORT=2000/Mul']
+phase=10 K=1729 canonical_slot=9 owners=['I25/off= 9/ORT=2001/MatMulNBits']
+phase=11 K=1730 canonical_slot=10 owners=['I25/off=10/ORT=2002/QuickGelu']
+phase=12 K=1731 canonical_slot=11 owners=['I25/off=11/ORT=2003/MatMulNBits']
+phase=13 K=1732 canonical_slot=12 owners=['I25/off=12/ORT=2004/Mul']
+phase=14 K=1733 canonical_slot=13 owners=['I25/off=13/ORT=2005/MatMulNBits']
+phase=15 K=1734 canonical_slot=14 owners=['I25/off=14/ORT=2006/Add']
+phase=16 K=1735 canonical_slot=15 owners=['I25/off=15/ORT=2007/Pow']
+phase=17 K=1736 canonical_slot=16 owners=['I25/off=16/ORT=2008/ReduceMean']
+phase=18 K=1737 canonical_slot=17 owners=['I25/off=17/ORT=2009/Add']
+phase=19 K=1738 canonical_slot=17 owners=['I25/off=26/ORT=2018/Add']
+phase=20 K=1739 canonical_slot=18 owners=['I25/off=27/ORT=2019/Sqrt']
+phase=21 K=1740 canonical_slot=19 owners=['I25/off=28/ORT=2020/Reciprocal']
+phase=22 K=1741 canonical_slot=20 owners=['I25/off=29/ORT=2021/Mul']
+phase=23 K=1742 canonical_slot=21 owners=['I25/off=30/ORT=2022/Mul']
+phase=24 K=1743 canonical_slot=22 owners=['I25/off=45/ORT=2037/MatMulNBits']
+phase=25 K=1744 canonical_slot=24 owners=['I25/off=47/ORT=2039/Pow']
+phase=26 K=1745 canonical_slot=25 owners=['I25/off=48/ORT=2040/ReduceMean']
+phase=27 K=1746 canonical_slot=26 owners=['I25/off=49/ORT=2041/Add']
+phase=28 K=1747 canonical_slot=26 owners=['I25/off=60/ORT=2052/Add']
+phase=29 K=1748 canonical_slot=27 owners=['I26/off= 5/ORT=2073/Sqrt']
+phase=30 K=1749 canonical_slot=28 owners=['I26/off= 6/ORT=2074/Reciprocal']
+phase=31 K=1750 canonical_slot=29 owners=['I26/off= 7/ORT=2075/Mul']
+phase=32 K=1751 canonical_slot=30 owners=['I26/off= 8/ORT=2076/Mul']
+phase=33 K=1752 canonical_slot=31 owners=['I26/off=31/ORT=2099/Split']
+phase=34 K=1753 canonical_slot=32 owners=['I26/off=32/ORT=2100/Neg']
+phase=35 K=1754 canonical_slot=33 owners=['I26/off=33/ORT=2101/Concat']
+phase=36 K=1755 canonical_slot=34 owners=['I26/off=40/ORT=2108/ScatterND']
+phase=37 K=1756 owners=[]
+phase=38 K=1757 owners=[]
+phase=39 K=1758 owners=[]
+phase=40 K=1759 owners=[]
+phase=41 K=1760 owners=[]
+phase=42 K=1761 owners=[]
+phase=43 K=1762 owners=[]
+phase=44 K=1763 owners=[]
+phase=45 K=1764 owners=[]
+phase=46 K=1765 owners=[]
+phase=47 K=1766 owners=[]
+phase=48 K=1767 owners=[]
+phase=49 K=1768 owners=[]
+phase=50 K=1769 owners=[]
+phase=51 K=1770 owners=[]
+phase=52 K=1771 owners=[]
+phase=53 K=1772 owners=[]
+phase=54 K=1773 owners=[]
+phase=55 K=1774 owners=[]
+phase=56 K=1775 owners=[]
+phase=57 K=1776 owners=[]
+
+==============================================================================================================
+PHASE -> ORT 76-OFFSET CONSENSUS
+==============================================================================================================
+phase= 0 best_offset= 0 votes=9/9 confidence=1.000 all={0: 9}
+phase= 1 best_offset= 1 votes=9/9 confidence=1.000 all={1: 9}
+phase= 2 best_offset= 2 votes=8/9 confidence=0.889 all={2: 8, 15: 1}
+phase= 3 best_offset= 3 votes=8/9 confidence=0.889 all={3: 8, 16: 1}
+phase= 4 best_offset= 4 votes=6/9 confidence=0.667 all={4: 6, 3: 2, 23: 1}
+phase= 5 best_offset= 4 votes=8/9 confidence=0.889 all={4: 8, 26: 1}
+phase= 6 best_offset= 5 votes=8/9 confidence=0.889 all={5: 8, 27: 1}
+phase= 7 best_offset= 6 votes=8/9 confidence=0.889 all={6: 8, 28: 1}
+phase= 8 best_offset= 7 votes=8/9 confidence=0.889 all={7: 8, 29: 1}
+phase= 9 best_offset= 8 votes=8/9 confidence=0.889 all={8: 8, 35: 1}
+phase=10 best_offset= 9 votes=8/9 confidence=0.889 all={9: 8, 45: 1}
+phase=11 best_offset=10 votes=9/9 confidence=1.000 all={10: 9}
+phase=12 best_offset=11 votes=9/9 confidence=1.000 all={11: 9}
+phase=13 best_offset=12 votes=9/9 confidence=1.000 all={12: 9}
+phase=14 best_offset=13 votes=9/9 confidence=1.000 all={13: 9}
+phase=15 best_offset=14 votes=9/9 confidence=1.000 all={14: 9}
+phase=16 best_offset=15 votes=9/9 confidence=1.000 all={15: 9}
+phase=17 best_offset=16 votes=9/9 confidence=1.000 all={16: 9}
+phase=18 best_offset=17 votes=8/9 confidence=0.889 all={17: 8, 23: 1}
+phase=19 best_offset=17 votes=6/9 confidence=0.667 all={17: 6, 26: 3}
+phase=20 best_offset=18 votes=6/9 confidence=0.667 all={18: 6, 27: 3}
+phase=21 best_offset=19 votes=6/9 confidence=0.667 all={19: 6, 28: 3}
+phase=22 best_offset=20 votes=6/9 confidence=0.667 all={20: 6, 29: 3}
+phase=23 best_offset=21 votes=6/9 confidence=0.667 all={21: 6, 35: 1, 30: 2}
+phase=24 best_offset=22 votes=6/9 confidence=0.667 all={22: 6, 45: 3}
+phase=25 best_offset=24 votes=6/9 confidence=0.667 all={24: 6, 47: 3}
+phase=26 best_offset=25 votes=6/9 confidence=0.667 all={25: 6, 48: 3}
+phase=27 best_offset=26 votes=5/9 confidence=0.556 all={26: 5, 25: 1, 49: 3}
+phase=28 best_offset=26 votes=6/9 confidence=0.667 all={26: 6, 49: 1, 60: 2}
+phase=29 best_offset=27 votes=6/9 confidence=0.667 all={27: 6, 50: 1, 5: 2}
+phase=30 best_offset=28 votes=6/9 confidence=0.667 all={28: 6, 51: 1, 6: 2}
+phase=31 best_offset=29 votes=6/9 confidence=0.667 all={29: 6, 52: 1, 7: 2}
+phase=32 best_offset=30 votes=6/9 confidence=0.667 all={30: 6, 53: 1, 8: 2}
+phase=33 best_offset=31 votes=8/9 confidence=0.889 all={31: 8, 55: 1}
+phase=34 best_offset=32 votes=8/9 confidence=0.889 all={32: 8, 56: 1}
+phase=35 best_offset=33 votes=8/9 confidence=0.889 all={33: 8, 57: 1}
+phase=36 best_offset=34 votes=7/9 confidence=0.778 all={34: 7, 58: 1, 40: 1}
+phase=37 best_offset=35 votes=7/8 confidence=0.875 all={35: 7, 59: 1}
+phase=38 best_offset=36 votes=7/8 confidence=0.875 all={36: 7, 60: 1}
+phase=39 best_offset=37 votes=7/8 confidence=0.875 all={37: 7, 65: 1}
+phase=40 best_offset=40 votes=7/8 confidence=0.875 all={40: 7, 68: 1}
+phase=41 best_offset=41 votes=7/8 confidence=0.875 all={41: 7, 69: 1}
+phase=42 best_offset=43 votes=7/8 confidence=0.875 all={43: 7, 71: 1}
+phase=43 best_offset=45 votes=7/8 confidence=0.875 all={45: 7, 0: 1}
+phase=44 best_offset=47 votes=7/8 confidence=0.875 all={47: 7, 2: 1}
+phase=45 best_offset=48 votes=7/8 confidence=0.875 all={48: 7, 3: 1}
+phase=46 best_offset=49 votes=5/8 confidence=0.625 all={49: 5, 48: 2, 23: 1}
+phase=47 best_offset=49 votes=7/8 confidence=0.875 all={49: 7, 26: 1}
+phase=48 best_offset=50 votes=7/8 confidence=0.875 all={50: 7, 27: 1}
+phase=49 best_offset=51 votes=7/8 confidence=0.875 all={51: 7, 28: 1}
+phase=50 best_offset=52 votes=7/8 confidence=0.875 all={52: 7, 29: 1}
+phase=51 best_offset=53 votes=7/8 confidence=0.875 all={53: 7, 30: 1}
+phase=52 best_offset=55 votes=7/8 confidence=0.875 all={55: 7, 31: 1}
+phase=53 best_offset=56 votes=7/8 confidence=0.875 all={56: 7, 32: 1}
+phase=54 best_offset=57 votes=7/8 confidence=0.875 all={57: 7, 33: 1}
+phase=55 best_offset=58 votes=7/8 confidence=0.875 all={58: 7, 34: 1}
+phase=56 best_offset=59 votes=7/8 confidence=0.875 all={59: 7, 35: 1}
+phase=57 best_offset=60 votes=7/8 confidence=0.875 all={60: 7, 36: 1}
+
+==============================================================================================================
+BLOCK FRAGMENTATION BY ORT 76-PERIOD
+==============================================================================================================
+
+K1191..K1256
+  I12: phase_count=58 range=0..57
+
+K1257..K1322
+  I13: phase_count=58 range=0..57
+
+K1323..K1388
+  I14: phase_count=58 range=0..57
+
+K1389..K1454
+  I15: phase_count=58 range=0..57
+
+K1455..K1520
+  I16: phase_count=58 range=0..57
+
+K1521..K1586
+  I17: phase_count=58 range=0..57
+
+K1587..K1652
+  I18: phase_count=43 range=0..42
+  I19: phase_count=15 range=43..57
+
+K1653..K1718
+  I21: phase_count=11 range=0..10
+  I22: phase_count=18 range=11..28
+  I23: phase_count=29 range=29..57
+
+K1719..K1784
+  I25: phase_count=29 range=0..28
+  I26: phase_count= 8 range=29..36
+
+==============================================================================================================
+ORT 76-PERIOD TAIL REGIONS
+==============================================================================================================
+I00: canonical=92..152 tail=153..167
+I01: canonical=168..228 tail=229..243
+I02: canonical=244..304 tail=305..319
+I03: canonical=320..380 tail=381..395
+I04: canonical=396..456 tail=457..471
+I05: canonical=472..532 tail=533..547
+I06: canonical=548..608 tail=609..623
+I07: canonical=624..684 tail=685..699
+I08: canonical=700..760 tail=761..775
+I09: canonical=776..836 tail=837..851
+I10: canonical=852..912 tail=913..927
+I11: canonical=928..988 tail=989..1003
+I12: canonical=1004..1064 tail=1065..1079
+I13: canonical=1080..1140 tail=1141..1155
+I14: canonical=1156..1216 tail=1217..1231
+I15: canonical=1232..1292 tail=1293..1307
+I16: canonical=1308..1368 tail=1369..1383
+I17: canonical=1384..1444 tail=1445..1459
+I18: canonical=1460..1520 tail=1521..1535
+I19: canonical=1536..1596 tail=1597..1611
+I20: canonical=1612..1672 tail=1673..1687
+I21: canonical=1688..1748 tail=1749..1763
+I22: canonical=1764..1824 tail=1825..1839
+I23: canonical=1840..1900 tail=1901..1915
+I24: canonical=1916..1976 tail=1977..1991
+I25: canonical=1992..2052 tail=2053..2067
+
+==============================================================================================================
+KEY ANOMALIES
+==============================================================================================================
+
+K1191..K1256: 0 canonical-offset deviations
+
+K1257..K1322: 0 canonical-offset deviations
+
+K1323..K1388: 0 canonical-offset deviations
+
+K1389..K1454: 2 canonical-offset deviations
+  phase=27 expected_offset=26 actual_offsets=[25]
+  phase=46 expected_offset=49 actual_offsets=[48]
+
+K1455..K1520: 1 canonical-offset deviations
+  phase= 4 expected_offset= 4 actual_offsets=[3]
+
+K1521..K1586: 2 canonical-offset deviations
+  phase= 4 expected_offset= 4 actual_offsets=[3]
+  phase=46 expected_offset=49 actual_offsets=[48]
+
+K1587..K1652: 40 canonical-offset deviations
+  phase=18 expected_offset=17 actual_offsets=[23]
+  phase=19 expected_offset=17 actual_offsets=[26]
+  phase=20 expected_offset=18 actual_offsets=[27]
+  phase=21 expected_offset=19 actual_offsets=[28]
+  phase=22 expected_offset=20 actual_offsets=[29]
+  phase=23 expected_offset=21 actual_offsets=[35]
+  phase=24 expected_offset=22 actual_offsets=[45]
+  phase=25 expected_offset=24 actual_offsets=[47]
+  phase=26 expected_offset=25 actual_offsets=[48]
+  phase=27 expected_offset=26 actual_offsets=[49]
+  phase=28 expected_offset=26 actual_offsets=[49]
+  phase=29 expected_offset=27 actual_offsets=[50]
+  phase=30 expected_offset=28 actual_offsets=[51]
+  phase=31 expected_offset=29 actual_offsets=[52]
+  phase=32 expected_offset=30 actual_offsets=[53]
+  phase=33 expected_offset=31 actual_offsets=[55]
+  phase=34 expected_offset=32 actual_offsets=[56]
+  phase=35 expected_offset=33 actual_offsets=[57]
+  phase=36 expected_offset=34 actual_offsets=[58]
+  phase=37 expected_offset=35 actual_offsets=[59]
+  phase=38 expected_offset=36 actual_offsets=[60]
+  phase=39 expected_offset=37 actual_offsets=[65]
+  phase=40 expected_offset=40 actual_offsets=[68]
+  phase=41 expected_offset=41 actual_offsets=[69]
+  phase=42 expected_offset=43 actual_offsets=[71]
+  phase=43 expected_offset=45 actual_offsets=[0]
+  phase=44 expected_offset=47 actual_offsets=[2]
+  phase=45 expected_offset=48 actual_offsets=[3]
+  phase=46 expected_offset=49 actual_offsets=[23]
+  phase=47 expected_offset=49 actual_offsets=[26]
+  phase=48 expected_offset=50 actual_offsets=[27]
+  phase=49 expected_offset=51 actual_offsets=[28]
+  phase=50 expected_offset=52 actual_offsets=[29]
+  phase=51 expected_offset=53 actual_offsets=[30]
+  phase=52 expected_offset=55 actual_offsets=[31]
+  phase=53 expected_offset=56 actual_offsets=[32]
+  phase=54 expected_offset=57 actual_offsets=[33]
+  phase=55 expected_offset=58 actual_offsets=[34]
+  phase=56 expected_offset=59 actual_offsets=[35]
+  phase=57 expected_offset=60 actual_offsets=[36]
+
+K1653..K1718: 23 canonical-offset deviations
+  phase= 2 expected_offset= 2 actual_offsets=[15]
+  phase= 3 expected_offset= 3 actual_offsets=[16]
+  phase= 4 expected_offset= 4 actual_offsets=[23]
+  phase= 5 expected_offset= 4 actual_offsets=[26]
+  phase= 6 expected_offset= 5 actual_offsets=[27]
+  phase= 7 expected_offset= 6 actual_offsets=[28]
+  phase= 8 expected_offset= 7 actual_offsets=[29]
+  phase= 9 expected_offset= 8 actual_offsets=[35]
+  phase=10 expected_offset= 9 actual_offsets=[45]
+  phase=19 expected_offset=17 actual_offsets=[26]
+  phase=20 expected_offset=18 actual_offsets=[27]
+  phase=21 expected_offset=19 actual_offsets=[28]
+  phase=22 expected_offset=20 actual_offsets=[29]
+  phase=23 expected_offset=21 actual_offsets=[30]
+  phase=24 expected_offset=22 actual_offsets=[45]
+  phase=25 expected_offset=24 actual_offsets=[47]
+  phase=26 expected_offset=25 actual_offsets=[48]
+  phase=27 expected_offset=26 actual_offsets=[49]
+  phase=28 expected_offset=26 actual_offsets=[60]
+  phase=29 expected_offset=27 actual_offsets=[5]
+  phase=30 expected_offset=28 actual_offsets=[6]
+  phase=31 expected_offset=29 actual_offsets=[7]
+  phase=32 expected_offset=30 actual_offsets=[8]
+
+K1719..K1784: 15 canonical-offset deviations
+  phase=19 expected_offset=17 actual_offsets=[26]
+  phase=20 expected_offset=18 actual_offsets=[27]
+  phase=21 expected_offset=19 actual_offsets=[28]
+  phase=22 expected_offset=20 actual_offsets=[29]
+  phase=23 expected_offset=21 actual_offsets=[30]
+  phase=24 expected_offset=22 actual_offsets=[45]
+  phase=25 expected_offset=24 actual_offsets=[47]
+  phase=26 expected_offset=25 actual_offsets=[48]
+  phase=27 expected_offset=26 actual_offsets=[49]
+  phase=28 expected_offset=26 actual_offsets=[60]
+  phase=29 expected_offset=27 actual_offsets=[5]
+  phase=30 expected_offset=28 actual_offsets=[6]
+  phase=31 expected_offset=29 actual_offsets=[7]
+  phase=32 expected_offset=30 actual_offsets=[8]
+  phase=36 expected_offset=34 actual_offsets=[40]
+
+==============================================================================================================
+FINAL VERDICT
+==============================================================================================================
+V14.5 established the fragmentation.
+V14.6 now treats ORT period=76 as the global coordinate system.
+Canonical CUDA identity remains:
+  CUDA block base + phase 0..57
+and ORT is measured as a secondary coordinate:
+  instance + offset 0..75
+Do NOT collapse the two into a single 61-slot identity.
+==============================================================================================================
+END
+==============================================================================================================
+sky@archlinux:~/qwen3-asr-test$ 
+
+
