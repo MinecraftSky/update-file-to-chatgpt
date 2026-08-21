@@ -1,0 +1,857 @@
+sky@archlinux:~/qwen3-asr-test$ python - <<'PY'
+from pathlib import Path
+
+p = Path("/tmp/audit_v14_9_graph_identity_segment_classifier.py")
+s = p.read_text()
+
+old = """instance_slots = defaultdict(
+    defaultdict(set)
+)"""
+
+new = """instance_slots = defaultdict(
+    lambda: defaultdict(set)
+)"""
+
+if old not in s:
+    raise SystemExit("target text not found")
+
+p.write_text(s.replace(old, new, 1))
+print("patched:", p)
+PY
+
+python -m py_compile /tmp/audit_v14_9_graph_identity_segment_classifier.py
+
+uv run python /tmp/audit_v14_9_graph_identity_segment_classifier.py
+patched: /tmp/audit_v14_9_graph_identity_segment_classifier.py
+==============================================================================================================
+V14.9 GRAPH-IDENTITY CUDA -> ORT SEGMENT CLASSIFIER
+==============================================================================================================
+
+V11 graph-kernel rows : 758712
+
+==============================================================================================================
+EXACT BLOCK DISCOVERY
+==============================================================================================================
+exact blocks : 10908
+
+==============================================================================================================
+NORMALIZED SEGMENT PATTERN CLUSTERS
+==============================================================================================================
+
+count=  4040 first=[69, 201, 465, 1125, 1191, 1257, 1323, 1389, 1455, 1521, 1947, 2079]
+pattern=0-57:A | 58-65:UNKNOWN
+
+count=  3232 first=[597, 663, 729, 795, 861, 927, 993, 1785, 2475, 2541, 2607, 2673]
+pattern=0-65:UNKNOWN
+
+count=   404 first=[1653, 3531, 5409, 7287, 9165, 11043, 12921, 14799, 16677, 18555, 20433, 22311]
+pattern=0-10:A | 11-28:B | 29-57:C | 58-65:UNKNOWN
+
+count=   404 first=[333, 2211, 4089, 5967, 7845, 9723, 11601, 13479, 15357, 17235, 19113, 20991]
+pattern=0-13:UNKNOWN | 14-17:A | 18-38:UNKNOWN | 39-59:A | 60-60:UNKNOWN | 61-65:A
+
+count=   404 first=[1059, 2937, 4815, 6693, 8571, 10449, 12327, 14205, 16083, 17961, 19839, 21717]
+pattern=0-22:UNKNOWN | 23-23:A | 24-24:UNKNOWN | 25-56:B | 57-65:UNKNOWN
+
+count=   404 first=[1719, 3597, 5475, 7353, 9231, 11109, 12987, 14865, 16743, 18621, 20499, 22377]
+pattern=0-28:A | 29-36:B | 37-65:UNKNOWN
+
+count=   404 first=[267, 2145, 4023, 5901, 7779, 9657, 11535, 13413, 15291, 17169, 19047, 20925]
+pattern=0-37:A | 38-41:UNKNOWN | 42-57:A | 58-65:UNKNOWN
+
+count=   404 first=[1587, 3465, 5343, 7221, 9099, 10977, 12855, 14733, 16611, 18489, 20367, 22245]
+pattern=0-38:A | 39-42:UNKNOWN | 43-57:B | 58-65:UNKNOWN
+
+count=   404 first=[399, 2277, 4155, 6033, 7911, 9789, 11667, 13545, 15423, 17301, 19179, 21057]
+pattern=0-38:A | 39-65:UNKNOWN
+
+count=   404 first=[135, 2013, 3891, 5769, 7647, 9525, 11403, 13281, 15159, 17037, 18915, 20793]
+pattern=0-39:A | 40-42:UNKNOWN | 43-60:B | 61-61:UNKNOWN | 62-65:B
+
+count=   404 first=[531, 2409, 4287, 6165, 8043, 9921, 11799, 13677, 15555, 17433, 19311, 21189]
+pattern=0-54:A | 55-65:UNKNOWN
+
+==============================================================================================================
+ABSOLUTE INSTANCE SEGMENT CLUSTERS
+==============================================================================================================
+
+count=  3232 first=[597, 663, 729, 795, 861, 927, 993, 1785, 2475, 2541, 2607, 2673]
+segments=0-65:UNKNOWN
+
+count=   404 first=[1653, 3531, 5409, 7287, 9165, 11043, 12921, 14799, 16677, 18555, 20433, 22311]
+segments=0-10:I21 | 11-28:I22 | 29-57:I23 | 58-65:UNKNOWN
+
+count=   404 first=[333, 2211, 4089, 5967, 7845, 9723, 11601, 13479, 15357, 17235, 19113, 20991]
+segments=0-13:UNKNOWN | 14-17:I8 | 18-38:UNKNOWN | 39-59:I8 | 60-60:UNKNOWN | 61-65:I8
+
+count=   404 first=[1059, 2937, 4815, 6693, 8571, 10449, 12327, 14205, 16083, 17961, 19839, 21717]
+segments=0-22:UNKNOWN | 23-23:I10 | 24-24:UNKNOWN | 25-56:I11 | 57-65:UNKNOWN
+
+count=   404 first=[1719, 3597, 5475, 7353, 9231, 11109, 12987, 14865, 16743, 18621, 20499, 22377]
+segments=0-28:I25 | 29-36:I26 | 37-65:UNKNOWN
+
+count=   404 first=[267, 2145, 4023, 5901, 7779, 9657, 11535, 13413, 15291, 17169, 19047, 20925]
+segments=0-37:I7 | 38-41:UNKNOWN | 42-57:I7 | 58-65:UNKNOWN
+
+count=   404 first=[1587, 3465, 5343, 7221, 9099, 10977, 12855, 14733, 16611, 18489, 20367, 22245]
+segments=0-38:I18 | 39-42:UNKNOWN | 43-57:I19 | 58-65:UNKNOWN
+
+count=   404 first=[399, 2277, 4155, 6033, 7911, 9789, 11667, 13545, 15423, 17301, 19179, 21057]
+segments=0-38:I8 | 39-65:UNKNOWN
+
+count=   404 first=[135, 2013, 3891, 5769, 7647, 9525, 11403, 13281, 15159, 17037, 18915, 20793]
+segments=0-39:I5 | 40-42:UNKNOWN | 43-60:I6 | 61-61:UNKNOWN | 62-65:I6
+
+count=   404 first=[531, 2409, 4287, 6165, 8043, 9921, 11799, 13677, 15555, 17433, 19311, 21189]
+segments=0-54:I10 | 55-65:UNKNOWN
+
+count=   404 first=[1125, 3003, 4881, 6759, 8637, 10515, 12393, 14271, 16149, 18027, 19905, 21783]
+segments=0-57:I11 | 58-65:UNKNOWN
+
+count=   404 first=[1191, 3069, 4947, 6825, 8703, 10581, 12459, 14337, 16215, 18093, 19971, 21849]
+segments=0-57:I12 | 58-65:UNKNOWN
+
+count=   404 first=[1257, 3135, 5013, 6891, 8769, 10647, 12525, 14403, 16281, 18159, 20037, 21915]
+segments=0-57:I13 | 58-65:UNKNOWN
+
+count=   404 first=[1323, 3201, 5079, 6957, 8835, 10713, 12591, 14469, 16347, 18225, 20103, 21981]
+segments=0-57:I14 | 58-65:UNKNOWN
+
+count=   404 first=[1389, 3267, 5145, 7023, 8901, 10779, 12657, 14535, 16413, 18291, 20169, 22047]
+segments=0-57:I15 | 58-65:UNKNOWN
+
+count=   404 first=[1455, 3333, 5211, 7089, 8967, 10845, 12723, 14601, 16479, 18357, 20235, 22113]
+segments=0-57:I16 | 58-65:UNKNOWN
+
+count=   404 first=[1521, 3399, 5277, 7155, 9033, 10911, 12789, 14667, 16545, 18423, 20301, 22179]
+segments=0-57:I17 | 58-65:UNKNOWN
+
+count=   404 first=[69, 1947, 3825, 5703, 7581, 9459, 11337, 13215, 15093, 16971, 18849, 20727]
+segments=0-57:I3 | 58-65:UNKNOWN
+
+count=   404 first=[201, 2079, 3957, 5835, 7713, 9591, 11469, 13347, 15225, 17103, 18981, 20859]
+segments=0-57:I6 | 58-65:UNKNOWN
+
+count=   404 first=[465, 2343, 4221, 6099, 7977, 9855, 11733, 13611, 15489, 17367, 19245, 21123]
+segments=0-57:I9 | 58-65:UNKNOWN
+
+==============================================================================================================
+SHIFT VECTOR CLUSTERS
+==============================================================================================================
+
+count=  3232 first=[597, 663, 729, 795, 861, 927, 993, 1785, 2475, 2541, 2607, 2673]
+shift=NO_RESOLVED_SHIFT
+
+count=  2020 first=[69, 465, 1191, 1257, 1323, 1947, 2343, 3069, 3135, 3201, 3825, 4221]
+shift=(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+count=   404 first=[1059, 2937, 4815, 6693, 8571, 10449, 12327, 14205, 16083, 17961, 19839, 21717]
+shift=('?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', 37, '?', -22, -22, -22, -22, -22, -22, -22, -22, -22, -22, -22, -22, -23, -24, -25, -27, -28, -30, -32, -32, -32, -32, -32, -32, -32, -32, -33, -35, -35, -36, -37, -38, '?')
+
+count=   404 first=[333, 2211, 4089, 5967, 7845, 9723, 11601, 13479, 15357, 17235, 19113, 20991]
+shift=('?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', -13, -13, -13, -13, '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', -33, -35, -35, -35, -32, -32, -32, -32, -32, -32, -32, -32, -33, -35, -35, -36, -37, -38, -34)
+
+count=   404 first=[1521, 3399, 5277, 7155, 9033, 10911, 12789, 14667, 16545, 18423, 20301, 22179]
+shift=(0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+count=   404 first=[1455, 3333, 5211, 7089, 8967, 10845, 12723, 14601, 16479, 18357, 20235, 22113]
+shift=(0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+count=   404 first=[1389, 3267, 5145, 7023, 8901, 10779, 12657, 14535, 16413, 18291, 20169, 22047]
+shift=(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+count=   404 first=[267, 2145, 4023, 5901, 7779, 9657, 11535, 13413, 15291, 17169, 19047, 20925]
+shift=(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -2, -2, -3, -4, -5, '?', '?', '?', '?', -12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+count=   404 first=[135, 2013, 3891, 5769, 7647, 9525, 11403, 13281, 15159, 17037, 18915, 20793]
+shift=(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '?', '?', '?', -45, -45, -45, -45, -45, -45, -45, -45, -46, -48, -48, -49, -50, -51, -51)
+
+count=   404 first=[531, 2409, 4287, 6165, 8043, 9921, 11799, 13677, 15555, 17433, 19311, 21189]
+shift=(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '?', '?', '?')
+
+count=   404 first=[1719, 3597, 5475, 7353, 9231, 11109, 12987, 14865, 16743, 18621, 20499, 22377]
+shift=(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 9, 9, 9, 9, 23, 23, 23, 23, 34, -22, -22, -22, -22, 0, 0, 0, 6, '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?')
+
+count=   404 first=[1587, 3465, 5343, 7221, 9099, 10977, 12855, 14733, 16611, 18489, 20367, 22245]
+shift=(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 9, 9, 9, 9, 14, 23, 23, 23, 23, 23, 23, 23, 23, 23, 24, 24, 24, 24, 24, 24, '?', '?', '?', '?', -45, -45, -45, -26, -23, -23, -23, -23, -23, -24, -24, -24, -24, -24, -24)
+
+count=   404 first=[1653, 3531, 5409, 7287, 9165, 11043, 12921, 14799, 16677, 18555, 20433, 22311]
+shift=(0, 0, 13, 13, 19, 22, 22, 22, 22, 27, 36, 0, 0, 0, 0, 0, 0, 0, 0, 9, 9, 9, 9, 9, 23, 23, 23, 23, 34, -22, -22, -22, -22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+count=   404 first=[201, 2079, 3957, 5835, 7713, 9591, 11469, 13347, 15225, 17103, 18981, 20859]
+shift=(13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 17, 18, 18, 17, 16, 16, 16, 15, 14, 14, 14, 13, 11, 10, 10, 10, 9, 8, 8, 7, 6, 5, 5, 4, 3, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+count=   404 first=[1125, 3003, 4881, 6759, 8637, 10515, 12393, 14271, 16149, 18027, 19905, 21783]
+shift=(22, 22, 22, 22, 22, 22, 22, 22, 22, 21, 20, 19, 19, 18, 17, 16, 16, 16, 16, 17, 16, 15, 14, 14, 13, 11, 10, 10, 10, 9, 8, 8, 8, 7, 6, 5, 5, 4, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+count=   404 first=[399, 2277, 4155, 6033, 7911, 9789, 11667, 13545, 15423, 17301, 19179, 21057]
+shift=(32, 31, 30, 30, 29, 29, 28, 28, 27, 26, 25, 25, 24, 23, 22, 22, 22, 22, 22, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 24, 24, 24, 24, 24, 24, '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?')
+
+==============================================================================================================
+SEGMENT PATTERN VS BLOCK DELTA
+==============================================================================================================
+
+count=  4040 delta=  66 first=[69, 201, 465, 1125, 1191, 1257, 1323, 1389, 1455, 1521, 1947, 2079]
+pattern=0-57:A | 58-65:UNKNOWN
+
+count=  2828 delta=  66 first=[597, 663, 729, 795, 861, 927, 993, 2475, 2541, 2607, 2673, 2739]
+pattern=0-65:UNKNOWN
+
+count=   404 delta=  66 first=[135, 2013, 3891, 5769, 7647, 9525, 11403, 13281, 15159, 17037, 18915, 20793]
+pattern=0-39:A | 40-42:UNKNOWN | 43-60:B | 61-61:UNKNOWN | 62-65:B
+
+count=   404 delta=  66 first=[267, 2145, 4023, 5901, 7779, 9657, 11535, 13413, 15291, 17169, 19047, 20925]
+pattern=0-37:A | 38-41:UNKNOWN | 42-57:A | 58-65:UNKNOWN
+
+count=   404 delta=  66 first=[333, 2211, 4089, 5967, 7845, 9723, 11601, 13479, 15357, 17235, 19113, 20991]
+pattern=0-13:UNKNOWN | 14-17:A | 18-38:UNKNOWN | 39-59:A | 60-60:UNKNOWN | 61-65:A
+
+count=   404 delta=  66 first=[399, 2277, 4155, 6033, 7911, 9789, 11667, 13545, 15423, 17301, 19179, 21057]
+pattern=0-38:A | 39-65:UNKNOWN
+
+count=   404 delta=  66 first=[531, 2409, 4287, 6165, 8043, 9921, 11799, 13677, 15555, 17433, 19311, 21189]
+pattern=0-54:A | 55-65:UNKNOWN
+
+count=   404 delta=  66 first=[1059, 2937, 4815, 6693, 8571, 10449, 12327, 14205, 16083, 17961, 19839, 21717]
+pattern=0-22:UNKNOWN | 23-23:A | 24-24:UNKNOWN | 25-56:B | 57-65:UNKNOWN
+
+count=   404 delta=  66 first=[1587, 3465, 5343, 7221, 9099, 10977, 12855, 14733, 16611, 18489, 20367, 22245]
+pattern=0-38:A | 39-42:UNKNOWN | 43-57:B | 58-65:UNKNOWN
+
+count=   404 delta=  66 first=[1653, 3531, 5409, 7287, 9165, 11043, 12921, 14799, 16677, 18555, 20433, 22311]
+pattern=0-10:A | 11-28:B | 29-57:C | 58-65:UNKNOWN
+
+count=   404 delta=  66 first=[1719, 3597, 5475, 7353, 9231, 11109, 12987, 14865, 16743, 18621, 20499, 22377]
+pattern=0-28:A | 29-36:B | 37-65:UNKNOWN
+
+count=   403 delta= 162 first=[1785, 3663, 5541, 7419, 9297, 11175, 13053, 14931, 16809, 18687, 20565, 22443]
+pattern=0-65:UNKNOWN
+
+==============================================================================================================
+CRITICAL BLOCK SIGNATURES
+==============================================================================================================
+
+BLOCK K1191..K1256
+segments=0-57:I12 | 58-65:UNKNOWN
+normalized=0-57:A | 58-65:UNKNOWN
+shift_vector=(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+BLOCK K1257..K1322
+segments=0-57:I13 | 58-65:UNKNOWN
+normalized=0-57:A | 58-65:UNKNOWN
+shift_vector=(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+BLOCK K1323..K1388
+segments=0-57:I14 | 58-65:UNKNOWN
+normalized=0-57:A | 58-65:UNKNOWN
+shift_vector=(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+BLOCK K1389..K1454
+segments=0-57:I15 | 58-65:UNKNOWN
+normalized=0-57:A | 58-65:UNKNOWN
+shift_vector=(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+BLOCK K1455..K1520
+segments=0-57:I16 | 58-65:UNKNOWN
+normalized=0-57:A | 58-65:UNKNOWN
+shift_vector=(0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+BLOCK K1521..K1586
+segments=0-57:I17 | 58-65:UNKNOWN
+normalized=0-57:A | 58-65:UNKNOWN
+shift_vector=(0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+BLOCK K1587..K1652
+segments=0-38:I18 | 39-42:UNKNOWN | 43-57:I19 | 58-65:UNKNOWN
+normalized=0-38:A | 39-42:UNKNOWN | 43-57:B | 58-65:UNKNOWN
+shift_vector=(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 9, 9, 9, 9, 14, 23, 23, 23, 23, 23, 23, 23, 23, 23, 24, 24, 24, 24, 24, 24, None, None, None, None, -45, -45, -45, -26, -23, -23, -23, -23, -23, -24, -24, -24, -24, -24, -24)
+
+BLOCK K1653..K1718
+segments=0-10:I21 | 11-28:I22 | 29-57:I23 | 58-65:UNKNOWN
+normalized=0-10:A | 11-28:B | 29-57:C | 58-65:UNKNOWN
+shift_vector=(0, 0, 13, 13, 19, 22, 22, 22, 22, 27, 36, 0, 0, 0, 0, 0, 0, 0, 0, 9, 9, 9, 9, 9, 23, 23, 23, 23, 34, -22, -22, -22, -22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+BLOCK K1719..K1784
+segments=0-28:I25 | 29-36:I26 | 37-65:UNKNOWN
+normalized=0-28:A | 29-36:B | 37-65:UNKNOWN
+shift_vector=(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 9, 9, 9, 9, 23, 23, 23, 23, 34, -22, -22, -22, -22, 0, 0, 0, 6, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None)
+
+==============================================================================================================
+PHASE IDENTITY K1191..K1256
+==============================================================================================================
+phase= 0 canonical_slot= 0 original= 1309 instance=    12 observed_slot=   0
+phase= 1 canonical_slot= 1 original= 1310 instance=    12 observed_slot=   1
+phase= 2 canonical_slot= 2 original= 1311 instance=    12 observed_slot=   2
+phase= 3 canonical_slot= 3 original= 1313 instance=    12 observed_slot=   3
+phase= 4 canonical_slot= 4 original= 1314 instance=    12 observed_slot=   4
+phase= 5 canonical_slot= 4 original= 1315 instance=    12 observed_slot=   4
+phase= 6 canonical_slot= 5 original= 1316 instance=    12 observed_slot=   5
+phase= 7 canonical_slot= 6 original= 1317 instance=    12 observed_slot=   6
+phase= 8 canonical_slot= 7 original= 1318 instance=    12 observed_slot=   7
+phase= 9 canonical_slot= 8 original= 1319 instance=    12 observed_slot=   8
+phase=10 canonical_slot= 9 original= 1320 instance=    12 observed_slot=   9
+phase=11 canonical_slot=10 original= 1321 instance=    12 observed_slot=  10
+phase=12 canonical_slot=11 original= 1322 instance=    12 observed_slot=  11
+phase=13 canonical_slot=12 original= 1323 instance=    12 observed_slot=  12
+phase=14 canonical_slot=13 original= 1324 instance=    12 observed_slot=  13
+phase=15 canonical_slot=14 original= 1325 instance=    12 observed_slot=  14
+phase=16 canonical_slot=15 original= 1326 instance=    12 observed_slot=  15
+phase=17 canonical_slot=16 original= 1328 instance=    12 observed_slot=  16
+phase=18 canonical_slot=17 original= 1329 instance=    12 observed_slot=  17
+phase=19 canonical_slot=17 original= 1330 instance=    12 observed_slot=  17
+phase=20 canonical_slot=18 original= 1331 instance=    12 observed_slot=  18
+phase=21 canonical_slot=19 original= 1332 instance=    12 observed_slot=  19
+phase=22 canonical_slot=20 original= 1333 instance=    12 observed_slot=  20
+phase=23 canonical_slot=21 original= 1334 instance=    12 observed_slot=  21
+phase=24 canonical_slot=22 original= 1335 instance=    12 observed_slot=  22
+phase=25 canonical_slot=24 original= 1336 instance=    12 observed_slot=  24
+phase=26 canonical_slot=25 original= 1337 instance=    12 observed_slot=  25
+phase=27 canonical_slot=26 original= 1338 instance=    12 observed_slot=  26
+phase=28 canonical_slot=26 original= 1339 instance=    12 observed_slot=  26
+phase=29 canonical_slot=27 original= 1340 instance=    12 observed_slot=  27
+phase=30 canonical_slot=28 original= 1341 instance=    12 observed_slot=  28
+phase=31 canonical_slot=29 original= 1342 instance=    12 observed_slot=  29
+phase=32 canonical_slot=30 original= 1343 instance=    12 observed_slot=  30
+phase=33 canonical_slot=31 original= 1344 instance=    12 observed_slot=  31
+phase=34 canonical_slot=32 original= 1345 instance=    12 observed_slot=  32
+phase=35 canonical_slot=33 original= 1346 instance=    12 observed_slot=  33
+phase=36 canonical_slot=34 original= 1347 instance=    12 observed_slot=  34
+phase=37 canonical_slot=35 original= 1348 instance=    12 observed_slot=  35
+phase=38 canonical_slot=36 original= 1349 instance=    12 observed_slot=  36
+phase=39 canonical_slot=37 original= 1351 instance=    12 observed_slot=  37
+phase=40 canonical_slot=40 original= 1352 instance=    12 observed_slot=  40
+phase=41 canonical_slot=41 original= 1353 instance=    12 observed_slot=  41
+phase=42 canonical_slot=43 original= 1354 instance=    12 observed_slot=  43
+phase=43 canonical_slot=45 original= 1355 instance=    12 observed_slot=  45
+phase=44 canonical_slot=47 original= 1356 instance=    12 observed_slot=  47
+phase=45 canonical_slot=48 original= 1357 instance=    12 observed_slot=  48
+phase=46 canonical_slot=49 original= 1358 instance=    12 observed_slot=  49
+phase=47 canonical_slot=49 original= 1359 instance=    12 observed_slot=  49
+phase=48 canonical_slot=50 original= 1360 instance=    12 observed_slot=  50
+phase=49 canonical_slot=51 original= 1361 instance=    12 observed_slot=  51
+phase=50 canonical_slot=52 original= 1362 instance=    12 observed_slot=  52
+phase=51 canonical_slot=53 original= 1363 instance=    12 observed_slot=  53
+phase=52 canonical_slot=55 original= 1365 instance=    12 observed_slot=  55
+phase=53 canonical_slot=56 original= 1366 instance=    12 observed_slot=  56
+phase=54 canonical_slot=57 original= 1367 instance=    12 observed_slot=  57
+phase=55 canonical_slot=58 original= 1368 instance=    12 observed_slot=  58
+phase=56 canonical_slot=59 original= 1369 instance=    12 observed_slot=  59
+phase=57 canonical_slot=60 original= 1370 instance=    12 observed_slot=  60
+
+==============================================================================================================
+PHASE IDENTITY K1257..K1322
+==============================================================================================================
+phase= 0 canonical_slot= 0 original= 1381 instance=    13 observed_slot=   0
+phase= 1 canonical_slot= 1 original= 1382 instance=    13 observed_slot=   1
+phase= 2 canonical_slot= 2 original= 1383 instance=    13 observed_slot=   2
+phase= 3 canonical_slot= 3 original= 1385 instance=    13 observed_slot=   3
+phase= 4 canonical_slot= 4 original= 1386 instance=    13 observed_slot=   4
+phase= 5 canonical_slot= 4 original= 1387 instance=    13 observed_slot=   4
+phase= 6 canonical_slot= 5 original= 1388 instance=    13 observed_slot=   5
+phase= 7 canonical_slot= 6 original= 1389 instance=    13 observed_slot=   6
+phase= 8 canonical_slot= 7 original= 1390 instance=    13 observed_slot=   7
+phase= 9 canonical_slot= 8 original= 1391 instance=    13 observed_slot=   8
+phase=10 canonical_slot= 9 original= 1392 instance=    13 observed_slot=   9
+phase=11 canonical_slot=10 original= 1393 instance=    13 observed_slot=  10
+phase=12 canonical_slot=11 original= 1394 instance=    13 observed_slot=  11
+phase=13 canonical_slot=12 original= 1395 instance=    13 observed_slot=  12
+phase=14 canonical_slot=13 original= 1396 instance=    13 observed_slot=  13
+phase=15 canonical_slot=14 original= 1397 instance=    13 observed_slot=  14
+phase=16 canonical_slot=15 original= 1398 instance=    13 observed_slot=  15
+phase=17 canonical_slot=16 original= 1400 instance=    13 observed_slot=  16
+phase=18 canonical_slot=17 original= 1401 instance=    13 observed_slot=  17
+phase=19 canonical_slot=17 original= 1402 instance=    13 observed_slot=  17
+phase=20 canonical_slot=18 original= 1403 instance=    13 observed_slot=  18
+phase=21 canonical_slot=19 original= 1404 instance=    13 observed_slot=  19
+phase=22 canonical_slot=20 original= 1405 instance=    13 observed_slot=  20
+phase=23 canonical_slot=21 original= 1406 instance=    13 observed_slot=  21
+phase=24 canonical_slot=22 original= 1407 instance=    13 observed_slot=  22
+phase=25 canonical_slot=24 original= 1408 instance=    13 observed_slot=  24
+phase=26 canonical_slot=25 original= 1409 instance=    13 observed_slot=  25
+phase=27 canonical_slot=26 original= 1410 instance=    13 observed_slot=  26
+phase=28 canonical_slot=26 original= 1411 instance=    13 observed_slot=  26
+phase=29 canonical_slot=27 original= 1412 instance=    13 observed_slot=  27
+phase=30 canonical_slot=28 original= 1413 instance=    13 observed_slot=  28
+phase=31 canonical_slot=29 original= 1414 instance=    13 observed_slot=  29
+phase=32 canonical_slot=30 original= 1415 instance=    13 observed_slot=  30
+phase=33 canonical_slot=31 original= 1416 instance=    13 observed_slot=  31
+phase=34 canonical_slot=32 original= 1417 instance=    13 observed_slot=  32
+phase=35 canonical_slot=33 original= 1418 instance=    13 observed_slot=  33
+phase=36 canonical_slot=34 original= 1419 instance=    13 observed_slot=  34
+phase=37 canonical_slot=35 original= 1420 instance=    13 observed_slot=  35
+phase=38 canonical_slot=36 original= 1421 instance=    13 observed_slot=  36
+phase=39 canonical_slot=37 original= 1423 instance=    13 observed_slot=  37
+phase=40 canonical_slot=40 original= 1424 instance=    13 observed_slot=  40
+phase=41 canonical_slot=41 original= 1425 instance=    13 observed_slot=  41
+phase=42 canonical_slot=43 original= 1426 instance=    13 observed_slot=  43
+phase=43 canonical_slot=45 original= 1427 instance=    13 observed_slot=  45
+phase=44 canonical_slot=47 original= 1428 instance=    13 observed_slot=  47
+phase=45 canonical_slot=48 original= 1429 instance=    13 observed_slot=  48
+phase=46 canonical_slot=49 original= 1430 instance=    13 observed_slot=  49
+phase=47 canonical_slot=49 original= 1431 instance=    13 observed_slot=  49
+phase=48 canonical_slot=50 original= 1432 instance=    13 observed_slot=  50
+phase=49 canonical_slot=51 original= 1433 instance=    13 observed_slot=  51
+phase=50 canonical_slot=52 original= 1434 instance=    13 observed_slot=  52
+phase=51 canonical_slot=53 original= 1435 instance=    13 observed_slot=  53
+phase=52 canonical_slot=55 original= 1437 instance=    13 observed_slot=  55
+phase=53 canonical_slot=56 original= 1438 instance=    13 observed_slot=  56
+phase=54 canonical_slot=57 original= 1439 instance=    13 observed_slot=  57
+phase=55 canonical_slot=58 original= 1440 instance=    13 observed_slot=  58
+phase=56 canonical_slot=59 original= 1441 instance=    13 observed_slot=  59
+phase=57 canonical_slot=60 original= 1442 instance=    13 observed_slot=  60
+
+==============================================================================================================
+PHASE IDENTITY K1323..K1388
+==============================================================================================================
+phase= 0 canonical_slot= 0 original= 1453 instance=    14 observed_slot=   0
+phase= 1 canonical_slot= 1 original= 1454 instance=    14 observed_slot=   1
+phase= 2 canonical_slot= 2 original= 1455 instance=    14 observed_slot=   2
+phase= 3 canonical_slot= 3 original= 1457 instance=    14 observed_slot=   3
+phase= 4 canonical_slot= 4 original= 1458 instance=    14 observed_slot=   4
+phase= 5 canonical_slot= 4 original= 1459 instance=    14 observed_slot=   4
+phase= 6 canonical_slot= 5 original= 1460 instance=    14 observed_slot=   5
+phase= 7 canonical_slot= 6 original= 1461 instance=    14 observed_slot=   6
+phase= 8 canonical_slot= 7 original= 1462 instance=    14 observed_slot=   7
+phase= 9 canonical_slot= 8 original= 1463 instance=    14 observed_slot=   8
+phase=10 canonical_slot= 9 original= 1464 instance=    14 observed_slot=   9
+phase=11 canonical_slot=10 original= 1465 instance=    14 observed_slot=  10
+phase=12 canonical_slot=11 original= 1466 instance=    14 observed_slot=  11
+phase=13 canonical_slot=12 original= 1467 instance=    14 observed_slot=  12
+phase=14 canonical_slot=13 original= 1468 instance=    14 observed_slot=  13
+phase=15 canonical_slot=14 original= 1469 instance=    14 observed_slot=  14
+phase=16 canonical_slot=15 original= 1470 instance=    14 observed_slot=  15
+phase=17 canonical_slot=16 original= 1472 instance=    14 observed_slot=  16
+phase=18 canonical_slot=17 original= 1473 instance=    14 observed_slot=  17
+phase=19 canonical_slot=17 original= 1474 instance=    14 observed_slot=  17
+phase=20 canonical_slot=18 original= 1475 instance=    14 observed_slot=  18
+phase=21 canonical_slot=19 original= 1476 instance=    14 observed_slot=  19
+phase=22 canonical_slot=20 original= 1477 instance=    14 observed_slot=  20
+phase=23 canonical_slot=21 original= 1478 instance=    14 observed_slot=  21
+phase=24 canonical_slot=22 original= 1479 instance=    14 observed_slot=  22
+phase=25 canonical_slot=24 original= 1480 instance=    14 observed_slot=  24
+phase=26 canonical_slot=25 original= 1481 instance=    14 observed_slot=  25
+phase=27 canonical_slot=26 original= 1482 instance=    14 observed_slot=  26
+phase=28 canonical_slot=26 original= 1483 instance=    14 observed_slot=  26
+phase=29 canonical_slot=27 original= 1484 instance=    14 observed_slot=  27
+phase=30 canonical_slot=28 original= 1485 instance=    14 observed_slot=  28
+phase=31 canonical_slot=29 original= 1486 instance=    14 observed_slot=  29
+phase=32 canonical_slot=30 original= 1487 instance=    14 observed_slot=  30
+phase=33 canonical_slot=31 original= 1488 instance=    14 observed_slot=  31
+phase=34 canonical_slot=32 original= 1489 instance=    14 observed_slot=  32
+phase=35 canonical_slot=33 original= 1490 instance=    14 observed_slot=  33
+phase=36 canonical_slot=34 original= 1491 instance=    14 observed_slot=  34
+phase=37 canonical_slot=35 original= 1492 instance=    14 observed_slot=  35
+phase=38 canonical_slot=36 original= 1493 instance=    14 observed_slot=  36
+phase=39 canonical_slot=37 original= 1495 instance=    14 observed_slot=  37
+phase=40 canonical_slot=40 original= 1496 instance=    14 observed_slot=  40
+phase=41 canonical_slot=41 original= 1497 instance=    14 observed_slot=  41
+phase=42 canonical_slot=43 original= 1498 instance=    14 observed_slot=  43
+phase=43 canonical_slot=45 original= 1499 instance=    14 observed_slot=  45
+phase=44 canonical_slot=47 original= 1500 instance=    14 observed_slot=  47
+phase=45 canonical_slot=48 original= 1501 instance=    14 observed_slot=  48
+phase=46 canonical_slot=49 original= 1502 instance=    14 observed_slot=  49
+phase=47 canonical_slot=49 original= 1503 instance=    14 observed_slot=  49
+phase=48 canonical_slot=50 original= 1504 instance=    14 observed_slot=  50
+phase=49 canonical_slot=51 original= 1505 instance=    14 observed_slot=  51
+phase=50 canonical_slot=52 original= 1506 instance=    14 observed_slot=  52
+phase=51 canonical_slot=53 original= 1507 instance=    14 observed_slot=  53
+phase=52 canonical_slot=55 original= 1509 instance=    14 observed_slot=  55
+phase=53 canonical_slot=56 original= 1510 instance=    14 observed_slot=  56
+phase=54 canonical_slot=57 original= 1511 instance=    14 observed_slot=  57
+phase=55 canonical_slot=58 original= 1512 instance=    14 observed_slot=  58
+phase=56 canonical_slot=59 original= 1513 instance=    14 observed_slot=  59
+phase=57 canonical_slot=60 original= 1514 instance=    14 observed_slot=  60
+
+==============================================================================================================
+PHASE IDENTITY K1389..K1454
+==============================================================================================================
+phase= 0 canonical_slot= 0 original= 1525 instance=    15 observed_slot=   0
+phase= 1 canonical_slot= 1 original= 1526 instance=    15 observed_slot=   1
+phase= 2 canonical_slot= 2 original= 1527 instance=    15 observed_slot=   2
+phase= 3 canonical_slot= 3 original= 1529 instance=    15 observed_slot=   3
+phase= 4 canonical_slot= 4 original= 1530 instance=    15 observed_slot=   4
+phase= 5 canonical_slot= 4 original= 1531 instance=    15 observed_slot=   4
+phase= 6 canonical_slot= 5 original= 1532 instance=    15 observed_slot=   5
+phase= 7 canonical_slot= 6 original= 1533 instance=    15 observed_slot=   6
+phase= 8 canonical_slot= 7 original= 1534 instance=    15 observed_slot=   7
+phase= 9 canonical_slot= 8 original= 1535 instance=    15 observed_slot=   8
+phase=10 canonical_slot= 9 original= 1536 instance=    15 observed_slot=   9
+phase=11 canonical_slot=10 original= 1537 instance=    15 observed_slot=  10
+phase=12 canonical_slot=11 original= 1538 instance=    15 observed_slot=  11
+phase=13 canonical_slot=12 original= 1539 instance=    15 observed_slot=  12
+phase=14 canonical_slot=13 original= 1540 instance=    15 observed_slot=  13
+phase=15 canonical_slot=14 original= 1541 instance=    15 observed_slot=  14
+phase=16 canonical_slot=15 original= 1542 instance=    15 observed_slot=  15
+phase=17 canonical_slot=16 original= 1544 instance=    15 observed_slot=  16
+phase=18 canonical_slot=17 original= 1545 instance=    15 observed_slot=  17
+phase=19 canonical_slot=17 original= 1546 instance=    15 observed_slot=  17
+phase=20 canonical_slot=18 original= 1547 instance=    15 observed_slot=  18
+phase=21 canonical_slot=19 original= 1548 instance=    15 observed_slot=  19
+phase=22 canonical_slot=20 original= 1549 instance=    15 observed_slot=  20
+phase=23 canonical_slot=21 original= 1550 instance=    15 observed_slot=  21
+phase=24 canonical_slot=22 original= 1551 instance=    15 observed_slot=  22
+phase=25 canonical_slot=24 original= 1552 instance=    15 observed_slot=  24
+phase=26 canonical_slot=25 original= 1553 instance=    15 observed_slot=  25
+phase=27 canonical_slot=26 original= 1554 instance=    15 observed_slot=  25
+phase=28 canonical_slot=26 original= 1555 instance=    15 observed_slot=  26
+phase=29 canonical_slot=27 original= 1556 instance=    15 observed_slot=  27
+phase=30 canonical_slot=28 original= 1557 instance=    15 observed_slot=  28
+phase=31 canonical_slot=29 original= 1558 instance=    15 observed_slot=  29
+phase=32 canonical_slot=30 original= 1559 instance=    15 observed_slot=  30
+phase=33 canonical_slot=31 original= 1560 instance=    15 observed_slot=  31
+phase=34 canonical_slot=32 original= 1561 instance=    15 observed_slot=  32
+phase=35 canonical_slot=33 original= 1562 instance=    15 observed_slot=  33
+phase=36 canonical_slot=34 original= 1563 instance=    15 observed_slot=  34
+phase=37 canonical_slot=35 original= 1564 instance=    15 observed_slot=  35
+phase=38 canonical_slot=36 original= 1565 instance=    15 observed_slot=  36
+phase=39 canonical_slot=37 original= 1567 instance=    15 observed_slot=  37
+phase=40 canonical_slot=40 original= 1568 instance=    15 observed_slot=  40
+phase=41 canonical_slot=41 original= 1569 instance=    15 observed_slot=  41
+phase=42 canonical_slot=43 original= 1570 instance=    15 observed_slot=  43
+phase=43 canonical_slot=45 original= 1571 instance=    15 observed_slot=  45
+phase=44 canonical_slot=47 original= 1572 instance=    15 observed_slot=  47
+phase=45 canonical_slot=48 original= 1573 instance=    15 observed_slot=  48
+phase=46 canonical_slot=49 original= 1574 instance=    15 observed_slot=  48
+phase=47 canonical_slot=49 original= 1575 instance=    15 observed_slot=  49
+phase=48 canonical_slot=50 original= 1576 instance=    15 observed_slot=  50
+phase=49 canonical_slot=51 original= 1577 instance=    15 observed_slot=  51
+phase=50 canonical_slot=52 original= 1578 instance=    15 observed_slot=  52
+phase=51 canonical_slot=53 original= 1579 instance=    15 observed_slot=  53
+phase=52 canonical_slot=55 original= 1581 instance=    15 observed_slot=  55
+phase=53 canonical_slot=56 original= 1582 instance=    15 observed_slot=  56
+phase=54 canonical_slot=57 original= 1583 instance=    15 observed_slot=  57
+phase=55 canonical_slot=58 original= 1584 instance=    15 observed_slot=  58
+phase=56 canonical_slot=59 original= 1585 instance=    15 observed_slot=  59
+phase=57 canonical_slot=60 original= 1586 instance=    15 observed_slot=  60
+
+==============================================================================================================
+PHASE IDENTITY K1455..K1520
+==============================================================================================================
+phase= 0 canonical_slot= 0 original= 1597 instance=    16 observed_slot=   0
+phase= 1 canonical_slot= 1 original= 1598 instance=    16 observed_slot=   1
+phase= 2 canonical_slot= 2 original= 1599 instance=    16 observed_slot=   2
+phase= 3 canonical_slot= 3 original= 1601 instance=    16 observed_slot=   3
+phase= 4 canonical_slot= 4 original= 1602 instance=    16 observed_slot=   3
+phase= 5 canonical_slot= 4 original= 1603 instance=    16 observed_slot=   4
+phase= 6 canonical_slot= 5 original= 1604 instance=    16 observed_slot=   5
+phase= 7 canonical_slot= 6 original= 1605 instance=    16 observed_slot=   6
+phase= 8 canonical_slot= 7 original= 1606 instance=    16 observed_slot=   7
+phase= 9 canonical_slot= 8 original= 1607 instance=    16 observed_slot=   8
+phase=10 canonical_slot= 9 original= 1608 instance=    16 observed_slot=   9
+phase=11 canonical_slot=10 original= 1609 instance=    16 observed_slot=  10
+phase=12 canonical_slot=11 original= 1610 instance=    16 observed_slot=  11
+phase=13 canonical_slot=12 original= 1611 instance=    16 observed_slot=  12
+phase=14 canonical_slot=13 original= 1612 instance=    16 observed_slot=  13
+phase=15 canonical_slot=14 original= 1613 instance=    16 observed_slot=  14
+phase=16 canonical_slot=15 original= 1614 instance=    16 observed_slot=  15
+phase=17 canonical_slot=16 original= 1616 instance=    16 observed_slot=  16
+phase=18 canonical_slot=17 original= 1617 instance=    16 observed_slot=  17
+phase=19 canonical_slot=17 original= 1618 instance=    16 observed_slot=  17
+phase=20 canonical_slot=18 original= 1619 instance=    16 observed_slot=  18
+phase=21 canonical_slot=19 original= 1620 instance=    16 observed_slot=  19
+phase=22 canonical_slot=20 original= 1621 instance=    16 observed_slot=  20
+phase=23 canonical_slot=21 original= 1622 instance=    16 observed_slot=  21
+phase=24 canonical_slot=22 original= 1623 instance=    16 observed_slot=  22
+phase=25 canonical_slot=24 original= 1624 instance=    16 observed_slot=  24
+phase=26 canonical_slot=25 original= 1625 instance=    16 observed_slot=  25
+phase=27 canonical_slot=26 original= 1626 instance=    16 observed_slot=  26
+phase=28 canonical_slot=26 original= 1627 instance=    16 observed_slot=  26
+phase=29 canonical_slot=27 original= 1628 instance=    16 observed_slot=  27
+phase=30 canonical_slot=28 original= 1629 instance=    16 observed_slot=  28
+phase=31 canonical_slot=29 original= 1630 instance=    16 observed_slot=  29
+phase=32 canonical_slot=30 original= 1631 instance=    16 observed_slot=  30
+phase=33 canonical_slot=31 original= 1632 instance=    16 observed_slot=  31
+phase=34 canonical_slot=32 original= 1633 instance=    16 observed_slot=  32
+phase=35 canonical_slot=33 original= 1634 instance=    16 observed_slot=  33
+phase=36 canonical_slot=34 original= 1635 instance=    16 observed_slot=  34
+phase=37 canonical_slot=35 original= 1636 instance=    16 observed_slot=  35
+phase=38 canonical_slot=36 original= 1637 instance=    16 observed_slot=  36
+phase=39 canonical_slot=37 original= 1639 instance=    16 observed_slot=  37
+phase=40 canonical_slot=40 original= 1640 instance=    16 observed_slot=  40
+phase=41 canonical_slot=41 original= 1641 instance=    16 observed_slot=  41
+phase=42 canonical_slot=43 original= 1642 instance=    16 observed_slot=  43
+phase=43 canonical_slot=45 original= 1643 instance=    16 observed_slot=  45
+phase=44 canonical_slot=47 original= 1644 instance=    16 observed_slot=  47
+phase=45 canonical_slot=48 original= 1645 instance=    16 observed_slot=  48
+phase=46 canonical_slot=49 original= 1646 instance=    16 observed_slot=  49
+phase=47 canonical_slot=49 original= 1647 instance=    16 observed_slot=  49
+phase=48 canonical_slot=50 original= 1648 instance=    16 observed_slot=  50
+phase=49 canonical_slot=51 original= 1649 instance=    16 observed_slot=  51
+phase=50 canonical_slot=52 original= 1650 instance=    16 observed_slot=  52
+phase=51 canonical_slot=53 original= 1651 instance=    16 observed_slot=  53
+phase=52 canonical_slot=55 original= 1653 instance=    16 observed_slot=  55
+phase=53 canonical_slot=56 original= 1654 instance=    16 observed_slot=  56
+phase=54 canonical_slot=57 original= 1655 instance=    16 observed_slot=  57
+phase=55 canonical_slot=58 original= 1656 instance=    16 observed_slot=  58
+phase=56 canonical_slot=59 original= 1657 instance=    16 observed_slot=  59
+phase=57 canonical_slot=60 original= 1658 instance=    16 observed_slot=  60
+
+==============================================================================================================
+PHASE IDENTITY K1521..K1586
+==============================================================================================================
+phase= 0 canonical_slot= 0 original= 1669 instance=    17 observed_slot=   0
+phase= 1 canonical_slot= 1 original= 1670 instance=    17 observed_slot=   1
+phase= 2 canonical_slot= 2 original= 1671 instance=    17 observed_slot=   2
+phase= 3 canonical_slot= 3 original= 1673 instance=    17 observed_slot=   3
+phase= 4 canonical_slot= 4 original= 1674 instance=    17 observed_slot=   3
+phase= 5 canonical_slot= 4 original= 1675 instance=    17 observed_slot=   4
+phase= 6 canonical_slot= 5 original= 1676 instance=    17 observed_slot=   5
+phase= 7 canonical_slot= 6 original= 1677 instance=    17 observed_slot=   6
+phase= 8 canonical_slot= 7 original= 1678 instance=    17 observed_slot=   7
+phase= 9 canonical_slot= 8 original= 1679 instance=    17 observed_slot=   8
+phase=10 canonical_slot= 9 original= 1680 instance=    17 observed_slot=   9
+phase=11 canonical_slot=10 original= 1681 instance=    17 observed_slot=  10
+phase=12 canonical_slot=11 original= 1682 instance=    17 observed_slot=  11
+phase=13 canonical_slot=12 original= 1683 instance=    17 observed_slot=  12
+phase=14 canonical_slot=13 original= 1684 instance=    17 observed_slot=  13
+phase=15 canonical_slot=14 original= 1685 instance=    17 observed_slot=  14
+phase=16 canonical_slot=15 original= 1686 instance=    17 observed_slot=  15
+phase=17 canonical_slot=16 original= 1688 instance=    17 observed_slot=  16
+phase=18 canonical_slot=17 original= 1689 instance=    17 observed_slot=  17
+phase=19 canonical_slot=17 original= 1690 instance=    17 observed_slot=  17
+phase=20 canonical_slot=18 original= 1691 instance=    17 observed_slot=  18
+phase=21 canonical_slot=19 original= 1692 instance=    17 observed_slot=  19
+phase=22 canonical_slot=20 original= 1693 instance=    17 observed_slot=  20
+phase=23 canonical_slot=21 original= 1694 instance=    17 observed_slot=  21
+phase=24 canonical_slot=22 original= 1695 instance=    17 observed_slot=  22
+phase=25 canonical_slot=24 original= 1696 instance=    17 observed_slot=  24
+phase=26 canonical_slot=25 original= 1697 instance=    17 observed_slot=  25
+phase=27 canonical_slot=26 original= 1698 instance=    17 observed_slot=  26
+phase=28 canonical_slot=26 original= 1699 instance=    17 observed_slot=  26
+phase=29 canonical_slot=27 original= 1700 instance=    17 observed_slot=  27
+phase=30 canonical_slot=28 original= 1701 instance=    17 observed_slot=  28
+phase=31 canonical_slot=29 original= 1702 instance=    17 observed_slot=  29
+phase=32 canonical_slot=30 original= 1703 instance=    17 observed_slot=  30
+phase=33 canonical_slot=31 original= 1704 instance=    17 observed_slot=  31
+phase=34 canonical_slot=32 original= 1705 instance=    17 observed_slot=  32
+phase=35 canonical_slot=33 original= 1706 instance=    17 observed_slot=  33
+phase=36 canonical_slot=34 original= 1707 instance=    17 observed_slot=  34
+phase=37 canonical_slot=35 original= 1708 instance=    17 observed_slot=  35
+phase=38 canonical_slot=36 original= 1709 instance=    17 observed_slot=  36
+phase=39 canonical_slot=37 original= 1711 instance=    17 observed_slot=  37
+phase=40 canonical_slot=40 original= 1712 instance=    17 observed_slot=  40
+phase=41 canonical_slot=41 original= 1713 instance=    17 observed_slot=  41
+phase=42 canonical_slot=43 original= 1714 instance=    17 observed_slot=  43
+phase=43 canonical_slot=45 original= 1715 instance=    17 observed_slot=  45
+phase=44 canonical_slot=47 original= 1716 instance=    17 observed_slot=  47
+phase=45 canonical_slot=48 original= 1717 instance=    17 observed_slot=  48
+phase=46 canonical_slot=49 original= 1718 instance=    17 observed_slot=  48
+phase=47 canonical_slot=49 original= 1719 instance=    17 observed_slot=  49
+phase=48 canonical_slot=50 original= 1720 instance=    17 observed_slot=  50
+phase=49 canonical_slot=51 original= 1721 instance=    17 observed_slot=  51
+phase=50 canonical_slot=52 original= 1722 instance=    17 observed_slot=  52
+phase=51 canonical_slot=53 original= 1723 instance=    17 observed_slot=  53
+phase=52 canonical_slot=55 original= 1725 instance=    17 observed_slot=  55
+phase=53 canonical_slot=56 original= 1726 instance=    17 observed_slot=  56
+phase=54 canonical_slot=57 original= 1727 instance=    17 observed_slot=  57
+phase=55 canonical_slot=58 original= 1728 instance=    17 observed_slot=  58
+phase=56 canonical_slot=59 original= 1729 instance=    17 observed_slot=  59
+phase=57 canonical_slot=60 original= 1730 instance=    17 observed_slot=  60
+
+==============================================================================================================
+PHASE IDENTITY K1587..K1652
+==============================================================================================================
+phase= 0 canonical_slot= 0 original= 1741 instance=    18 observed_slot=   0
+phase= 1 canonical_slot= 1 original= 1742 instance=    18 observed_slot=   1
+phase= 2 canonical_slot= 2 original= 1743 instance=    18 observed_slot=   2
+phase= 3 canonical_slot= 3 original= 1745 instance=    18 observed_slot=   3
+phase= 4 canonical_slot= 4 original= 1746 instance=    18 observed_slot=   4
+phase= 5 canonical_slot= 4 original= 1747 instance=    18 observed_slot=   4
+phase= 6 canonical_slot= 5 original= 1748 instance=    18 observed_slot=   5
+phase= 7 canonical_slot= 6 original= 1749 instance=    18 observed_slot=   6
+phase= 8 canonical_slot= 7 original= 1750 instance=    18 observed_slot=   7
+phase= 9 canonical_slot= 8 original= 1751 instance=    18 observed_slot=   8
+phase=10 canonical_slot= 9 original= 1752 instance=    18 observed_slot=   9
+phase=11 canonical_slot=10 original= 1753 instance=    18 observed_slot=  10
+phase=12 canonical_slot=11 original= 1754 instance=    18 observed_slot=  11
+phase=13 canonical_slot=12 original= 1755 instance=    18 observed_slot=  12
+phase=14 canonical_slot=13 original= 1756 instance=    18 observed_slot=  13
+phase=15 canonical_slot=14 original= 1757 instance=    18 observed_slot=  14
+phase=16 canonical_slot=15 original= 1758 instance=    18 observed_slot=  15
+phase=17 canonical_slot=16 original= 1760 instance=    18 observed_slot=  16
+phase=18 canonical_slot=17 original= 1761 instance=    18 observed_slot=  23
+phase=19 canonical_slot=17 original= 1762 instance=    18 observed_slot=  26
+phase=20 canonical_slot=18 original= 1763 instance=    18 observed_slot=  27
+phase=21 canonical_slot=19 original= 1764 instance=    18 observed_slot=  28
+phase=22 canonical_slot=20 original= 1765 instance=    18 observed_slot=  29
+phase=23 canonical_slot=21 original= 1766 instance=    18 observed_slot=  35
+phase=24 canonical_slot=22 original= 1767 instance=    18 observed_slot=  45
+phase=25 canonical_slot=24 original= 1768 instance=    18 observed_slot=  47
+phase=26 canonical_slot=25 original= 1769 instance=    18 observed_slot=  48
+phase=27 canonical_slot=26 original= 1770 instance=    18 observed_slot=  49
+phase=28 canonical_slot=26 original= 1771 instance=    18 observed_slot=  49
+phase=29 canonical_slot=27 original= 1772 instance=    18 observed_slot=  50
+phase=30 canonical_slot=28 original= 1773 instance=    18 observed_slot=  51
+phase=31 canonical_slot=29 original= 1774 instance=    18 observed_slot=  52
+phase=32 canonical_slot=30 original= 1775 instance=    18 observed_slot=  53
+phase=33 canonical_slot=31 original= 1776 instance=    18 observed_slot=  55
+phase=34 canonical_slot=32 original= 1777 instance=    18 observed_slot=  56
+phase=35 canonical_slot=33 original= 1778 instance=    18 observed_slot=  57
+phase=36 canonical_slot=34 original= 1779 instance=    18 observed_slot=  58
+phase=37 canonical_slot=35 original= 1780 instance=    18 observed_slot=  59
+phase=38 canonical_slot=36 original= 1781 instance=    18 observed_slot=  60
+phase=39 canonical_slot=37 original= 1783 instance=  None observed_slot=None
+phase=40 canonical_slot=40 original= 1784 instance=  None observed_slot=None
+phase=41 canonical_slot=41 original= 1785 instance=  None observed_slot=None
+phase=42 canonical_slot=43 original= 1786 instance=  None observed_slot=None
+phase=43 canonical_slot=45 original= 1787 instance=    19 observed_slot=   0
+phase=44 canonical_slot=47 original= 1788 instance=    19 observed_slot=   2
+phase=45 canonical_slot=48 original= 1789 instance=    19 observed_slot=   3
+phase=46 canonical_slot=49 original= 1790 instance=    19 observed_slot=  23
+phase=47 canonical_slot=49 original= 1791 instance=    19 observed_slot=  26
+phase=48 canonical_slot=50 original= 1792 instance=    19 observed_slot=  27
+phase=49 canonical_slot=51 original= 1793 instance=    19 observed_slot=  28
+phase=50 canonical_slot=52 original= 1794 instance=    19 observed_slot=  29
+phase=51 canonical_slot=53 original= 1795 instance=    19 observed_slot=  30
+phase=52 canonical_slot=55 original= 1797 instance=    19 observed_slot=  31
+phase=53 canonical_slot=56 original= 1798 instance=    19 observed_slot=  32
+phase=54 canonical_slot=57 original= 1799 instance=    19 observed_slot=  33
+phase=55 canonical_slot=58 original= 1800 instance=    19 observed_slot=  34
+phase=56 canonical_slot=59 original= 1801 instance=    19 observed_slot=  35
+phase=57 canonical_slot=60 original= 1802 instance=    19 observed_slot=  36
+
+==============================================================================================================
+PHASE IDENTITY K1653..K1718
+==============================================================================================================
+phase= 0 canonical_slot= 0 original= 1813 instance=    21 observed_slot=   0
+phase= 1 canonical_slot= 1 original= 1814 instance=    21 observed_slot=   1
+phase= 2 canonical_slot= 2 original= 1815 instance=    21 observed_slot=  15
+phase= 3 canonical_slot= 3 original= 1817 instance=    21 observed_slot=  16
+phase= 4 canonical_slot= 4 original= 1818 instance=    21 observed_slot=  23
+phase= 5 canonical_slot= 4 original= 1819 instance=    21 observed_slot=  26
+phase= 6 canonical_slot= 5 original= 1820 instance=    21 observed_slot=  27
+phase= 7 canonical_slot= 6 original= 1821 instance=    21 observed_slot=  28
+phase= 8 canonical_slot= 7 original= 1822 instance=    21 observed_slot=  29
+phase= 9 canonical_slot= 8 original= 1823 instance=    21 observed_slot=  35
+phase=10 canonical_slot= 9 original= 1824 instance=    21 observed_slot=  45
+phase=11 canonical_slot=10 original= 1825 instance=    22 observed_slot=  10
+phase=12 canonical_slot=11 original= 1826 instance=    22 observed_slot=  11
+phase=13 canonical_slot=12 original= 1827 instance=    22 observed_slot=  12
+phase=14 canonical_slot=13 original= 1828 instance=    22 observed_slot=  13
+phase=15 canonical_slot=14 original= 1829 instance=    22 observed_slot=  14
+phase=16 canonical_slot=15 original= 1830 instance=    22 observed_slot=  15
+phase=17 canonical_slot=16 original= 1832 instance=    22 observed_slot=  16
+phase=18 canonical_slot=17 original= 1833 instance=    22 observed_slot=  17
+phase=19 canonical_slot=17 original= 1834 instance=    22 observed_slot=  26
+phase=20 canonical_slot=18 original= 1835 instance=    22 observed_slot=  27
+phase=21 canonical_slot=19 original= 1836 instance=    22 observed_slot=  28
+phase=22 canonical_slot=20 original= 1837 instance=    22 observed_slot=  29
+phase=23 canonical_slot=21 original= 1838 instance=    22 observed_slot=  30
+phase=24 canonical_slot=22 original= 1839 instance=    22 observed_slot=  45
+phase=25 canonical_slot=24 original= 1840 instance=    22 observed_slot=  47
+phase=26 canonical_slot=25 original= 1841 instance=    22 observed_slot=  48
+phase=27 canonical_slot=26 original= 1842 instance=    22 observed_slot=  49
+phase=28 canonical_slot=26 original= 1843 instance=    22 observed_slot=  60
+phase=29 canonical_slot=27 original= 1844 instance=    23 observed_slot=   5
+phase=30 canonical_slot=28 original= 1845 instance=    23 observed_slot=   6
+phase=31 canonical_slot=29 original= 1846 instance=    23 observed_slot=   7
+phase=32 canonical_slot=30 original= 1847 instance=    23 observed_slot=   8
+phase=33 canonical_slot=31 original= 1848 instance=    23 observed_slot=  31
+phase=34 canonical_slot=32 original= 1849 instance=    23 observed_slot=  32
+phase=35 canonical_slot=33 original= 1850 instance=    23 observed_slot=  33
+phase=36 canonical_slot=34 original= 1851 instance=    23 observed_slot=  34
+phase=37 canonical_slot=35 original= 1852 instance=    23 observed_slot=  35
+phase=38 canonical_slot=36 original= 1853 instance=    23 observed_slot=  36
+phase=39 canonical_slot=37 original= 1855 instance=    23 observed_slot=  37
+phase=40 canonical_slot=40 original= 1856 instance=    23 observed_slot=  40
+phase=41 canonical_slot=41 original= 1857 instance=    23 observed_slot=  41
+phase=42 canonical_slot=43 original= 1858 instance=    23 observed_slot=  43
+phase=43 canonical_slot=45 original= 1859 instance=    23 observed_slot=  45
+phase=44 canonical_slot=47 original= 1860 instance=    23 observed_slot=  47
+phase=45 canonical_slot=48 original= 1861 instance=    23 observed_slot=  48
+phase=46 canonical_slot=49 original= 1862 instance=    23 observed_slot=  49
+phase=47 canonical_slot=49 original= 1863 instance=    23 observed_slot=  49
+phase=48 canonical_slot=50 original= 1864 instance=    23 observed_slot=  50
+phase=49 canonical_slot=51 original= 1865 instance=    23 observed_slot=  51
+phase=50 canonical_slot=52 original= 1866 instance=    23 observed_slot=  52
+phase=51 canonical_slot=53 original= 1867 instance=    23 observed_slot=  53
+phase=52 canonical_slot=55 original= 1869 instance=    23 observed_slot=  55
+phase=53 canonical_slot=56 original= 1870 instance=    23 observed_slot=  56
+phase=54 canonical_slot=57 original= 1871 instance=    23 observed_slot=  57
+phase=55 canonical_slot=58 original= 1872 instance=    23 observed_slot=  58
+phase=56 canonical_slot=59 original= 1873 instance=    23 observed_slot=  59
+phase=57 canonical_slot=60 original= 1874 instance=    23 observed_slot=  60
+
+==============================================================================================================
+PHASE IDENTITY K1719..K1784
+==============================================================================================================
+phase= 0 canonical_slot= 0 original= 1885 instance=    25 observed_slot=   0
+phase= 1 canonical_slot= 1 original= 1886 instance=    25 observed_slot=   1
+phase= 2 canonical_slot= 2 original= 1887 instance=    25 observed_slot=   2
+phase= 3 canonical_slot= 3 original= 1889 instance=    25 observed_slot=   3
+phase= 4 canonical_slot= 4 original= 1890 instance=    25 observed_slot=   4
+phase= 5 canonical_slot= 4 original= 1891 instance=    25 observed_slot=   4
+phase= 6 canonical_slot= 5 original= 1892 instance=    25 observed_slot=   5
+phase= 7 canonical_slot= 6 original= 1893 instance=    25 observed_slot=   6
+phase= 8 canonical_slot= 7 original= 1894 instance=    25 observed_slot=   7
+phase= 9 canonical_slot= 8 original= 1895 instance=    25 observed_slot=   8
+phase=10 canonical_slot= 9 original= 1896 instance=    25 observed_slot=   9
+phase=11 canonical_slot=10 original= 1897 instance=    25 observed_slot=  10
+phase=12 canonical_slot=11 original= 1898 instance=    25 observed_slot=  11
+phase=13 canonical_slot=12 original= 1899 instance=    25 observed_slot=  12
+phase=14 canonical_slot=13 original= 1900 instance=    25 observed_slot=  13
+phase=15 canonical_slot=14 original= 1901 instance=    25 observed_slot=  14
+phase=16 canonical_slot=15 original= 1902 instance=    25 observed_slot=  15
+phase=17 canonical_slot=16 original= 1904 instance=    25 observed_slot=  16
+phase=18 canonical_slot=17 original= 1905 instance=    25 observed_slot=  17
+phase=19 canonical_slot=17 original= 1906 instance=    25 observed_slot=  26
+phase=20 canonical_slot=18 original= 1907 instance=    25 observed_slot=  27
+phase=21 canonical_slot=19 original= 1908 instance=    25 observed_slot=  28
+phase=22 canonical_slot=20 original= 1909 instance=    25 observed_slot=  29
+phase=23 canonical_slot=21 original= 1910 instance=    25 observed_slot=  30
+phase=24 canonical_slot=22 original= 1911 instance=    25 observed_slot=  45
+phase=25 canonical_slot=24 original= 1912 instance=    25 observed_slot=  47
+phase=26 canonical_slot=25 original= 1913 instance=    25 observed_slot=  48
+phase=27 canonical_slot=26 original= 1914 instance=    25 observed_slot=  49
+phase=28 canonical_slot=26 original= 1915 instance=    25 observed_slot=  60
+phase=29 canonical_slot=27 original= 1916 instance=    26 observed_slot=   5
+phase=30 canonical_slot=28 original= 1917 instance=    26 observed_slot=   6
+phase=31 canonical_slot=29 original= 1918 instance=    26 observed_slot=   7
+phase=32 canonical_slot=30 original= 1919 instance=    26 observed_slot=   8
+phase=33 canonical_slot=31 original= 1920 instance=    26 observed_slot=  31
+phase=34 canonical_slot=32 original= 1921 instance=    26 observed_slot=  32
+phase=35 canonical_slot=33 original= 1922 instance=    26 observed_slot=  33
+phase=36 canonical_slot=34 original= 1923 instance=    26 observed_slot=  40
+phase=37 canonical_slot=35 original= 1924 instance=  None observed_slot=None
+phase=38 canonical_slot=36 original= 1925 instance=  None observed_slot=None
+phase=39 canonical_slot=37 original= 1927 instance=  None observed_slot=None
+phase=40 canonical_slot=40 original= 1928 instance=  None observed_slot=None
+phase=41 canonical_slot=41 original= 1929 instance=  None observed_slot=None
+phase=42 canonical_slot=43 original= 1930 instance=  None observed_slot=None
+phase=43 canonical_slot=45 original= 1931 instance=  None observed_slot=None
+phase=44 canonical_slot=47 original= 1932 instance=  None observed_slot=None
+phase=45 canonical_slot=48 original= 1933 instance=  None observed_slot=None
+phase=46 canonical_slot=49 original= 1934 instance=  None observed_slot=None
+phase=47 canonical_slot=49 original= 1935 instance=  None observed_slot=None
+phase=48 canonical_slot=50 original= 1936 instance=  None observed_slot=None
+phase=49 canonical_slot=51 original= 1937 instance=  None observed_slot=None
+phase=50 canonical_slot=52 original= 1938 instance=  None observed_slot=None
+phase=51 canonical_slot=53 original= 1939 instance=  None observed_slot=None
+phase=52 canonical_slot=55 original= 1941 instance=  None observed_slot=None
+phase=53 canonical_slot=56 original= 1942 instance=  None observed_slot=None
+phase=54 canonical_slot=57 original= 1943 instance=  None observed_slot=None
+phase=55 canonical_slot=58 original= 1944 instance=  None observed_slot=None
+phase=56 canonical_slot=59 original= 1945 instance=  None observed_slot=None
+phase=57 canonical_slot=60 original= 1946 instance=  None observed_slot=None
+
+==============================================================================================================
+IDENTITY COVERAGE
+==============================================================================================================
+blocks                     : 10908
+resolved phase count       : 404808
+ambiguous phase count     : 0
+unknown phase count       : 315120
+
+==============================================================================================================
+FINAL VERDICT
+==============================================================================================================
+V14.9 uses graph-node identity as the primary segment source.
+V11 kernel ownership is no longer required to declare a CUDA phase's ORT segment.
+Normalized segment patterns now compare blocks independently of absolute ORT instance number.
+UNKNOWN means identity could not be resolved; it does not mean the CUDA phase has no owner.
+==============================================================================================================
+END
+==============================================================================================================
+sky@archlinux:~/qwen3-asr-test$ 
+
+
